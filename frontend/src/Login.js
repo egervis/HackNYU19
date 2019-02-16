@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Registration from './Registration';
-import './Login.css';
+import './styles/Login.css';
 
 class Login extends Component{
     render(){
       return(
         <div className="Login">
-          <nav class="navbar navbar-expand-md fixed-top bg-dark navbar-dark py-2">
+          <nav class="navbar navbar-expand-md bg-dark navbar-dark py-2">
              <a class="navbar-brand" href="#">Company Name</a>
              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
                <span class="navbar-toggler-icon"></span>
@@ -24,7 +24,7 @@ class Login extends Component{
              </div>
           </nav>
 
-          <h1 class="mt-5 pt-5">We're here to help you learn!</h1>
+          <h1 class="mt-5 pt-3">We're here to help you learn!</h1>
           <div class="container-fluid w-25 jumbotron mt-5 bg-dark">
             <form>
               <h2 class="pb-3">Login</h2>
