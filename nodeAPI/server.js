@@ -16,9 +16,14 @@ const pool = new Pool({
   database: 'postgres'
 });
 
-// Initial endpoint
-app.get('/', async (req, res) => {
-  await endpoints.init(req, res, pool);
+// Time endpoint
+app.get('/time', async (req, res) => {
+  await endpoints.time(req, res, pool);
+});
+
+// Login endpoint
+app.get('/login', async (req, res) => {
+  await endpoints.login(req, res, pool);
 });
 
 app.listen(port, () => console.log(`Node is now listening on 192.168.99.100:${port}`));

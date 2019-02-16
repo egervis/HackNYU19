@@ -8,8 +8,13 @@
   `192.168.99.100:80`
 
 ## Adding Volumes
-  - run `docker volume create --name=data` for persistent data storage
+  - run `docker volume create data` for persistent data storage
+
+## Updating the database
+  1. `docker volume rm data`
+  2. `docker volume create data`
+  3. `docker-compose up --build -d`
 
 # TODO
-  - Connect the node api to the postgres database
-  - Setup persistent database storage that gets saved after container shutdown
+  - Setup all the endpoints
+  - Create frontend forms
