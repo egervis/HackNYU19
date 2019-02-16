@@ -28,7 +28,7 @@ app.post('/login', async (req, res) => {
 
 // Register endpoint
 app.post('/register', async (req, res) => {
-  
-})
+  await endpoints.register(req, res, pool);
+});
 
 app.listen(port, () => console.log(`Node is now listening on 192.168.99.100:${port}`));

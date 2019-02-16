@@ -1,5 +1,5 @@
 "use strict";
-import { users } from 'prototypes';
+import { users } from './prototypes';
 
 export const request = async (req, res, pool) => {
   try {
@@ -16,7 +16,7 @@ export const request = async (req, res, pool) => {
       let currentClasses = classes.rows[0].userclasses;
       let classids = currentClasses.split(",");
       let array = [];
-      for each (id in classids)
+      foreach (id in classids)
       {
         let query2 = {
           text: 'SELECT * FROM classes WHERE classid = $1',
@@ -24,10 +24,11 @@ export const request = async (req, res, pool) => {
         };
         let classEntry =  await pool.query(query2);
         let classesPrototype;
-        if(userType == 0)
+        if(userType == 0) {
           classesPrototype = classes(classEntry.classid, classEntry.classname, classEntry.lessonids, classEntry.studentids, '');
-        else
+        } else {
           classesPrototype = classes(classEntry.classid, classEntry.classname, classEntry.lessonids, '', classEntry.instructorid);
+        }
         array.push(classesPrototype);
       }
 
