@@ -43,7 +43,7 @@ services:
     # Copy files from dbinit into the image so that they will be run on boot
     volumes:
       - ./db/initdb:/docker-entrypoint-initdb.d
-      - ./db/data:/var/lib/postgresql/
+      - data:/var/lib/postgresql/data
 
   nodeapi:
     container_name: nodeapi
@@ -53,3 +53,6 @@ services:
       - "3000:3000"
     depends_on:
       - postgres
+volumes:
+    data:
+      external: true
