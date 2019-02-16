@@ -25,6 +25,8 @@
   - registration *
   - classes *
   - lessons *
-  - lesson
-  - pictures
-  - calendar
+  - lesson *
+  - create lesson
+  - calendar *
+  - feedback
+  - create feedback

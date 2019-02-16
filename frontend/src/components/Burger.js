@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { push as Menu } from 'react-burger-menu';
+import { slide as Menu } from 'react-burger-menu';
 import '../styles/Burger.css';
 
 class Burger extends Component {
@@ -33,13 +33,14 @@ class Burger extends Component {
 
     render() {
         return (
-            <div>
+            <div id="outer-container">
                 <Menu
                     className="menu"
                     isOpen={this.state.menuOpen}
                     onStateChange={(state) => this.handleStateChange(state)}
+                    pageWrapId={"page-wrap"}
+                    outerContainerId={"outer-container"}
                 >
-                    <h1>Menu</h1>
                     <Link to="/teacher/class" className = "menu-item">Classes</Link>
                     <Link to="/teacher/calendar" className = "menu-item">Calendar</Link>
                     <Link to="/" className = "menu-item">Log out</Link>
