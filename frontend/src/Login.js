@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Registration from './Registration';
+import './Login.css';
 
 class Login extends Component{
     render(){
@@ -14,10 +15,10 @@ class Login extends Component{
              <div class="collapse navbar-collapse" id="collapsibleNavbar">
                <ul class="navbar-nav ml-auto">
                  <li class="nav-item">
-                   <Link to="/" class="nav-link">Home</Link>
+                   <Link to="/registration" class="nav-link">Registration</Link>
                  </li>
                  <li class="nav-item">
-                   <Link to="/registration" class="nav-link">Registration</Link>
+                   <Link to="/" class="nav-link">Contact Us</Link>
                  </li>
                </ul>
              </div>
