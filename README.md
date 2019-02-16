@@ -18,3 +18,11 @@
 # TODO
   - Setup all the endpoints
   - Create frontend forms
+
+
+
+  - login
+  - registration
+  - classes
+  - lessons
+  - calendar
