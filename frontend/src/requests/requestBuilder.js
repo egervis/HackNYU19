@@ -24,7 +24,7 @@ export const registerRequester = async (userType, lastName, firstName, email, us
 // Login a user
 // email, userPassword: string
 // Returns a user object, empty if user not found
-export const loginUser = async (email, userPassword) => {
+export const loginRequester = async (email, userPassword) => {
   try {
     return await axios.post(`${address}:${port}/login`, {
       email: email,
