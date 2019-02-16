@@ -5,4 +5,6 @@
 
 # ENDPOINTS
   - /
-    - The base endpoint, just sends a string
+    - The base endpoint
+  - /time
+    - Grabs the current time and returns a JSON object with a field of "now" that has the current time as a string
