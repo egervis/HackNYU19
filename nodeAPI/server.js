@@ -1,14 +1,17 @@
 "use strict";
 
 // Import statements
-import endpoints from 'src/endpointMapper';
+import { endpoints } from './src/endpointMapper';
+import express from 'express';
+import postgres from 'pg';
 
-const express = require('express');
-const postgres = require('pg');
+
 const app = express();
 const port = 3000;
 
 // Initial endpoint
-app.get('/', );
+app.get('/', (req, res) => {
+  endpoints.init(req, res);
+});
 
 app.listen(port);

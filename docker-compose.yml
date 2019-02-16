@@ -46,6 +46,7 @@ services:
       - data:/var/lib/postgresql/data
 
   nodeapi:
+    container_name: nodeapi
     build:
       context: ./nodeAPI
     ports:

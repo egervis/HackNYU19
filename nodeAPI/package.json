@@ -5,10 +5,13 @@
   "author": "all of us",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "babel-node server.js"
   },
   "dependencies": {
     "express": "^4.16.4",
-    "pg": "^7.8.0"
+    "pg": "^7.8.0",
+    "@babel/core": "7.3.3",
+    "@babel/node": "7.2.2",
+    "@babel/preset-env": "7.3.1"
   }
 }

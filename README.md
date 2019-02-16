@@ -8,4 +8,5 @@
   `192.168.99.100:80`
 
 # TODO
-  Separate the node api and the backend and write a script that will automatically deploy the app.
+  - Connect the node api to the postgres database
+  - Setup persistent database storage that gets saved after container shutdown
