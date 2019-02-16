@@ -7,7 +7,7 @@ export function users(userid, usertype, lastname, firstname, email, userclasses,
   this.lastname = lastname;
   this.firstname = firstname;
   this.email = email;
-  this.userclasses = classes;
+  this.userclasses = userclasses;
   this.userpassword = userpassword;
   this.eventids = eventids;
 }
@@ -30,7 +30,7 @@ export function events(eventid, eventtype, eventname, dateexpires, instructorid)
   this.instructorid = instructorid;
 }
 
-export function lessons(lessonid, lessonname, lessondescription, pictureids, insructorid)
+export function lessons(lessonid, lessonname, lessondescription, pictureids, instructorid)
 {
   this.lessonid = lessonid;
   this.lessonname = lessonname;

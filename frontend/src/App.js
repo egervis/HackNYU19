@@ -4,8 +4,10 @@ import Login from './Login';
 import Registration from './Registration';
 import TeacherClass from './teacher/class.js'
 import TeacherCalendar from './teacher/calendar.js'
+import TeacherHome from './teacher/home.js';
 import logo from './logo.svg';
 import './App.css';
+import StudentHome from './student/home.js';
 
 class App extends Component {
   previousLocation = this.props.location;
@@ -35,6 +37,7 @@ class App extends Component {
             <Route path="/registration" component={Registration} />
             <Route path="/teacher/classes" component={TeacherClass} />
             <Route path="/teacher/calendar" component={TeacherCalendar} />
+            <Route path="/student/home" component={StudentHome} />
           </Switch>
       </div>
     );
