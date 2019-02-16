@@ -1,23 +1,24 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import App from './App';
+import './styles/Registration.css';
 
 class Registration extends Component {
   render() {
     return (
       <div className="Registration">
-        <nav class="navbar navbar-expand-md fixed-top bg-dark navbar-dark py-2">
-          <a class="navbar-brand" href="#">Company Name</a>
+        <nav class="navbar navbar-expand-md bg-dark navbar-dark py-2">
+          <a class="navbar-brand">Company Name</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
-                <a class="nav-link" href="index.html">Login</a>
+                <Link to="/" class="nav-link">Home</Link>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Contact Us</a>
+                <Link to="/" class="nav-link">Contact Us</Link>
               </li>
             </ul>
           </div>

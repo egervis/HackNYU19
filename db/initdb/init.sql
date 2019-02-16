@@ -10,6 +10,7 @@ CREATE TABLE Users (
     lastName varchar(255),
     firstName varchar(255),
     email varchar(255),
+    userClasses text,
     userPassword varchar(255),
     eventIDs text /*if event not present in table, delete*/
 );
@@ -17,6 +18,7 @@ CREATE TABLE Users (
 CREATE TABLE Classes (
     classID text NOT NULL PRIMARY KEY,
     className varchar(255),
+    lessonids text,
     studentIDs text,
     instructorID text REFERENCES Users(userID)
 );
