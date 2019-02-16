@@ -46,3 +46,11 @@ export function pictures(pictureid, picturename, picturefile, lessonid)
   this.lessonid = lessonid;
   this.picturefile = picturefile;
 }
+
+export function feedback(feedbackid, instructorid, studentid, feedbackText)
+{
+  this.feedbackid = feedbackid;
+  this.instructorid = instructorid;
+  this.studentid = studentid;
+  this.feedbackText = feedbackText;
+}

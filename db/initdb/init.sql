@@ -45,3 +45,9 @@ CREATE TABLE Pictures (
     lessonID text REFERENCES Lessons(lessonID),
     pictureFile bytea
 );
+
+CREATE TABLE Feedback (
+    feedbackID text NOT NULL PRIMARY KEY,
+    instructorID text REFERENCES Users(userID),
+    studentID text REFERENCES Users(userID)
+);
