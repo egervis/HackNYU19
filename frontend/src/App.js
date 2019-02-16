@@ -23,21 +23,21 @@ class App extends Component {
           </div>
         </nav>
 
-        <h1 class="mt-5 pt-5" style="text-align:center; font-family:'Lobster', sans-serif;">We're here to help you learn!</h1>
+        <h1 class="mt-5 pt-5">We're here to help you learn!</h1>
 
         <div class="container-fluid w-25 jumbotron mt-5 bg-dark">
           <form>
             <h2 class="pb-3">Login</h2>
             <div class="form-group">
               <label for="emailInput">Email address</label>
-              <input type="email" class="form-control" id="emailInput" aria-describedby="emailHelp" placeholder="Your email">
+              <input type="email" class="form-control" id="emailInput" aria-describedby="emailHelp" placeholder="Your email"/>
             </div>
             <div class="form-group">
               <label for="pwInput">Password</label>
-              <input type="password" class="form-control" id="pwInput" placeholder="Password">
+              <input type="password" class="form-control" id="pwInput" placeholder="Password"/>
             </div>
             <div class="form-check">
-              <input type="checkbox" class="form-check-input" id="remember">
+              <input type="checkbox" class="form-check-input" id="remember"/>
               <label class="form-check-label" for="remember">Remember me</label>
             </div>
             <button type="submit" class="btn btn-success mt-3">Login</button>
