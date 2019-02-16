@@ -8,8 +8,6 @@ import logo from './logo.svg';
 import './App.css';
 import StudentHome from './student/home.js';
 
-import { withCookies } from 'react-cookie';
-
 class App extends Component {
   previousLocation = this.props.location;
 
@@ -34,14 +32,10 @@ class App extends Component {
     return (
       <div>
           <Switch location={isModal ? this.previousLocation : location}>
-            <Route exact path="/" component={Login}/>
-
+            <Route exact path="/" component={Login} />
             <Route path="/registration" component={Registration} />
-
-            <Route path="/teacher/class" component={TeacherClass} />
-
+            <Route path="/teacher/classes" component={TeacherClass} />
             <Route path="/teacher/calendar" component={TeacherCalendar} />
-
             <Route path="/student/home" component={StudentHome} />
           </Switch>
       </div>
@@ -49,4 +43,4 @@ class App extends Component {
   }
 }
 
-export default withCookies(App);
+export default App;
