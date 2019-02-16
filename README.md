@@ -25,6 +25,6 @@
   - registration *
   - classes *
   - lessons *
-  - lesson
-  - pictures
+  - lesson *
+  - create lesson
   - calendar
