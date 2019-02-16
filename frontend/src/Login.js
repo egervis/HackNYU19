@@ -4,8 +4,6 @@ import Registration from './Registration';
 import StudentHome from './student/home';
 import './styles/Login.css';
 
-import { CookiesProvider } from 'react-cookies';
-
 class Login extends Component{
     render(){
       return(
