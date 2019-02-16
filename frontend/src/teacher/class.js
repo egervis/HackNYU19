@@ -7,10 +7,8 @@ class TeacherClass extends Component{
   render(){
     return(
       <div>
-        <main>
-          <div className="burger-bar"><Burger /></div>
-          <div id="mainbody" class="w-75">this is teacher's home page</div>
-        </main>
+        <div className="burger-bar"><Burger /></div>
+        <div class="mx-auto w-75 bg-dark my-5 px-5 py-5">Your Classes</div>
       </div>
     );
   }
