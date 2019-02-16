@@ -1,0 +1,14 @@
+{
+  "name": "nodeAPI",
+  "version": "1.0.0",
+  "descriptor": "hackathon practice",
+  "author": "all of us",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.16.4",
+    "pg": "^7.8.0"
+  }
+}

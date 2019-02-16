@@ -1,0 +1,54 @@
+version: '3.3'
+services:
+
+  pgadmin:
+    # For more details on configuring the pgadmin4 Docker image, see:
+    #   https://hub.docker.com/r/dpage/pgadmin4/
+    image: dpage/pgadmin4
+
+    # Sets dependencies
+    depends_on:
+      - postgres
+
+    # Expose the web UI on localhost port 5050
+    ports:
+      - '80:80'
+    network_mode: bridge
+    container_name: pgadmin
+
+    # Link this container to the postgres container with hostname 'postgres'
+    external_links:
+      - postgres:postgres
+
+    environment:
+      PGADMIN_DEFAULT_EMAIL: 'admin'
+      PGADMIN_DEFAULT_PASSWORD: 'password'
+
+  postgres:
+    # For more details on configuring the Postgres Docker image, see:
+    # https://hub.docker.com/_/postgres/
+    image: postgres:11.1-alpine
+
+    # Expose the default Postgres port on localhost
+    ports:
+      - '5432:5432'
+    network_mode: bridge
+    container_name: postgres
+
+    environment:
+      POSTGRES_USER: 'postgres'
+      POSTGRES_PASSWORD: 'admin'
+      POSTGRES_DB: 'postgres'
+
+    # Copy files from dbinit into the image so that they will be run on boot
+    volumes:
+      - ./db/initdb:/docker-entrypoint-initdb.d
+      - ./postgres-data:/data
+
+  nodeapi:
+    build:
+      context: ./nodeAPI
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
