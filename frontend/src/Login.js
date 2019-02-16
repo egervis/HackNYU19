@@ -22,7 +22,7 @@ class Login extends Component{
                    <Link to="/" class="nav-link">Contact Us</Link>
                  </li>
                  <li class="nav-item">
-                   <Link to="/teacher/classes" class="nav-link">Teacher</Link>
+                   <Link to="/teacher/class" class="nav-link">Teacher</Link>
                  </li>
                  <li class="nav-item">
                    <Link to="/student/home" class="nav-link">Student</Link>
