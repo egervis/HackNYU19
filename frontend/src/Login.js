@@ -19,6 +19,9 @@ class Login extends Component{
                  <li class="nav-item">
                    <Link to="/registration" class="nav-link">Registration</Link>
                  </li>
+                 <li class="nav-item">
+                   <Link to="/teacher/home" class="nav-link">Teacher</Link>
+                 </li>
                </ul>
              </div>
           </nav>
