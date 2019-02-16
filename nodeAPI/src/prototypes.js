@@ -1,13 +1,14 @@
 "use strict";
 
-export function users(userid, usertype, lastname, firstname, email, userPassword, eventids)
+export function users(userid, usertype, lastname, firstname, email, userclasses, userpassword, eventids)
 {
   this.userid = userid;
   this.usertype = usertype;
   this.lastname = lastname;
   this.firstname = firstname;
   this.email = email;
-  this.userPassword = userPassword;
+  this.userclasses = classes;
+  this.userpassword = userpassword;
   this.eventids = eventids;
 }
 
