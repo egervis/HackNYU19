@@ -1,4 +1,4 @@
--import React, { Component } from 'react';
+import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import App from './App';
 
@@ -14,7 +14,7 @@ class Registration extends Component {
           <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
-                <a class="nav-link" href="index.html">Login</a>
+                <Link to="/" class="nav-link">Home</Link>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">Contact Us</a>
@@ -29,22 +29,22 @@ class Registration extends Component {
 
             <div class="row">
               <div class="col">
-                <input type="text" class="form-control" placeholder="First name">
+                <input type="text" class="form-control" placeholder="First name"/>
               </div>
 
               <div class="col">
-                <input type="text" class="form-control" placeholder="Last name">
+                <input type="text" class="form-control" placeholder="Last name"/>
               </div>
             </div>
 
             <div class="form-group">
               <label for="emailInput">Email address</label>
-              <input type="email" class="form-control" id="emailInput" aria-describedby="emailHelp" placeholder="Your email">
+              <input type="email" class="form-control" id="emailInput" aria-describedby="emailHelp" placeholder="Your email"/>
             </div>
 
             <div class="form-group">
               <label for="pwInput">Password</label>
-              <input type="password" class="form-control" id="pwInput" placeholder="Password">
+              <input type="password" class="form-control" id="pwInput" placeholder="Password"/>
             </div>
 
             <label for="selectRole">I am a...</label>
