@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from "react-dom";
 import Burger from '../components/Burger';
 import '../styles/Burger.css';
 
@@ -6,8 +7,10 @@ class TeacherClass extends Component{
   render(){
     return(
       <div>
-        <div className="burger-bar"><Burger /></div>
-        <h2>this is teacher's home page</h2>
+        <main>
+          <div className="burger-bar"><Burger /></div>
+          <div id="mainbody" class="w-75">this is teacher's home page</div>
+        </main>
       </div>
     );
   }
