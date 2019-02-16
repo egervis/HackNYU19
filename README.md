@@ -21,8 +21,9 @@
 
 
 
-  - login
-  - registration
-  - classes
+  - login *
+  - registration *
+  - classes *
   - lessons
+  - pictures
   - calendar
