@@ -28,9 +28,15 @@ export const loginRequester = async (email, userPassword) => {
     return await axios.post(`${address}:${port}/login`, {
       email: email,
       userPassword: userPassword
-    }).then(res => {
+    })
+    .then(res => {
       return res.json();
-    }).catch(err => {
+    })
+    .then(res => {
+      localStorage.setItem("user", res.userId);
+      return res;
+    })
+    .catch(err => {
       console.error('Failed to login', err);
     })
 }
