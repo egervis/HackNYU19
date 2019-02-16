@@ -21,8 +21,8 @@ app.get('/time', async (req, res) => {
   await endpoints.time(req, res, pool);
 });
 
-app.get('/loging', async (req, res) => {
-  
+app.get('/login', async (req, res) => {
+
 });
 
 app.listen(port, () => console.log(`Node is now listening on 192.168.99.100:${port}`));

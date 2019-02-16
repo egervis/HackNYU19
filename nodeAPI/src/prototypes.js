@@ -1,4 +1,6 @@
-function users(userid, usertype, lastname, firstname, email, password, eventids)
+"use strict";
+
+export const users = (userid, usertype, lastname, firstname, email, password, eventids) =>
 {
   this.userid = userid;
   this.usertype = usertype;

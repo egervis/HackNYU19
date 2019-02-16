@@ -2,13 +2,14 @@
 
 export const request = async (req, res, pool) => {
   try {
-    let result = await pool.query();
-    if (result) {
+    // Get the user by email and password
+    let user = await pool.query();
+    if (user) {
       res.status(200);
     } else {
       res.status(404);
     }
-    res.send(JSON.stringify(result));
+    res.send(JSON.stringify(user));
   } catch (error) {
     console.error('ERROR getting current time', error.stack);
     res.status(500).send({'error': error.stack});
