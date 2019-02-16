@@ -16,8 +16,8 @@ const pool = new Pool({
   database: 'postgres'
 });
 
-// Initial endpoint
-app.get('/', async (req, res) => {
+// Time endpoint
+app.get('/time', async (req, res) => {
   await endpoints.init(req, res, pool);
 });
 

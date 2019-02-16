@@ -11,5 +11,5 @@
   - run `docker volume create --name=data` for persistent data storage
 
 # TODO
-  - Connect the node api to the postgres database
-  - Setup persistent database storage that gets saved after container shutdown
+  - Setup all the endpoints
+  - Create frontend forms
