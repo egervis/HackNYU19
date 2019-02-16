@@ -15,6 +15,7 @@ class Login extends Component{
     }
 
     onSearch = (e) => {
+      console.log("Search");
       e.preventDefault();
 
       const { value } = this.input;
@@ -67,7 +68,7 @@ class Login extends Component{
           <div class="container-fluid w-25 jumbotron mt-5 bg-dark">
           <form type="submit" onSubmit={this.onSearch}>
             <input type="text" ref={node => this.input = node} />
-            <button type="button">Search</button>
+            <button type="button" onClick={this.onSearch}>Search</button>
           </form>
           {
             this.state.hits &&
