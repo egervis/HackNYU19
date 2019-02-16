@@ -40,7 +40,7 @@ class Burger extends Component {
                     onStateChange={(state) => this.handleStateChange(state)}
                 >
                     <h1>Menu</h1>
-                    <Link to="/teacher/classes" className = "menu-item">Classes</Link>
+                    <Link to="/teacher/class" className = "menu-item">Classes</Link>
                     <Link to="/teacher/calendar" className = "menu-item">Calendar</Link>
                     <Link to="/" className = "menu-item">Log out</Link>
                 </Menu>
