@@ -3,7 +3,7 @@ import { classes } from './prototypes';
 
 export const request = async (req, res, pool) => {
   try {
-    // Get the user by email and password
+    // Get the user by their ID
     let query = {
       text: 'SELECT userclasses FROM users WHERE userid = $1',
       values: [req.query.userid]
@@ -39,7 +39,7 @@ export const request = async (req, res, pool) => {
     }
     res.send(JSON.stringify(response));
   } catch (error) {
-    console.error('ERROR getting user', error.stack);
+    console.error('ERROR getting classes', error.stack);
     res.status(500).send({'error': error.stack});
   }
 }
