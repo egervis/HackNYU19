@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Registration from './Registration';
 import StudentHome from './student/home';
 import './styles/Login.css';
@@ -9,7 +9,7 @@ class Login extends Component{
       return(
         <div className="Login">
           <nav class="navbar navbar-expand-md bg-dark navbar-dark py-2">
-             <a class="navbar-brand" href="#">Company Name</a>
+             <a class="navbar-brand">Company Name</a>
              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
                <span class="navbar-toggler-icon"></span>
              </button>
@@ -22,7 +22,7 @@ class Login extends Component{
                    <Link to="/" class="nav-link">Contact Us</Link>
                  </li>
                  <li class="nav-item">
-                   <Link to="/teacher/home" class="nav-link">Teacher</Link>
+                   <Link to="/teacher/classes" class="nav-link">Teacher</Link>
                  </li>
                  <li class="nav-item">
                    <Link to="/student/home" class="nav-link">Student</Link>
