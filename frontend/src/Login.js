@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Registration from './Registration';
+import StudentHome from './student/home';
 import './styles/Login.css';
+
+import { CookiesProvider } from 'react-cookies';
 
 class Login extends Component{
     render(){
@@ -22,6 +25,9 @@ class Login extends Component{
                  </li>
                  <li class="nav-item">
                    <Link to="/teacher/home" class="nav-link">Teacher</Link>
+                 </li>
+                 <li class="nav-item">
+                   <Link to="/student/home" class="nav-link">Student</Link>
                  </li>
                </ul>
              </div>
