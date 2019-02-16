@@ -4,33 +4,40 @@ import LoginForm from './components/LoginForm';
 
 import Registration from './Registration';
 import StudentHome from './student/home';
-import { instanceOf } from 'prop-types';
-import { withCookies, Cookies } from 'react-cookie';
+
+import { loginRequester } from './requests/requestBuilder';
 import './styles/Login.css';
 
 class Login extends Component{
-    static propTypes = {
-      cookies: instanceOf(Cookies).isRequired
-    };
-
     constructor(props) {
       super(props);
-
-      const { cookies } = props;
-      this.state = {
-        name: cookies.get('name') || 'Ben'
-      };
+      this.state = { hits: null };
     }
 
-    handleNameChange(name) {
-      const { cookies } = this.props;
+    onSearch = (e) => {
+      e.preventDefault();
 
-      cookies.set('name', name, { path: '/' });
-      this.setState({ name });
+      const { value } = this.input;
+
+      if (value === '') {
+        return;
+      }
+
+      const cachedHits = localStorage.getItem(value);
+      if (cachedHits) {
+        this.setState({ hits: JSON.parse(cachedHits) });
+        return;
+      }
+
+      loginRequester("tracey", "123");
     }
+
+    onSetResult = (result, key) => {
+      localStorage.setItem(key, JSON.stringify(result.hits));
+      this.setState({ hits: result.hits });
+    }
+
     render(){
-      const { name } = this.state;
-
       return(
         <div className="Login">
           <nav class="navbar navbar-expand-md bg-dark navbar-dark py-2">
@@ -58,15 +65,21 @@ class Login extends Component{
 
           <h1 class="mt-5 pt-3">We're here to help you learn!</h1>
           <div class="container-fluid w-25 jumbotron mt-5 bg-dark">
-            <LoginForm name={name} onChange={this.handleNameChange.bind(this)}/>
-            {this.state.name && <h1>Hello {this.state.name}!</h1>}
+          <form type="submit" onSubmit={this.onSearch}>
+            <input type="text" ref={node => this.input = node} />
+            <button type="button">Search</button>
+          </form>
+          {
+            this.state.hits &&
+            this.state.hits.map(item => <div key={item.objectID}>{item.title}</div>)
+          }
           </div>
         </div>
       )
     }
 }
 
-export default withCookies(Login);
+export default Login;
 
 // <form>
 //   <h2 class="pb-3">Login</h2>
