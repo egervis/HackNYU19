@@ -1,4 +1,5 @@
 "use strict";
+import { users } from './src/prototypes';
 
 export const request = async (req, res, pool) => {
   try {
@@ -11,7 +12,9 @@ export const request = async (req, res, pool) => {
     let response;
     if (user) {
       res.status(200);
-      response = user.rows[0];
+      let currentUser = user.rows[0];
+      let userPrototype = users(currentUser.userid, currentUser.usertype, currentUser.lastname, currentUser.firstname, currentUser.email, '', '', '')
+      response = userPrototype;
     } else {
       res.status(404);
       response = {};
