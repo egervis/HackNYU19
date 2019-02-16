@@ -4,7 +4,6 @@ import Login from './Login';
 import Registration from './Registration';
 import TeacherClass from './teacher/class.js'
 import TeacherCalendar from './teacher/calendar.js'
-import TeacherHome from './teacher/home.js';
 import logo from './logo.svg';
 import './App.css';
 import StudentHome from './student/home.js';
