@@ -8,7 +8,12 @@
   `192.168.99.100:80`
 
 ## Adding Volumes
-  - run `docker volume create --name=data` for persistent data storage
+  - run `docker volume create data` for persistent data storage
+
+## Updating the database
+  1. `docker volume rm data`
+  2. `docker volume create data`
+  3. `docker-compose up --build -d`
 
 # TODO
   - Setup all the endpoints

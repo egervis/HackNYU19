@@ -5,5 +5,6 @@ import * as login from './login';
 
 // Maps endpoints their respective functions
 export const endpoints = {
-  time: time.request
+  time: time.request,
+  login: login.request
 };

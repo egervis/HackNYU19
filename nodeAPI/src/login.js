@@ -15,7 +15,7 @@ export const request = async (req, res, pool) => {
     }
     res.send(JSON.stringify(user));
   } catch (error) {
-    console.error('ERROR getting current time', error.stack);
+    console.error('ERROR getting user', error.stack);
     res.status(500).send({'error': error.stack});
   }
 }
