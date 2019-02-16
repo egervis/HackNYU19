@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { slide as Menu } from 'react-burger-menu'
+import { slide as Menu } from 'react-burger-menu';
+import '../styles/Burger.css';
 
 class Burger extends Component {
     constructor(props) {
@@ -38,9 +39,7 @@ class Burger extends Component {
             >
             <h1>Menu</h1>
                 <div id="social">
-                    <a href="/" className="nav-link"><span>facebook</span></a>
-                    <a href="/" className="nav-link"><span>twitter</span></a>
-                    <a href="/" className="nav-link"><span>instagram</span></a>
+                    <a href="/" className="fa fa-fw fa-facebook">Classes</a>
                 </div>
             </Menu>
         );
