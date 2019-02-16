@@ -27,4 +27,6 @@
   - lessons *
   - lesson *
   - create lesson
-  - calendar
+  - calendar *
+  - feedback
+  - create feedback
