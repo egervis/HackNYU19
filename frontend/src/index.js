@@ -7,13 +7,9 @@ import * as serviceWorker from './serviceWorker';
 import { CookiesProvider } from 'react-cookie';
 
 ReactDOM.render(
-  <BrowserRouter>
-    <Provider store={store}>
       <Router>
         <Route component={App} />
       </Router>
-    </Provider>
-  </BrowserRouter>
     , document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
