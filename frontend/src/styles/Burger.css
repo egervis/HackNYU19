@@ -1,3 +1,110 @@
+.burger-bar{
+  text-align: center;
+  font-size: 50px;
+  background: #373a47;
+}
+
+.bm-burger-button {
+    position: fixed;
+    /* width: 36px;
+    height: 30px; */
+    width: 30px;
+    height: 25px;
+    /* left: 36px;
+    top: 36px; */
+    left: 2%;
+    top: 3%;
+}
+
+@media (max-width: 48em){
+    .bm-burger-button {
+        width: 18px;
+        height: 15px;
+    }
+}
+
+.bm-burger-bars {
+    background: white;
+}
+
+.bm-cross-button {
+    height: 24px;
+    width: 24px;
+}
+
+.bm-cross {
+    background: #bdc3c7;
+}
+
+.menu{
+    width: 250px !important;
+}
+
+/* General sidebar styles */
+.bm-menu {
+    background: #373a47;
+    /* padding: 2.5em 1.5em 0; */
+    font-size: 1.15em;
+    overflow-y: hidden !important;
+    overflow-x: hidden !important;
+}
+
+/* Morph shape necessary with bubble or elastic */
+.bm-morph-shape {
+    fill: #373a47;
+}
+
+/* Styling of overlay */
+.bm-overlay {
+    background: rgba(0, 0, 0, 0.3);
+}
+
 .menu {
-  color:white;
+    color: white;
+    text-align: center;
+}
+
+.menu-item {
+    font-size: 28px;
+    color: white;
+}
+
+.fa-fw{
+    width: 1.2em;
+    text-align: center;
+}
+
+.fa {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.menu h1 {
+    text-align: center;
+}
+
+/* #weather {
+    border-top: 1px solid #313131;
+}
+#statistics {
+    border-bottom: 1px solid #313131;
+} */
+
+.btn2 {
+    color: #313131;
+    background-color: white;
+    width: 100%;
+    border: none;
+    /* padding: 0.8em; */
+    text-align: left;
+    font-size: 14px;
+    padding: 1em 1.5em 0;
+    font-size: 1.15em;
+}
+
+.btn2:hover {
+    color: #0c55f4;
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { slide as Menu } from 'react-burger-menu';
+import { Link } from 'react-router-dom';
+import { push as Menu } from 'react-burger-menu';
 import '../styles/Burger.css';
 
 class Burger extends Component {
@@ -32,16 +33,19 @@ class Burger extends Component {
 
     render() {
         return (
-            <Menu
-                className="menu"
-                isOpen={this.state.menuOpen}
-                onStateChange={(state) => this.handleStateChange(state)}
-            >
-            <h1>Menu</h1>
-                <div id="social">
-                    <a href="/" className="fa fa-fw fa-facebook">Classes</a>
-                </div>
-            </Menu>
+            <div>
+                <Menu
+                    className="menu"
+                    isOpen={this.state.menuOpen}
+                    onStateChange={(state) => this.handleStateChange(state)}
+                >
+                    <h1>Menu</h1>
+                    <Link to="/teacher/classes" className = "menu-item">Classes</Link>
+                    <Link to="/teacher/calendar" className = "menu-item">Calendar</Link>
+                    <Link to="/" className = "menu-item">Log out</Link>
+                </Menu>
+                Pizza
+            </div>
         );
     }
 }

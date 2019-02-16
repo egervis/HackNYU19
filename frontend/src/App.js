@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Login from './Login';
 import Registration from './Registration';
-import TeacherHome from './teacher/home.js';
+import TeacherClass from './teacher/class.js'
+import TeacherCalendar from './teacher/calendar.js'
 import logo from './logo.svg';
 import './App.css';
 import StudentHome from './student/home.js';
@@ -33,7 +34,8 @@ class App extends Component {
           <Switch location={isModal ? this.previousLocation : location}>
             <Route exact path="/" component={Login} />
             <Route path="/registration" component={Registration} />
-            <Route path="/teacher/home" component={TeacherHome} />
+            <Route path="/teacher/classes" component={TeacherClass} />
+            <Route path="/teacher/calendar" component={TeacherCalendar} />
             <Route path="/student/home" component={StudentHome} />
           </Switch>
       </div>
