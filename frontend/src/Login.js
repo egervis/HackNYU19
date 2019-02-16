@@ -20,6 +20,9 @@ class Login extends Component{
                  <li class="nav-item">
                    <Link to="/" class="nav-link">Contact Us</Link>
                  </li>
+                 <li class="nav-item">
+                   <Link to="/teacher/home" class="nav-link">Teacher</Link>
+                 </li>
                </ul>
              </div>
           </nav>
