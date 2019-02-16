@@ -18,11 +18,7 @@ const pool = new Pool({
 
 // Initial endpoint
 app.get('/', async (req, res) => {
-  res.send(await pool.query('SELECT NOW()', (err, poolreq) => {
-    console.log(poolreq);
-    return poolreq;
-  }));
-  // endpoints.init(req, res, pool);
+  await endpoints.init(req, res, pool);
 });
 
 app.listen(port, () => console.log(`Node is now listening on 192.168.99.100:${port}`));
