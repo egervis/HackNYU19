@@ -5,7 +5,7 @@ import LoginForm from './components/LoginForm';
 import Registration from './Registration';
 import StudentHome from './student/home';
 
-import { loginRequester } from './requests/requestBuilder';
+import { loginRequester, registerRequester } from './requests/requestBuilder';
 import './styles/Login.css';
 
 class Login extends Component{
@@ -30,7 +30,7 @@ class Login extends Component{
         return;
       }
 
-      loginRequester("tracey", "123");
+      registerRequester(0, "kong", "tracey", "test@email", "boof");
     }
 
     onSetResult = (result, key) => {
