@@ -12,10 +12,11 @@ export function users(userid, usertype, lastname, firstname, email, userclasses,
   this.eventids = eventids;
 }
 
-export function classes(classid, classname, studentids, instructorid)
+export function classes(classid, classname, lessonids, studentids, instructorid)
 {
   this.classid = classid;
   this.classname = classname;
+  this.lessonids = lessonids;
   this.studentids = studentids;
   this.instructorid = instructorid;
 }

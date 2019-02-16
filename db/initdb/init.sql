@@ -18,6 +18,7 @@ CREATE TABLE Users (
 CREATE TABLE Classes (
     classID text NOT NULL PRIMARY KEY,
     className varchar(255),
+    lessonids text,
     studentIDs text,
     instructorID text REFERENCES Users(userID)
 );
