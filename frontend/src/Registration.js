@@ -26,7 +26,7 @@ class Registration extends Component {
 
         <div class="container-fluid w-25 jumbotron mt-5 bg-dark">
           <form>
-            <div class="mb-3">Register your account</div>
+            <h2 class="mb-3">Register your account</h2>
 
             <div class="row">
               <div class="col">
