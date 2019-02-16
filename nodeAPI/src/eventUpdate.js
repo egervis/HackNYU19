@@ -14,7 +14,7 @@ export const request = async (req, res, pool) => {
       let array = [];
       foreach (row in eventRows)
       {
-        currentEvent = events(row.eventid, '', '', row.dateexpires, ''));
+        currentEvent = events(row.eventid, '', '', row.dateexpires, '');
         let mydate = new Date(currentEvent.dateexpires);
         let currentDate = new Date();
         let newDate = new Date(mydate.setTime( mydate.getTime() + 1 * 86400000 ));
