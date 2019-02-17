@@ -24,7 +24,7 @@ class TeacherFeedback extends Component{
   feedbackLoop() {
     const arr = this.fetchFeedback();
     let feedbacks = '';
-    for(i=0; i<arr.length; i++){
+    for(let i=0; i<arr.length; i++){
       feedbacks+='<div class="mx-auto w-75 bg-dark my-5 px-5 py-5">'+arr[i].feedbackText+'</div>';
     }
     return feedbacks;
@@ -46,7 +46,7 @@ class TeacherFeedback extends Component{
           <label for="selectStud">Enter</label>
           <input id="selectStud" value={this.state.feedback}></input>
           <button type="button" class="btn btn-success mt-3" onClick={this.createfb}>Create Feedback</button>
-        </form>)
+        </form>
       )
     }
 
