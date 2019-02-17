@@ -4,7 +4,7 @@ import Burger from '../components/Burger';
 import '../styles/Burger.css';
 import { classCreateRequestor, getClassRequestor } from '../requests/requestBuilder'
 
-const fetchClasses = () => {
+const fetchClasses = async () => {
   let classes = getClassRequestor(localStorage.getItem('userid'), localStorage.getItem('usertype'))
     .then(res => {
       return res.data;
@@ -39,7 +39,8 @@ class TeacherClass extends Component{
 
   }
 
-  classEntries(classes) {
+  async classEntries(classes) {
+    await classes;
     const list = classes.data.map(c =>
       <li id={c.classid}>{c.classname}</li>
     );
