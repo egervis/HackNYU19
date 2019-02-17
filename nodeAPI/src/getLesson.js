@@ -17,9 +17,9 @@ export const request = async (req, res, pool) => {
 
       let lessonPrototype;
       if(userType == 0) {
-        lessonPrototype = lessons(currentLesson.lessonid, currentLesson.lessonname, currentLesson.lessondescription, currentLesson.pictureids, '');
+        lessonPrototype = new lessons(currentLesson.lessonid, currentLesson.lessonname, currentLesson.lessondescription, currentLesson.pictureids, '');
       } else {
-        lessonPrototype = lessons(currentLesson.lessonid, currentLesson.lessonname, currentLesson.lessondescription, currentLesson.pictureids, currentLesson.instructorid);
+        lessonPrototype = new lessons(currentLesson.lessonid, currentLesson.lessonname, currentLesson.lessondescription, currentLesson.pictureids, currentLesson.instructorid);
       }
       let pictureids = lessonPrototype.pictureids.split(",");
       let array = [];
@@ -32,7 +32,7 @@ export const request = async (req, res, pool) => {
         };
         let pic = await pool.query(query2);
         let currentPic = user.rows[0];
-        let picturePrototype = pictures(currentPic.pictureid, currentPic.picturename, currentPic.picturefile, currentPic.lessonid);
+        let picturePrototype = new pictures(currentPic.pictureid, currentPic.picturename, currentPic.picturefile, currentPic.lessonid);
         array.push(picturePrototype);
       }
       response = array;//first item in array will be lesson. all other items are pictures
