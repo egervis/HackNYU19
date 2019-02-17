@@ -60,19 +60,18 @@ class Login extends Component{
 
       loginRequester(this.state.email, this.state.password)
         .then(res => {
-          console.log(res.status);
-          this.props.history.push("/teacher/class");
-          
+
           localStorage.setItem('userid', res.data.userid);
           localStorage.setItem('usertype', res.data.usertype);
           localStorage.setItem('firstname', res.data.firstname);
           localStorage.setItem('lastname', res.data.lastname);
+          console.log(res.status);
           return res;
         })
         .catch(err => {
           console.log(err);
         });
-
+      setTimeout(()=>{this.props.history.push("/teacher/class");}, 1000);
       console.log(localStorage);
 
     }
