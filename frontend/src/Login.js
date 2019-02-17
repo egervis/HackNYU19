@@ -71,7 +71,7 @@ class Login extends Component{
         .catch(err => {
           console.log(err);
         });
-      setTimeout(()=>{this.props.history.push("/teacher/class");}, 1000);
+      setTimeout(()=>{this.props.history.push("/teacher/allClasses");}, 1000);
       console.log(localStorage);
 
     }
@@ -88,15 +88,6 @@ class Login extends Component{
                <ul class="navbar-nav ml-auto">
                  <li class="nav-item">
                    <Link to="/registration" class="nav-link">Registration</Link>
-                 </li>
-                 <li class="nav-item">
-                   <Link to="/" class="nav-link">Contact Us</Link>
-                 </li>
-                 <li class="nav-item">
-                   <Link to="/teacher/class" class="nav-link">Teacher</Link>
-                 </li>
-                 <li class="nav-item">
-                   <Link to="/student/home" class="nav-link">Student</Link>
                  </li>
                </ul>
              </div>
