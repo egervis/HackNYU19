@@ -7,7 +7,7 @@ class TeacherCalendar extends Component{
     return(
       <div>
         <div className="burger-bar"><Burger /></div>
-        <h2>this is teacher's calendar page</h2>
+        <div class="mx-auto w-75 bg-dark my-5 px-5 py-5">Calendar</div>
       </div>
     );
   }
