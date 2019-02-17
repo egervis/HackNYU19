@@ -28,7 +28,11 @@ class Burger extends Component {
     }
 
     showSettings (event) {
-        event.preventDefault();
+      event.preventDefault();
+    }
+
+    logout(event) {
+      localStorage.clear();
     }
 
     render() {
@@ -44,7 +48,7 @@ class Burger extends Component {
                     <Link to="/teacher/class" className = "menu-item">Classes</Link>
                     <Link to="/teacher/calendar" className = "menu-item">Calendar</Link>
                     <Link to="/teacher/feedback" className = "menu-item">Feedback</Link>
-                    <Link to="/" className = "menu-item">Log out</Link>
+                    <Link to="/" onClick={this.logout} className = "menu-item">Log out</Link>
                 </Menu>
                 Pizza
             </div>
