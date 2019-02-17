@@ -49,6 +49,7 @@ class Registration extends Component {
     console.log("Last name: " + this.state.lastName);
     console.log("Password: " + this.state.password);
     console.log("Status" + this.state.role);
+<<<<<<< HEAD
 
     let user = registerRequester(this.state.role, this.state.lastName, this.state.firstName, this.state.email, this.state.password)
       .then(response => {
@@ -57,6 +58,8 @@ class Registration extends Component {
       .catch(error => {
         console.log(error);
       });
+=======
+>>>>>>> cf5e3b0208b46e52d985f6b7e307a1209ce0129c
   }
 
 
@@ -109,7 +112,11 @@ class Registration extends Component {
               <option value='1' onChange={this.handleRole}>Student</option>
             </select>
 
+<<<<<<< HEAD
             <button type="submit" class="btn btn-success mt-3" onClick={this.handleRegister}>Register me!</button>
+=======
+            <button type="button" class="btn btn-success mt-3" onClick={this.handleLogin}>Register me!</button>
+>>>>>>> cf5e3b0208b46e52d985f6b7e307a1209ce0129c
           </form>
         </div>
       </div>
