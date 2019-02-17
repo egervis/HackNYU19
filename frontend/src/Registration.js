@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import App from './App';
 import './styles/Registration.css';
 import { registerRequester } from './requests/requestBuilder';
+import { withRouter } from 'react-router-dom';
 
 class Registration extends Component {
   constructor(props) {
@@ -52,6 +53,7 @@ class Registration extends Component {
 
     let user = registerRequester(this.state.role, this.state.lastName, this.state.firstName, this.state.email, this.state.password)
       .then(response => {
+        this.props.history.push('/');
         console.log(response);
       })
       .catch(error => {
@@ -115,4 +117,4 @@ class Registration extends Component {
   }
 }
 
-export default Registration;
+export default withRouter(Registration);
