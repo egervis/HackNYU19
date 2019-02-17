@@ -6,9 +6,9 @@ export const request = async (req, res, pool) => {
     // Get the lessons from class ids
     let query = {
       text: 'SELECT lessonids FROM classes WHERE classid = $1',
-      values: [req.query.classid]
+      values: [req.body.classid]
     };
-    let userType = req.query.usertype;
+    let userType = req.body.usertype;
     let lessons = await pool.query(query);
     let response;
     if (lessons) {

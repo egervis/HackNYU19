@@ -6,9 +6,9 @@ export const request = async (req, res, pool) => {
     // Get the user by email and password
     let query = {
       text: 'SELECT * FROM lessons WHERE lessonid = $1',
-      values: [req.query.lessonid]
+      values: [req.body.lessonid]
     };
-    let userType = req.query.usertype;
+    let userType = req.body.usertype;
     let lesson = await pool.query(query);
     let response;
     if (lesson) {

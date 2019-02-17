@@ -6,7 +6,7 @@ export const request = async (req, res, pool) => {
     const classId = uniqid();
     let query = {
       text:'INSERT INTO classes (classID, className, lessonids, studentIDs, instructorID) VALUES($1, $2, $3, $4, $5)' ,
-      values: [classId, req.query.className, '', '', req.query.instructorID]
+      values: [classId, req.body.className, '', '', req.body.instructorID]
     };
     await pool.query(query);
     res.status(200).send(JSON.stringify({
