@@ -3,10 +3,10 @@ import uniqid from 'uniqid';
 
 export const request = async (req, res, pool) => {
   try {
-    const classId = uniqid();
+    const feedbackId = uniqid();
     let query = {
-      text:'INSERT INTO classes (classID, className, lessonids, studentIDs, instructorID) VALUES($1, $2, $3, $4, $5)' ,
-      values: [classId, req.body.className, '', '', req.body.instructorID]
+      text:'INSERT INTO feedback(feedbackid, instructorid, studentid, feedbacktext) VALUES($1, $2, $3, $4)' ,
+      values: [req.body.feedbackID, req.body.instructorID, req.body.studentID, req.body.feedbackText]
     };
     await pool.query(query);
     res.status(200).send(JSON.stringify({

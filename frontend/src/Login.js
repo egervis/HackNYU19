@@ -29,8 +29,6 @@ class Login extends Component{
         this.setState({ hits: JSON.parse(cachedHits) });
         return;
       }
-
-      registerRequester(0, 'kong', 'tracey', 'test@email', 'boof');
     }
 
     onSetResult = (result, key) => {

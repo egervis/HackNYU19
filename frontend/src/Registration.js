@@ -15,10 +15,7 @@ class Registration extends Component {
           <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
-                <Link to="/" class="nav-link">Home</Link>
-              </li>
-              <li class="nav-item">
-                <Link to="/" class="nav-link">Contact Us</Link>
+                <Link to="/" class="nav-link">Login</Link>
               </li>
             </ul>
           </div>
