@@ -26,6 +26,7 @@ class TeacherClass extends Component{
     let response = classCreateRequestor(this.state.name, localStorage.getItem('userid'));
     console.log(response);
 
+    setTimeout(() => {this.fetchClasses()}, 1000);
   }
 
   fetchClasses() {

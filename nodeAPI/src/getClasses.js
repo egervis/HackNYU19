@@ -9,20 +9,23 @@ export const request = async (req, res, pool) => {
       values: [req.query.userid]
     };
     let userType = req.query.usertype;
-    let classes = await pool.query(query);
+    let classids = await pool.query(query);
     let response;
-    if (classes.rows.length > 0) {
+    if (classids.rows.length > 0) {
       res.status(200);
-      let currentClasses = classes.rows[0].userclasses;
-      let classids = currentClasses.split(",");
+      let currentClasses = classids.rows[0].userclasses;
+      let userclasses = currentClasses.split(',');
       let array = [];
-      for (id in classids)
+      for (let i = 0; i < userclasses.length; i++)
       {
-        let query2 = {
+        query = {
           text: 'SELECT * FROM classes WHERE classid = $1',
-          values: [id]
+          values: [userclasses[i]]
         };
-        let classEntry =  await pool.query(query2);
+        console.log(query);
+        let classEntry =  await pool.query(query);
+
+        classEntry = classEntry.rows[0];
         let classesPrototype;
         if(userType == 0) {
           classesPrototype = new classes(classEntry.classid, classEntry.classname, classEntry.lessonids, classEntry.studentids, '');
