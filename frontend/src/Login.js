@@ -58,15 +58,20 @@ class Login extends Component{
       console.log("Email: " + this.state.email);
       console.log("Password: " + this.state.password);
 
-      let user = loginRequester(this.state.email, this.state.password)
+      loginRequester(this.state.email, this.state.password)
         .then(res => {
-          console.log(res.status);
+          console.log(res);
+          localStorage.setItem('userid', res.data.userid);
+          localStorage.setItem('usertype', res.data.usertype);
+          localStorage.setItem('firstname', res.data.firstname);
+          localStorage.setItem('lastname', res.data.lastname);
           return res;
         })
         .catch(err => {
           console.log(err);
-          return err;
         });
+
+      console.log(localStorage);
 
     }
 
