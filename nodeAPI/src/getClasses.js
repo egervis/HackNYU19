@@ -6,12 +6,12 @@ export const request = async (req, res, pool) => {
     // Get the user by their ID
     let query = {
       text: 'SELECT userclasses FROM users WHERE userid = $1',
-      values: [req.body.userid]
+      values: [req.query.userid]
     };
-    let userType = req.body.usertype;
+    let userType = req.query.usertype;
     let classes = await pool.query(query);
     let response;
-    if (classes) {
+    if (classes.rows.length > 0) {
       res.status(200);
       let currentClasses = classes.rows[0].userclasses;
       let classids = currentClasses.split(",");
@@ -31,7 +31,6 @@ export const request = async (req, res, pool) => {
         }
         array.push(classesPrototype);
       }
-
       response = array;
     } else {
       res.status(404);

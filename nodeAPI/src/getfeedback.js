@@ -22,7 +22,7 @@ export const request = async (req, res, pool) => {
     }
     let feedback =  await pool.query(query);
     let response;
-    if (feedback) {
+    if (feedback.rows.length > 0) {
       res.status(200);
       let feedbackRows = feedback.rows;
 
