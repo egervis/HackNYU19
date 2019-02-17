@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import App from './App';
 import './styles/Registration.css';
 import { registerRequester } from './requests/requestBuilder';
-import { withRouter } from 'react-router-dom';
 
 class Registration extends Component {
   constructor(props) {
@@ -13,7 +12,7 @@ class Registration extends Component {
       firstName:'',
       lastName:'',
       password:'',
-      role:'1'
+      role:'0'
     }
 
     this.handleEmailChange = this.handleEmailChange.bind(this);
@@ -53,8 +52,8 @@ class Registration extends Component {
 
     let user = registerRequester(this.state.role, this.state.lastName, this.state.firstName, this.state.email, this.state.password)
       .then(response => {
-        this.props.history.push('/');
         console.log(response);
+        this.props.history.push("/");
       })
       .catch(error => {
         console.log(error);
@@ -104,7 +103,7 @@ class Registration extends Component {
             </div>
 
             <label for="selectRole">I am a...</label>
-            <select defaultValue='1' class="custom-select my-1 mr-ms-2" id="selectRole">
+            <select defaultValue='0' class="custom-select my-1 mr-ms-2" id="selectRole">
               <option value='0' onChange={this.handleRole}>Instructor</option>
               <option value='1' onChange={this.handleRole}>Student</option>
             </select>
@@ -117,4 +116,4 @@ class Registration extends Component {
   }
 }
 
-export default withRouter(Registration);
+export default Registration;
