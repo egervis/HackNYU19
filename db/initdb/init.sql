@@ -49,5 +49,6 @@ CREATE TABLE Pictures (
 CREATE TABLE Feedback (
     feedbackID text NOT NULL PRIMARY KEY,
     instructorID text REFERENCES Users(userID),
-    studentID text REFERENCES Users(userID)
+    studentID text REFERENCES Users(userID),
+    feedbackText text
 );
