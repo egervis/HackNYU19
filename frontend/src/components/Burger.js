@@ -43,6 +43,7 @@ class Burger extends Component {
                 >
                     <Link to="/teacher/class" className = "menu-item">Classes</Link>
                     <Link to="/teacher/calendar" className = "menu-item">Calendar</Link>
+                    <Link to="/teacher/feedback" className = "menu-item">Feedback</Link>
                     <Link to="/" className = "menu-item">Log out</Link>
                 </Menu>
                 Pizza

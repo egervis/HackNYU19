@@ -7,6 +7,7 @@ import TeacherCalendar from './teacher/calendar.js'
 import logo from './logo.svg';
 import './App.css';
 import StudentHome from './student/home.js';
+import TeacherFeedback from './teacher/feedback.js';
 
 class App extends Component {
   previousLocation = this.props.location;
@@ -37,6 +38,7 @@ class App extends Component {
             <Route path="/teacher/class" component={TeacherClass} />
             <Route path="/teacher/calendar" component={TeacherCalendar} />
             <Route path="/student/home" component={StudentHome} />
+            <Route path="/teacher/feedback" component={TeacherFeedback} />
           </Switch>
       </div>
     );
