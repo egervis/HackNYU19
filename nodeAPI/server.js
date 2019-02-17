@@ -28,6 +28,11 @@ app.use((req, res, next)=>{
   next();
 });
 
+
+// eventUpdate endpoint
+setInterval(function() {app.get('/eventUpdate', async (req, res) => {await endpoints.eventUpdate(req, res, pool);});}, 1000);
+
+
 // Time endpoint
 app.get('/time', async (req, res) => {
   await endpoints.time(req, res, pool);
