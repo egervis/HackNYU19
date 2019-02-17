@@ -10,8 +10,10 @@ class TeacherClass extends Component{
     this.state = {
       name: ''
     };
-
+    console.log(this);
     this.handleNameChange = this.handleNameChange.bind(this);
+    this.createClass = this.createClass.bind(this);
+    this.fetchClasses = this.fetchClasses.bind(this);
   }
 
   handleNameChange(e) {
@@ -21,8 +23,10 @@ class TeacherClass extends Component{
   }
 
   createClass(e) {
+    console.log(this);
     let response = classCreateRequestor(this.state.name, localStorage.getItem('userid'));
     console.log(response);
+
   }
 
   fetchClasses() {
@@ -42,7 +46,7 @@ class TeacherClass extends Component{
           </div>
           <button type="button" class="btn btn-success mt-3" onClick={this.createClass}>Create</button>
         </form>)
-    }
+
     return(
       <div>
         <div className="burger-bar"><Burger /></div>
@@ -56,7 +60,7 @@ class TeacherClass extends Component{
     );
   }
 }
-
+}
 export default TeacherClass;
 
 // <li class="nav-item">
