@@ -2,18 +2,11 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import App from './App';
 import './styles/Registration.css';
-import { loginRequester, registerRequester } from './requests/requestBuilder';
 
 class Registration extends Component {
   constructor(props) {
     super(props);
     this.state = {
-<<<<<<< HEAD
-      email:''
-    }
-
-    this.handleEmailChange = this.handleEmailChange.bind(this);
-=======
       email:'',
       firstName:'',
       lastName:'',
@@ -26,7 +19,6 @@ class Registration extends Component {
     this.handleLastNameChange = this.handleLastNameChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handleRole = this.handleRole.bind(this);
->>>>>>> 4a271746984af68acaeef37c669c11b40da3d225
     this.handleLogin =this.handleLogin.bind(this);
   }
 
@@ -34,13 +26,6 @@ class Registration extends Component {
     this.setState({email: e.target.value});
   }
 
-<<<<<<< HEAD
-
-  handleLogin(e){
-    console.log("Email: " + this.state.email);
-  }
-
-=======
   handleLastNameChange(e){
     this.setState({lastName: e.target.value});
   }
@@ -63,19 +48,10 @@ class Registration extends Component {
     console.log("Last name: " + this.state.lastName);
     console.log("Password: " + this.state.password);
     console.log("Status" + this.state.role);
-
-    let user = registerRequester(this.state.role, this.state.lastName, this.state.firstName, this.state.email, this.state.password)
-      .then(response => {
-        return response;
-      })
-      .catch(error => {
-        console.log(error);
-      });
   }
 
 
 
->>>>>>> 4a271746984af68acaeef37c669c11b40da3d225
   render() {
     return (
       <div className="Registration">
@@ -124,7 +100,7 @@ class Registration extends Component {
               <option value='1' onChange={this.handleRole}>Student</option>
             </select>
 
-            <button type="submit" class="btn btn-success mt-3" onClick={this.handleLogin}>Register me!</button>
+            <button type="button" class="btn btn-success mt-3" onClick={this.handleLogin}>Register me!</button>
           </form>
         </div>
       </div>
