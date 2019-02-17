@@ -49,3 +49,20 @@ export const classCreateRequestor = async (className, instructorID) => {
     console.error(error);
   }
 };
+
+// Create a class
+// className, instructorID: string
+// Returns a user object, with classCode
+export const getClassRequestor = async (userid, usertype) => {
+  try {
+    return axios.get(`${address}:${port}/class/get`, {
+      userid: userid,
+      usertype: usertype
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+// Get classes
+//

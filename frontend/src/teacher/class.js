@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from "react-dom";
 import Burger from '../components/Burger';
 import '../styles/Burger.css';
-import { classCreateRequestor } from '../requests/requestBuilder'
+import { classCreateRequestor, getClassRequestor } from '../requests/requestBuilder'
 
 class TeacherClass extends Component{
   constructor(props) {
@@ -23,14 +23,15 @@ class TeacherClass extends Component{
   }
 
   createClass(e) {
-    console.log(this);
     let response = classCreateRequestor(this.state.name, localStorage.getItem('userid'));
     console.log(response);
 
   }
 
   fetchClasses() {
-
+    let classes = getClassRequestor(localStorage.getItem('userid'), localStorage.getItem('usertype'));
+    console.log(classes);
+    return classes.data;
   }
 
   render(){
@@ -46,7 +47,7 @@ class TeacherClass extends Component{
           </div>
           <button type="button" class="btn btn-success mt-3" onClick={this.createClass}>Create</button>
         </form>)
-
+      }
     return(
       <div>
         <div className="burger-bar"><Burger /></div>
@@ -59,7 +60,6 @@ class TeacherClass extends Component{
       </div>
     );
   }
-}
 }
 export default TeacherClass;
 

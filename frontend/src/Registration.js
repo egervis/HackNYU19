@@ -14,6 +14,7 @@ class Registration extends Component {
       password:'',
       role:'0'
     }
+    console.log(this);
 
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
