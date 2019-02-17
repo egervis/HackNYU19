@@ -50,10 +50,9 @@ export const classCreateRequestor = async (className, instructorID) => {
   }
 };
 
-export const feedbackCreateRequestor = async (feedbackID, instructorID, studentID, feedbackText) => {
+export const feedbackCreateRequestor = async (instructorID, studentID, feedbackText) => {
   try {
     return axios.post(`${address}:${port}/feedback/create`, {
-      feedbackID: feedbackID,
       instructorID: instructorID,
       studentID: studentID,
       feedbackText: feedbackText
