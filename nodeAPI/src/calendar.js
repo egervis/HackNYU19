@@ -4,8 +4,8 @@ import { events } from './prototypes';
 export const request = async (req, res, pool) => {
   try {
     // Get the user by their ID
-    let userType = req.query.usertype;
-    let events = req.query.eventids;
+    let userType = req.body.usertype;
+    let events = req.body.eventids;
     let response;
     if (events) {
       res.status(200);

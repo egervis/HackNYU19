@@ -6,7 +6,7 @@ export const request = async (req, res, pool) => {
     // Get the user by email and password
     let query = {
       text: 'SELECT * FROM users WHERE email = $1 AND userPassword = $2',
-      values: [req.query.email, req.query.userPassword]
+      values: [req.body.email, req.body.userPassword]
     };
     let user = await pool.query(query);
     let response;
