@@ -36,7 +36,7 @@ class TeacherClass extends Component{
 
   render(){
     let ele = <></>;
-    if (localStorage.getItem('usertype') === '0') {
+    if (localStorage.getItem('usertype') ===  '0') {
       ele = (
         <form>
           <h4 class="pb-3">Create a New Class</h4>
