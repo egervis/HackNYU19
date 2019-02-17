@@ -1,5 +1,5 @@
 "use strict";
-import { events } from 'prototypes';
+import { events } from './prototypes';
 
 export const request = async (req, res, pool) => {
   try {

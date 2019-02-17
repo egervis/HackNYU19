@@ -8,33 +8,30 @@ const port = 3001;
 // lastName, firstName, email, password: string
 // Returns an object with a status field
 export const registerRequester = async (userType, lastName, firstName, email, userPassword) => {
-  return await axios.post(`${address}:${port}/register`, {
-    userType: userType,
-    lastName: lastName,
-    firstName: firstName,
-    email: email,
-    userPassword: userPassword
-  })
-    .then(res => {
-      return res.json();
-    })
-    .catch(err => {
-      console.error('Failed to register user', err);
+  try {
+    return axios.post(`${address}:${port}/register`, {
+      userType: userType,
+      lastName: lastName,
+      firstName: firstName,
+      email: email,
+      userPassword: userPassword
     });
+  } catch (error) {
+    console.error(error);
+  }
+
 }
 
 // Login a user
 // email, userPassword: string
 // Returns a user object, empty if user not found
 export const loginRequester = async (email, userPassword) => {
-  return await axios.post(`${address}:${port}/login`, {
-    email: email,
-    userPassword: userPassword
-  })
-    .then(res => {
-      return res.json();
-    })
-    .catch(err => {
-      console.error('Failed to login', err);
+  try {
+    return axios.post(`${address}:${port}/login`, {
+      email: email,
+      userPassword: userPassword
     });
+  } catch (error) {
+    console.error(error);
+  }
 };

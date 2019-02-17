@@ -59,18 +59,15 @@ class Login extends Component{
       console.log("Password: " + this.state.password);
 
       let user = loginRequester(this.state.email, this.state.password)
-        .then(response => {
-          return response;
+        .then(res => {
+          console.log(res.status);
+          return res;
         })
-        .catch(error => {
-          console.log(error);
+        .catch(err => {
+          console.log(err);
+          return err;
         });
 
-      if(user.status === 200){
-        console.log(user);
-      }else{
-        console.log(user);
-      }
     }
 
     render(){
