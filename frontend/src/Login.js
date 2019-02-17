@@ -61,6 +61,7 @@ class Login extends Component{
       let user = loginRequester(this.state.email, this.state.password)
         .then(res => {
           console.log(res.status);
+          this.props.history.push("/teacher/class");
           return res;
         })
         .catch(err => {
