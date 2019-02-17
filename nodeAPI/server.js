@@ -58,4 +58,24 @@ app.get('feedback/create', async (req, res) => {
   await endpoints.createFeedback(req, res, pool);
 });
 
+// Create lesson endpoint
+app.get('lesson/create', async (req, res) => {
+  await endpoints.createLesson(req, res, pool);
+});
+
+// Get feedback endpoint
+app.get('feedback/get', async (req, res) => {
+  await endpoints.getFeedback(req, res, pool);
+});
+
+// Get lesson endpoint
+app.get('lesson/get', async (req, res) => {
+  await endpoints.getLesson(req, res, pool);
+});
+
+// Get lessons endpoint
+app.get('lessons/get', async (req, res) => {
+  await endpoints.getLessons(req, res, pool);
+});
+
 app.listen(port, () => console.log(`Node is now listening on 192.168.99.100:${port}`));
