@@ -62,6 +62,11 @@ class Login extends Component{
         .then(res => {
           console.log(res.status);
           this.props.history.push("/teacher/class");
+          
+          localStorage.setItem('userid', res.data.userid);
+          localStorage.setItem('usertype', res.data.usertype);
+          localStorage.setItem('firstname', res.data.firstname);
+          localStorage.setItem('lastname', res.data.lastname);
           return res;
         })
         .catch(err => {
