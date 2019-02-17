@@ -12,11 +12,11 @@ export const request = async (req, res, pool) => {
     if (user.rows.length > 0) {
       throw new Error('User already exists!');
     }
+    console.log(req.body);
     query = {
       text: 'INSERT INTO users (userID, userType, lastName, firstName, email, userClasses, userPassword, eventIDs) VALUES($1, $2, $3, $4, $5, $6, $7, $8)',
       values: [uniqid(), req.query.userType, req.query.lastName, req.query.firstname, req.query.email, '', req.query.userPassword, '']
     };
-    console.log(await pool.query(query));
     res.status(201).send();
   } catch (error) {
     console.error('ERROR creating user', error.stack);
