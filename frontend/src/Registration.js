@@ -4,6 +4,25 @@ import App from './App';
 import './styles/Registration.css';
 
 class Registration extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      email:''
+    }
+
+    this.handleEmailChange = this.handleEmailChange.bind(this);
+    this.handleLogin =this.handleLogin.bind(this);
+  }
+
+  handleEmailChange(e){
+    this.setState({email: e.target.value});
+  }
+
+
+  handleLogin(e){
+    console.log("Email: " + this.state.email);
+  }
+
   render() {
     return (
       <div className="Registration">
@@ -37,7 +56,8 @@ class Registration extends Component {
 
             <div class="form-group">
               <label for="emailInput">Email address</label>
-              <input type="email" class="form-control" id="emailInput" aria-describedby="emailHelp" placeholder="Your email"/>
+              <input type="email" class="form-control" id="emailInput" aria-describedby="emailHelp" placeholder="Your email"
+                  value={this.state.email} onChange={this.handleEmailChange}/>
             </div>
 
             <div class="form-group">
@@ -51,7 +71,7 @@ class Registration extends Component {
               <option value="student">Student</option>
             </select>
 
-            <button type="submit" class="btn btn-success mt-3">Register me!</button>
+            <button type="submit" class="btn btn-success mt-3" onClick={this.handleLogin}>Register me!</button>
           </form>
         </div>
       </div>
