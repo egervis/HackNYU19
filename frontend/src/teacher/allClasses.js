@@ -26,13 +26,24 @@ class TeacherClass extends Component{
     let response = classCreateRequestor(this.state.name, localStorage.getItem('userid'));
     console.log(response);
 
-    setTimeout(() => {this.fetchClasses()}, 1000);
   }
 
   fetchClasses() {
     let classes = getClassRequestor(localStorage.getItem('userid'), localStorage.getItem('usertype'));
     console.log(classes);
     return classes.data;
+  }
+
+  classEntries = (classes) => {
+    let children = [];
+    for (let i = 0; i < classes.length; i ++) {
+      children.push(
+        <div id={classes[i].classid}>
+          classes[i].classname
+        </div>
+      );
+    }
+    return <div>{children}</div>
   }
 
   render(){
@@ -55,6 +66,7 @@ class TeacherClass extends Component{
         <div class="mx-auto w-75 bg-dark my-5 px-5 py-5">
           <div>
             <h3 class="pb-3">Your Classes</h3>
+            {this.classEntries(this.fetchClasses)}
           </div>
           {ele}
         </div>

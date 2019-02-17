@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Burger from '../components/Burger';
 import '../styles/Burger.css';
 import {getFeedback} from '../requests/requestBuilder';
-import { users } from '../nodeAPI/src/prototypes';
 
 class TeacherFeedback extends Component{
   constructor(props) {
