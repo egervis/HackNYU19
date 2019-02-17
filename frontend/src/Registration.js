@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import App from './App';
 import './styles/Registration.css';
+import { loginRequester, registerRequester } from './requests/requestBuilder';
 
 class Registration extends Component {
   constructor(props) {
@@ -48,6 +49,14 @@ class Registration extends Component {
     console.log("Last name: " + this.state.lastName);
     console.log("Password: " + this.state.password);
     console.log("Status" + this.state.role);
+
+    let user = registerRequester(this.state.role, this.state.lastName, this.state.firstName, this.state.email, this.state.password)
+      .then(response => {
+        return response;
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 
 
