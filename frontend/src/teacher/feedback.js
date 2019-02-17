@@ -1,28 +1,52 @@
 import React, { Component } from 'react';
 import Burger from '../components/Burger';
 import '../styles/Burger.css';
+import {getFeedback} from '../requests/requestBuilder';
+import { users } from '../nodeAPI/src/prototypes';
 
 class TeacherFeedback extends Component{
   constructor(props) {
     super(props);
     this.state = {
-      name: ''
+      feedback: '',
+      studentID: ''
     };
 
     this.fetchFeedback = this.fetchFeedback.bind(this);
+    this.feedbackLoop = this.feedbackLoop.bind(this);
   }
 
   fetchFeedback() {
-    //let feedback = feedbackRequestor(localStorage.getItem('userType'), localStorage.getItem('userid'));
-    //return feedback;
+    let feedback = getFeedback(localStorage.getItem('userid'), localStorage.getItem('userType'));
+    return feedback;
+  }
+
+  feedbackLoop() {
+    const arr = this.fetchFeedback();
+    let feedbacks = '';
+    for(i=0; i<arr.length; i++){
+      feedbacks+='<div class="mx-auto w-75 bg-dark my-5 px-5 py-5">'+arr[i].feedbackText+'</div>';
+    }
+    return feedbacks;
+  }
+
+  createfb(e) {
+    this.setState({feedback: e.target.value});
+    this.setState({studentID: e.target.value});
   }
 
   render(){
     let temp = <></>
-    if(localStorage.getItem('userType') === '1'){
-      temp = (
-        <div class="mx-auto w-75 bg-dark my-5 px-5 py-5">
-        </div>
+    temp = (
+        this.feedbackLoop()
+    )
+    if(localStorage.getItem('userType') === '0'){
+      let createF = (
+        <form>
+          <label for="selectStud">Enter</label>
+          <input id="selectStud" value={this.state.feedback}></input>
+          <button type="button" class="btn btn-success mt-3" onClick={this.createfb}>Create Feedback</button>
+        </form>)
       )
     }
 
