@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import App from './App';
 import './styles/Registration.css';
-import { loginRequester, registerRequester } from './requests/requestBuilder';
+import { registerRequester } from './requests/requestBuilder';
 
 class Registration extends Component {
   constructor(props) {
