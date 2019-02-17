@@ -7,10 +7,18 @@ class currentClass extends Component{
   constructor(props) {
     super(props);
     this.state = {
-      name: ''
+      myClass: this.prop,    //TRACEY
+      lessonIds: '',
+      studentIds: ''
     };
     console.log(this);
-    this.fetchClasses = this.fetchClasses.bind(this);
+
+    this.fetchLessons = this.fetchLessons.bind(this);
+  }
+
+  fetchLessons(){
+    this.lessonIds = this.prop.lessonids;
+    this.studentIds = this.prop.studentids;
   }
 
   render(){
