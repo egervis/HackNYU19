@@ -13,7 +13,7 @@ class TeacherFeedback extends Component{
   }
 
   fetchFeedback() {
-    let feedback = feedbackRequestor(localStorage.getItem('userType'), localStorage.getItem('userid'));
+    //let feedback = feedbackRequestor(localStorage.getItem('userType'), localStorage.getItem('userid'));
     return feedback;
   }
 
