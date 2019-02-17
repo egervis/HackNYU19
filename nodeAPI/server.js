@@ -5,7 +5,7 @@ import { endpoints } from './src/endpointMapper';
 import express from 'express';
 import postgres from 'pg';
 import cors from 'cors';
-const bodyParser = require('body-parser');
+import bodyParser from 'body-parser';
 
 const app = express();
 const port = 3001;
@@ -51,6 +51,11 @@ app.post('/class/create', async (req, res) => {
 // Get classes endpoint
 app.get('/class/get', async (req, res) => {
   await endpoints.getClasses(req, res, pool);
+});
+
+// Create feedback endpoint
+app.get('feedback/create', async (req, res) => {
+  await endpoints.createFeedback(req, res, pool);
 });
 
 app.listen(port, () => console.log(`Node is now listening on 192.168.99.100:${port}`));

@@ -10,7 +10,7 @@ export const request = async (req, res, pool) => {
     };
     await pool.query(query);
     res.status(200).send(JSON.stringify({
-      classCode: classId
+      feedbackCode: feedbackId
     }));
   } catch (error) {
     console.error('ERROR creating class', error.stack);

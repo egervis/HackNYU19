@@ -6,7 +6,7 @@ const port = 3001;
 // Register a user
 // userType: number
 // lastName, firstName, email, password: string
-// Returns an axios promise that has no data
+// Returns an object with a status field
 export const registerRequester = async (userType, lastName, firstName, email, userPassword) => {
   return await axios.post(`${address}:${port}/register`, {
     userType: userType,
@@ -16,10 +16,10 @@ export const registerRequester = async (userType, lastName, firstName, email, us
     userPassword: userPassword
   })
     .then(res => {
-      return res.status;
+      return res.json();
     })
     .catch(err => {
-      console.error('Failed to login', err);
+      console.error('Failed to register user', err);
     });
 }
 
@@ -36,5 +36,5 @@ export const loginRequester = async (email, userPassword) => {
     })
     .catch(err => {
       console.error('Failed to login', err);
-    })
-}
+    });
+};

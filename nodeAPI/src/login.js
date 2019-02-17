@@ -10,10 +10,10 @@ export const request = async (req, res, pool) => {
     };
     let user = await pool.query(query);
     let response;
-    if (user) {
+    if (user.rows.length > 0) {
       res.status(200);
       let currentUser = user.rows[0];
-      let userPrototype = users(currentUser.userid, currentUser.usertype, currentUser.lastname, currentUser.firstname, currentUser.email, '', '', '')
+      let userPrototype = users(currentUser.userid, currentUser.usertype, currentUser.lastname, currentUser.firstname, currentUser.email, '', '', '');
       response = userPrototype;
     } else {
       res.status(404);
