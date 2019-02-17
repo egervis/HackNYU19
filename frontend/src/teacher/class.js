@@ -21,7 +21,7 @@ class TeacherClass extends Component{
   }
 
   createClass(e) {
-    let response = classCreateRequestor(this.state.name, this.localStorage.getItem('userid'));
+    let response = classCreateRequestor(this.state.name, localStorage.getItem('userid'));
     console.log(response);
   }
 
@@ -30,9 +30,9 @@ class TeacherClass extends Component{
   }
 
   render(){
-    let form = <></>;
-    if (localStorage.getItem('usertype') === '0' || false) {
-      form = (
+    let ele = <></>;
+    if (localStorage.getItem('usertype') === '0') {
+      ele = (
         <form>
           <h4 class="pb-3">Create a New Class</h4>
           <div class="form-group">
@@ -50,7 +50,7 @@ class TeacherClass extends Component{
           <div>
             <h3 class="pb-3">Your Classes</h3>
           </div>
-          {form}
+          {ele}
         </div>
       </div>
     );
