@@ -10,6 +10,7 @@ import * as getClasses from './getClasses';
 import * as getLessons from './getLessons';
 import * as getLesson from './getLesson';
 import * as getFeedback from './getFeedback';
+import * as eventUpdate from './eventUpdate';
 
 // Maps endpoints their respective functions
 export const endpoints = {
@@ -22,5 +23,6 @@ export const endpoints = {
   getClasses: getClasses.request,
   getLessons: getLessons.request,
   getLesson: getLesson.request,
-  getFeedback: getFeedback.request
+  getFeedback: getFeedback.request,
+  eventUpdate: eventUpdate.request,
 };
