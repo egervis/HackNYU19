@@ -12,8 +12,8 @@ COPY . /node/src/app
 # Install dependencies
 RUN npm install
 
-# NODE will run on port 3000
-EXPOSE 3000
+# NODE will run on port 3001
+EXPOSE 3001
 
 # Runs server.js
 CMD ["npm", "start"]

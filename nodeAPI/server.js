@@ -4,9 +4,10 @@
 import { endpoints } from './src/endpointMapper';
 import express from 'express';
 import postgres from 'pg';
+import cors from 'cors';
 
 const app = express();
-const port = 3000;
+const port = 3001;
 const Pool = postgres.Pool
 const pool = new Pool({
   user: 'postgres',
@@ -15,6 +16,8 @@ const pool = new Pool({
   port: '5432',
   database: 'postgres'
 });
+
+app.use(cors());
 
 // Time endpoint
 app.get('/time', async (req, res) => {
@@ -33,7 +36,12 @@ app.post('/register', async (req, res) => {
 
 // Create class endpoint
 app.post('/class/create', async (req, res) => {
-  await endpoints.register(req, res, pool);
+  await endpoints.createClass(req, res, pool);
+});
+
+// Get classes endpoint
+app.get('/class/get', async (req, res) => {
+  await endpoints.getClasses(req, res, pool);
 });
 
 app.listen(port, () => console.log(`Node is now listening on 192.168.99.100:${port}`));

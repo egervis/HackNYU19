@@ -5,7 +5,7 @@ import LoginForm from './components/LoginForm';
 import Registration from './Registration';
 import StudentHome from './student/home';
 
-import { loginRequester } from './requests/requestBuilder';
+import { loginRequester, registerRequester } from './requests/requestBuilder';
 import './styles/Login.css';
 
 class Login extends Component{
@@ -15,6 +15,7 @@ class Login extends Component{
     }
 
     onSearch = (e) => {
+      console.log("Search");
       e.preventDefault();
 
       const { value } = this.input;
@@ -29,7 +30,7 @@ class Login extends Component{
         return;
       }
 
-      loginRequester("tracey", "123");
+      registerRequester(0, "kong", "tracey", "test@email", "boof");
     }
 
     onSetResult = (result, key) => {
@@ -67,7 +68,7 @@ class Login extends Component{
           <div class="container-fluid w-25 jumbotron mt-5 bg-dark">
           <form type="submit" onSubmit={this.onSearch}>
             <input type="text" ref={node => this.input = node} />
-            <button type="button">Search</button>
+            <button type="button" onClick={this.onSearch}>Search</button>
           </form>
           {
             this.state.hits &&
