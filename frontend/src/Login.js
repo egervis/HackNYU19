@@ -11,29 +11,52 @@ import './styles/Login.css';
 class Login extends Component{
     constructor(props) {
       super(props);
-      this.state = { hits: null };
+      this.state = {
+        email:'',
+        password:''
+      };
+
+      this.handleEmailChange = this.handleEmailChange.bind(this);
+      this.handlePasswordChange =this.handlePasswordChange.bind(this);
+      this.handleLogin =this.handleLogin.bind(this);
     }
 
     onSearch = (e) => {
       console.log("Search");
       e.preventDefault();
+      //
+      // if (value === '') {
+      //   return;
+      // }
 
-      const { value } = this.input;
+      const target = e.target;
+      const email = target.type === 'email' ? this.value : target.name;
 
-      if (value === '') {
-        return;
-      }
+      console.log(email);
 
-      const cachedHits = localStorage.getItem(value);
-      if (cachedHits) {
-        this.setState({ hits: JSON.parse(cachedHits) });
-        return;
-      }
+      // const cachedHits = localStorage.getItem(value);
+      // if (cachedHits) {
+      //   this.setState({ hits: JSON.parse(cachedHits) });
+      //   return;
+      // }
     }
 
     onSetResult = (result, key) => {
       localStorage.setItem(key, JSON.stringify(result.hits));
       this.setState({ hits: result.hits });
+    }
+
+    handleEmailChange(e){
+      this.setState({email: e.target.value});
+    }
+
+    handlePasswordChange(e){
+      this.setState({password: e.target.value});
+    }
+
+    handleLogin(e){
+      console.log("Email: " + this.state.email);
+      console.log("Password: " + this.state.password);
     }
 
     render(){
@@ -64,9 +87,20 @@ class Login extends Component{
 
           <h1 class="mt-5 pt-3">We're here to help you learn!</h1>
           <div class="container-fluid w-25 jumbotron mt-5 bg-dark">
-          <form type="submit" onSubmit={this.onSearch}>
-            <input type="text" ref={node => this.input = node} />
-            <button type="button" onClick={this.onSearch}>Search</button>
+
+          <form>
+            <h2 class="pb-3">Login</h2>
+            <div class="form-group">
+              <label for="emailInput">Email address</label>
+              <input name="email" type="email" class="form-control" id="emailInput" aria-describedby="emailHelp" placeholder="Your email"
+                  value={this.state.email} onChange={this.handleEmailChange}/>
+            </div>
+            <div class="form-group">
+              <label for="pwInput">Password</label>
+              <input name="password" type="password" class="form-control" id="pwInput" placeholder="Password"
+                  value={this.state.password} onChange={this.handlePasswordChange}/>
+            </div>
+            <button type="submit" class="btn btn-success mt-3" onClick={this.handleLogin}>Login</button>
           </form>
           {
             this.state.hits &&
@@ -95,4 +129,9 @@ export default Login;
 //     <label class="form-check-label" for="remember">Remember me</label>
 //   </div>
 //   <button type="submit" class="btn btn-success mt-3">Login</button>
+// </form>
+
+// <form onSubmit={this.onSearch}>
+//   <input type="text" ref={node => this.input = node} />
+//   <input type="submit">Submit</input>
 // </form>
