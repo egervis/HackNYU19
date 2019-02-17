@@ -30,7 +30,7 @@ class Login extends Component{
         return;
       }
 
-      registerRequester(0, "kong", "tracey", "test@email", "boof");
+      registerRequester(0, 'kong', 'tracey', 'test@email', 'boof');
     }
 
     onSetResult = (result, key) => {
