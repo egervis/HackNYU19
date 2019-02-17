@@ -57,6 +57,20 @@ class Login extends Component{
     handleLogin(e){
       console.log("Email: " + this.state.email);
       console.log("Password: " + this.state.password);
+
+      let user = loginRequester(this.state.email, this.state.password)
+        .then(response => {
+          return response;
+        })
+        .catch(error => {
+          console.log(error);
+        });
+
+      if(user.status === 200){
+        console.log(user);
+      }else{
+        console.log(user);
+      }
     }
 
     render(){
@@ -100,7 +114,7 @@ class Login extends Component{
               <input name="password" type="password" class="form-control" id="pwInput" placeholder="Password"
                   value={this.state.password} onChange={this.handlePasswordChange}/>
             </div>
-            <button type="submit" class="btn btn-success mt-3" onClick={this.handleLogin}>Login</button>
+            <button type="button" class="btn btn-success mt-3" onClick={this.handleLogin}>Login</button>
           </form>
           {
             this.state.hits &&
