@@ -35,3 +35,17 @@ export const loginRequester = async (email, userPassword) => {
     console.error(error);
   }
 };
+
+// Create a class
+// className, instructorID: string
+// Returns a user object, with classCode
+export const classCreateRequestor = async (className, instructorID) => {
+  try {
+    return axios.post(`${address}:${port}/class/create`, {
+      className: className,
+      instructorID: instructorID
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};
