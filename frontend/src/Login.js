@@ -88,7 +88,7 @@ class Login extends Component{
                <ul class="navbar-nav ml-auto">
                  <li class="nav-item">
                    <Link to="/registration" class="nav-link">Registration</Link>
-                 </li>
+                 </li>\
                </ul>
              </div>
           </nav>
