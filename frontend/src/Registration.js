@@ -12,7 +12,7 @@ class Registration extends Component {
       firstName:'',
       lastName:'',
       password:'',
-      role:''
+      role:'1'
     }
 
     this.handleEmailChange = this.handleEmailChange.bind(this);
@@ -20,7 +20,7 @@ class Registration extends Component {
     this.handleLastNameChange = this.handleLastNameChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handleRole = this.handleRole.bind(this);
-    this.handleLogin =this.handleLogin.bind(this);
+    this.handleRegister =this.handleRegister.bind(this);
   }
 
   handleEmailChange(e){
@@ -43,7 +43,7 @@ class Registration extends Component {
     this.setState({role: e.target.value});
   }
 
-  handleLogin(e){
+  handleRegister(e){
     console.log("Email: " + this.state.email);
     console.log("First name: " + this.state.firstName);
     console.log("Last name: " + this.state.lastName);
@@ -52,7 +52,7 @@ class Registration extends Component {
 
     let user = registerRequester(this.state.role, this.state.lastName, this.state.firstName, this.state.email, this.state.password)
       .then(response => {
-        return response;
+        console.log(response);
       })
       .catch(error => {
         console.log(error);
@@ -104,12 +104,12 @@ class Registration extends Component {
             </div>
 
             <label for="selectRole">I am a...</label>
-            <select class="custom-select my-1 mr-ms-2" id="selectRole">
-              <option value='0' onChange={this.handleRole} selected>Instructor</option>
+            <select defaultValue='1' class="custom-select my-1 mr-ms-2" id="selectRole">
+              <option value='0' onChange={this.handleRole}>Instructor</option>
               <option value='1' onChange={this.handleRole}>Student</option>
             </select>
 
-            <button type="submit" class="btn btn-success mt-3" onClick={this.handleLogin}>Register me!</button>
+            <button type="submit" class="btn btn-success mt-3" onClick={this.handleRegister}>Register me!</button>
           </form>
         </div>
       </div>

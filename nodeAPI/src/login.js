@@ -5,7 +5,7 @@ export const request = async (req, res, pool) => {
   try {
     // Get the user by email and password
     let query = {
-      text: 'SELECT * FROM users WHERE email = $1 AND userPassword = $2',
+      text: 'SELECT * FROM users WHERE email = $1 AND userpassword = $2',
       values: [req.body.email, req.body.userPassword]
     };
     let user = await pool.query(query);
@@ -13,8 +13,8 @@ export const request = async (req, res, pool) => {
     if (user.rows.length > 0) {
       res.status(200);
       let currentUser = user.rows[0];
-      let userPrototype = users(currentUser.userid, currentUser.usertype, currentUser.lastname, currentUser.firstname, currentUser.email, '', '', '');
-      response = userPrototype;
+      console.log(currentUser);
+      response = new users(currentUser.userid, currentUser.usertype, currentUser.lastname, currentUser.firstname, currentUser.email, '', '', '');
     } else {
       res.status(404);
       response = {};
