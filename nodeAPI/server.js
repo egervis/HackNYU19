@@ -59,12 +59,12 @@ app.get('/class/get', async (req, res) => {
 });
 
 // Create feedback endpoint
-app.get('feedback/create', async (req, res) => {
+app.post('feedback/create', async (req, res) => {
   await endpoints.createFeedback(req, res, pool);
 });
 
 // Create lesson endpoint
-app.get('lesson/create', async (req, res) => {
+app.post('lesson/create', async (req, res) => {
   await endpoints.createLesson(req, res, pool);
 });
 

@@ -58,7 +58,7 @@ class Login extends Component{
       console.log("Email: " + this.state.email);
       console.log("Password: " + this.state.password);
 
-      let user = loginRequester(this.state.email, this.state.password)
+      loginRequester(this.state.email, this.state.password)
         .then(res => {
           console.log(res.status);
           this.props.history.push("/teacher/class");
@@ -66,8 +66,9 @@ class Login extends Component{
         })
         .catch(err => {
           console.log(err);
-          return err;
         });
+
+      console.log(localStorage);
 
     }
 
