@@ -54,10 +54,10 @@ class Registration extends Component {
     let user = registerRequester(this.state.role, this.state.lastName, this.state.firstName, this.state.email, this.state.password)
       .then(response => {
         console.log(response);
-        this.props.history.push("/");
+        this.props.history.push('/Login');
       })
-      .catch(error => {
-        console.log(error);
+      .catch(err => {
+        console.log(err);
       });
   }
 
