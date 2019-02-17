@@ -29,4 +29,4 @@
   - create lesson
   - calendar *
   - feedback *
-  - create feedback
+  - create feedback *
