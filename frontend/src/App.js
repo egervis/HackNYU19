@@ -35,7 +35,7 @@ class App extends Component {
           <Switch location={isModal ? this.previousLocation : location}>
             <Route exact path="/" component={Login} />
             <Route path="/registration" component={Registration} />
-            <Route path="/teacher/class" component={TeacherClass} />
+            <Route path="/teacher/allClasses" component={TeacherClass} />
             <Route path="/teacher/calendar" component={TeacherCalendar} />
             <Route path="/student/home" component={StudentHome} />
             <Route path="/teacher/feedback" component={TeacherFeedback} />

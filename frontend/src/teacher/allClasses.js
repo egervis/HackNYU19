@@ -4,6 +4,17 @@ import Burger from '../components/Burger';
 import '../styles/Burger.css';
 import { classCreateRequestor, getClassRequestor } from '../requests/requestBuilder'
 
+const fetchClasses = () => {
+  let classes = getClassRequestor(localStorage.getItem('userid'), localStorage.getItem('usertype'))
+    .then(res => {
+      return res.data;
+    })
+    .catch(err => {
+      console.error(err);
+    });
+  return classes;
+};
+
 class TeacherClass extends Component{
   constructor(props) {
     super(props);
@@ -13,7 +24,7 @@ class TeacherClass extends Component{
     console.log(this);
     this.handleNameChange = this.handleNameChange.bind(this);
     this.createClass = this.createClass.bind(this);
-    this.fetchClasses = this.fetchClasses.bind(this);
+    this.classEntries = this.classEntries.bind(this);
   }
 
   handleNameChange(e) {
@@ -28,22 +39,11 @@ class TeacherClass extends Component{
 
   }
 
-  fetchClasses() {
-    let classes = getClassRequestor(localStorage.getItem('userid'), localStorage.getItem('usertype'));
-    console.log(classes);
-    return classes.data;
-  }
-
-  classEntries = (classes) => {
-    let children = [];
-    for (let i = 0; i < classes.length; i ++) {
-      children.push(
-        <div id={classes[i].classid}>
-          classes[i].classname
-        </div>
-      );
-    }
-    return <div>{children}</div>
+  classEntries(classes) {
+    const list = classes.data.map(c =>
+      <li id={c.classid}>{c.classname}</li>
+    );
+    return (<ul> {list} </ul>);
   }
 
   render(){
@@ -66,7 +66,7 @@ class TeacherClass extends Component{
         <div class="mx-auto w-75 bg-dark my-5 px-5 py-5">
           <div>
             <h3 class="pb-3">Your Classes</h3>
-            {this.classEntries(this.fetchClasses)}
+            {this.classEntries(fetchClasses())}
           </div>
           {ele}
         </div>
