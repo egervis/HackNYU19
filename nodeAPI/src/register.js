@@ -17,6 +17,8 @@ export const request = async (req, res, pool) => {
       text: 'INSERT INTO users (userID, userType, lastName, firstName, email, userClasses, userPassword, eventIDs) VALUES($1, $2, $3, $4, $5, $6, $7, $8)',
       values: [uniqid(), req.query.userType, req.query.lastName, req.query.firstname, req.query.email, '', req.query.userPassword, '']
     };
+    console.log(req.body);
+    await pool.query(query);
     res.status(201).send();
   } catch (error) {
     console.error('ERROR creating user', error.stack);

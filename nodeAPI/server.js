@@ -5,6 +5,7 @@ import { endpoints } from './src/endpointMapper';
 import express from 'express';
 import postgres from 'pg';
 import cors from 'cors';
+const bodyParser = require('body-parser');
 
 const app = express();
 const port = 3001;
@@ -18,6 +19,14 @@ const pool = new Pool({
 });
 
 app.use(cors());
+
+app.use(bodyParser.json());
+
+app.use((req, res, next)=>{
+  console.log(`${req.method}: ${req.path}`);
+  console.log(req.body);
+  next();
+});
 
 // Time endpoint
 app.get('/time', async (req, res) => {
