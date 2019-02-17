@@ -7,7 +7,11 @@ class Registration extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email:''
+      email:'',
+      firstName:'',
+      lastName:'',
+      password:'',
+      role:''
     }
 
     this.handleEmailChange = this.handleEmailChange.bind(this);
@@ -92,8 +96,8 @@ class Registration extends Component {
 
             <label for="selectRole">I am a...</label>
             <select class="custom-select my-1 mr-ms-2" id="selectRole">
-              <option value="0" onChange={this.handleRole} selected>Instructor</option>
-              <option value="1" onChange={this.handleRole}>Student</option>
+              <option value='0' onChange={this.handleRole} selected>Instructor</option>
+              <option value='1' onChange={this.handleRole}>Student</option>
             </select>
 
             <button type="submit" class="btn btn-success mt-3" onClick={this.handleLogin}>Register me!</button>
