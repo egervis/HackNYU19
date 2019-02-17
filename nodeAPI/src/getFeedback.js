@@ -31,9 +31,9 @@ export const request = async (req, res, pool) => {
       {
         let feedbackPrototype;
         if(userType == 0) {
-          feedbackPrototype = feedback(row.feedbackid, '', row.studentid, row.feedbackText);
+          feedbackPrototype = new feedback(row.feedbackid, '', row.studentid, row.feedbackText);
         } else {
-          feedbackPrototype = feedback(row.feedbackid, row.instructorid, '', row.feedbackText);
+          feedbackPrototype = new feedback(row.feedbackid, row.instructorid, '', row.feedbackText);
         }
         array.push(feedbackPrototype);
       }
