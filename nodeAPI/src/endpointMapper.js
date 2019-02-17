@@ -14,7 +14,10 @@ export const endpoints = {
   login: login.request,
   register: register.request,
   createClass: createClass.request,
+  createFeedback: createFeedback.request,
+  createLesson: createLesson.request,
   getClasses: getClasses.request,
   getLessons: getLessons.request,
-  createFeedback: createFeedback.request
+  getLesson: getLesson.request,
+  getFeedback: getFeedback.request
 };
