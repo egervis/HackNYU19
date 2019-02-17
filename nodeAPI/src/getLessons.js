@@ -16,11 +16,11 @@ export const request = async (req, res, pool) => {
       let currentLessons = lessons.rows[0].lessonids;
       let lessonids = currentLessons.split(",");
       let array = [];
-      for (let id in lessonids)
+      for (let i=0; i<lessonids.length; i++)//(let id in lessonids)
       {
         let query2 = {
           text: 'SELECT * FROM lessons WHERE lessonid = $1',
-          values: [id]
+          values: [lessonids[i]]
         };
         let lessonEntry =  await pool.query(query2);
         let lessonsPrototype;

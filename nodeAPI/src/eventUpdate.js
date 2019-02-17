@@ -12,9 +12,9 @@ export const request = async (req, res, pool) => {
       res.status(200);
       let eventRows = user.rows;
       let array = [];
-      for (let row in eventRows)
+      for (let i=0; i<eventRows.length; i++)//(let row in eventRows)
       {
-        currentEvent = events(row.eventid, '', '', row.dateexpires, '');
+        currentEvent = events(eventRows[i].eventid, '', '', eventRows[i].dateexpires, '');
         let mydate = new Date(currentEvent.dateexpires);
         let currentDate = new Date();
         let newDate = new Date(mydate.setTime( mydate.getTime() + 1 * 86400000 ));
@@ -23,9 +23,9 @@ export const request = async (req, res, pool) => {
           array.push(currentEvent)
         }
       }
-      for (let date in array)
+      for (let i=0; i<array.length; i++)//(let date in array)
       {
-        let eventID = date.eventid;
+        let eventID = array[i].eventid;
         let query2 = {
           text: 'DELETE FROM events WHERE eventid = $1',
           values: [eventID]

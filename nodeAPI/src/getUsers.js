@@ -7,11 +7,11 @@ export const request = async (req, res, pool) => {
     let user = req.query.userids;
     let userArray = user.split(',');
     let array = [];
-    for(let str in userArray)
+    for (let i=0; i<userArray.length; i++)//(let str in userArray)
     {
       let query = {
         text: 'SELECT * FROM users WHERE userid = $1',
-        values: [str]
+        values: [userArray[i]]
       };
       let currentUser =  await pool.query(query);
       let row = currentUser.rows[0];
