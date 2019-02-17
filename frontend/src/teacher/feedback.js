@@ -14,7 +14,7 @@ class TeacherFeedback extends Component{
 
   fetchFeedback() {
     //let feedback = feedbackRequestor(localStorage.getItem('userType'), localStorage.getItem('userid'));
-    return feedback;
+    //return feedback;
   }
 
   render(){
