@@ -78,6 +78,18 @@ export const getClassRequestor = async (userid, usertype) => {
   }
 };
 
+export const getUsersRequestor = async (userids) => {
+  try {
+    return axios.get(`${address}:${port}/users/get`, {
+      params: {
+        userids: userids
+      }
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 export const getFeedback = async (userid, usertype) => {
   try {
     return axios.get(`${address}:${port}/feedback/get`, {

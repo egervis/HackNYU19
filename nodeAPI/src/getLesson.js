@@ -24,11 +24,11 @@ export const request = async (req, res, pool) => {
       let pictureids = lessonPrototype.pictureids.split(",");
       let array = [];
       array.push(lessonPrototype);
-      for (let id in pictureids)
+      for (let i=0; i<pictureids; i++)//(let id in pictureids)
       {
         let query2 = {
           text: 'SELECT * FROM pictures WHERE pictureid = $1',
-          values: [id]
+          values: [pictureids[i]]
         };
         let pic = await pool.query(query2);
         let currentPic = user.rows[0];

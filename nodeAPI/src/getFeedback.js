@@ -27,13 +27,13 @@ export const request = async (req, res, pool) => {
       let feedbackRows = feedback.rows;
 
       let array = [];
-      for (let row in feedbackRows)
+      for (let i=0; i<feedbackRows.length; i++)//(let row in feedbackRows)
       {
         let feedbackPrototype;
         if(userType == 0) {
-          feedbackPrototype = new feedback(row.feedbackid, '', row.studentid, row.feedbackText);
+          feedbackPrototype = new feedback(feedbackRows[i].feedbackid, '', feedbackRows[i].studentid, feedbackRows[i].feedbackText);
         } else {
-          feedbackPrototype = new feedback(row.feedbackid, row.instructorid, '', row.feedbackText);
+          feedbackPrototype = new feedback(feedbackRows[i].feedbackid, feedbackRows[i].instructorid, '', feedbackRows[i].feedbackText);
         }
         array.push(feedbackPrototype);
       }

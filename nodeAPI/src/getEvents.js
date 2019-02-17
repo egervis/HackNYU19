@@ -14,14 +14,15 @@ export const request = async (req, res, pool) => {
       user = user.rows[0];
       const eventids = user.eventids.split(',');
       const updatedIds = '';
-      for (let eid in eventids) {
+      for (let i=0; i<eventids.length; i++)//(let eid in eventids)
+      {
         query = {
           text: 'SELECT * FROM events WHERE eventid = $1',
-          values: [eid]
+          values: [eventids[i]]
         };
         let event = await pool.query(query);
         if (event.rows.length > 0) {
-          updatedIds += `${eid},`;
+          updatedIds += `${eventids[i]},`;
           eventarr.push(event.rows[0]);
         }
       }
