@@ -40,6 +40,7 @@ class Registration extends Component {
   }
 
   handleRole(e){
+    console.log(e.target.value);
     this.setState({role: e.target.value});
   }
 
@@ -103,9 +104,9 @@ class Registration extends Component {
             </div>
 
             <label for="selectRole">I am a...</label>
-            <select defaultValue='0' class="custom-select my-1 mr-ms-2" id="selectRole">
-              <option value='0' onChange={this.handleRole}>Instructor</option>
-              <option value='1' onChange={this.handleRole}>Student</option>
+            <select defaultValue='0' onChange={this.handleRole} class="custom-select my-1 mr-ms-2" id="selectRole">
+              <option value='0'>Instructor</option>
+              <option value='1'>Student</option>
             </select>
 
             <button type="submit" class="btn btn-success mt-3" onClick={this.handleRegister}>Register me!</button>
