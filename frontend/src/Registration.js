@@ -11,6 +11,10 @@ class Registration extends Component {
     }
 
     this.handleEmailChange = this.handleEmailChange.bind(this);
+    this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
+    this.handleLastNameChange = this.handleLastNameChange.bind(this);
+    this.handlePasswordChange = this.handlePasswordChange.bind(this);
+    this.handleRole = this.handleRole.bind(this);
     this.handleLogin =this.handleLogin.bind(this);
   }
 
@@ -18,10 +22,31 @@ class Registration extends Component {
     this.setState({email: e.target.value});
   }
 
+  handleLastNameChange(e){
+    this.setState({lastName: e.target.value});
+  }
+
+  handleFirstNameChange(e){
+    this.setState({firstName: e.target.value});
+  }
+
+  handlePasswordChange(e){
+    this.setState({password: e.target.value});
+  }
+
+  handleRole(e){
+    this.setState({role: e.target.value});
+  }
 
   handleLogin(e){
     console.log("Email: " + this.state.email);
+    console.log("First name: " + this.state.firstName);
+    console.log("Last name: " + this.state.lastName);
+    console.log("Password: " + this.state.password);
+    console.log("Status" + this.state.role);
   }
+
+
 
   render() {
     return (
@@ -46,11 +71,11 @@ class Registration extends Component {
 
             <div class="row">
               <div class="col">
-                <input type="text" class="form-control" placeholder="First name"/>
+                <input type="text" class="form-control" value={this.state.firstName} onChange={this.handleFirstNameChange} placeholder="First name"/>
               </div>
 
               <div class="col">
-                <input type="text" class="form-control" placeholder="Last name"/>
+                <input type="text" class="form-control" value={this.state.lastName} onChange={this.handleLastNameChange} placeholder="Last name"/>
               </div>
             </div>
 
@@ -62,13 +87,13 @@ class Registration extends Component {
 
             <div class="form-group">
               <label for="pwInput">Password</label>
-              <input type="password" class="form-control" id="pwInput" placeholder="Password"/>
+              <input type="password" class="form-control" id="pwInput" value={this.state.password} onChange={this.handlePasswordChange} placeholder="Password"/>
             </div>
 
             <label for="selectRole">I am a...</label>
             <select class="custom-select my-1 mr-ms-2" id="selectRole">
-              <option value="instructor" selected>Instructor</option>
-              <option value="student">Student</option>
+              <option value="0" onChange={this.handleRole} selected>Instructor</option>
+              <option value="1" onChange={this.handleRole}>Student</option>
             </select>
 
             <button type="submit" class="btn btn-success mt-3" onClick={this.handleLogin}>Register me!</button>
