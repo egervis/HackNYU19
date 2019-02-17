@@ -24,7 +24,7 @@ export const request = async (req, res, pool) => {
       let pictureids = lessonPrototype.pictureids.split(",");
       let array = [];
       array.push(lessonPrototype);
-      foreach (id in pictureids)
+      for (let id in pictureids)
       {
         let query2 = {
           text: 'SELECT * FROM pictures WHERE pictureid = $1',

@@ -5,7 +5,7 @@ export const request = async (req, res, pool) => {
   try {
     let pictures = req.body.allPictures;
     let str = ""
-    foreach(pic in pictures)
+    for (let pic in pictures)
     {
       let pictureID = uniqid();
       let query = {

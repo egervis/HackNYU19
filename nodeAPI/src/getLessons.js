@@ -16,7 +16,7 @@ export const request = async (req, res, pool) => {
       let currentLessons = lessons.rows[0].lessonids;
       let lessonids = currentLessons.split(",");
       let array = [];
-      foreach (id in lessonids)
+      for (let id in lessonids)
       {
         let query2 = {
           text: 'SELECT * FROM lessons WHERE lessonid = $1',

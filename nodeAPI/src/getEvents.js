@@ -2,6 +2,7 @@
 import { events } from './prototypes';
 
 export const request = async (req, res, pool) => {
+  let eventarr = [];
   try {
     // Get the events by user ID
     let query = {
@@ -10,13 +11,31 @@ export const request = async (req, res, pool) => {
     };
     let user = await pool.query(query);
     if (user.rows.length > 0) {
+      user = user.rows[0];
       const eventids = user.eventids.split(',');
-      foreach ( in )
+      const updatedIds = '';
+      for (let eid in eventids) {
+        query = {
+          text: 'SELECT * FROM events WHERE eventid = $1',
+          values: [eid]
+        };
+        let event = await pool.query(query);
+        if (event.rows.length > 0) {
+          updatedIds += `${eid},`;
+          eventarr.push(event.rows[0]);
+        }
+      }
+      updatedIds = updatedIds.substring(0, updatedIds.length - 1);
+      query = {
+        text: 'UPDATE users SET eventids = $1 WHERE userid = $2',
+        values: [updatedIds, req.query.userID]
+      };
+      await pool.query(query);
     } else {
       res.status(404);
       response = {};
     }
-    res.send(JSON.stringify(response));
+    res.send(JSON.stringify(eventarr));
   } catch (error) {
     console.error('ERROR getting events', error.stack);
     res.status(500).send({'error': error.stack});

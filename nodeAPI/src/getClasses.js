@@ -16,7 +16,7 @@ export const request = async (req, res, pool) => {
       let currentClasses = classes.rows[0].userclasses;
       let classids = currentClasses.split(",");
       let array = [];
-      foreach (id in classids)
+      for (id in classids)
       {
         let query2 = {
           text: 'SELECT * FROM classes WHERE classid = $1',

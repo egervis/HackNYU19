@@ -27,7 +27,7 @@ export const request = async (req, res, pool) => {
       let feedbackRows = feedback.rows;
 
       let array = [];
-      foreach (row in feedbackRows)
+      for (let row in feedbackRows)
       {
         let feedbackPrototype;
         if(userType == 0) {

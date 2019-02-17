@@ -12,7 +12,7 @@ export const request = async (req, res, pool) => {
       res.status(200);
       let eventRows = user.rows;
       let array = [];
-      foreach (row in eventRows)
+      for (let row in eventRows)
       {
         currentEvent = events(row.eventid, '', '', row.dateexpires, '');
         let mydate = new Date(currentEvent.dateexpires);
@@ -23,7 +23,7 @@ export const request = async (req, res, pool) => {
           array.push(currentEvent)
         }
       }
-      foreach (date in array)
+      for (let date in array)
       {
         let eventID = date.eventid;
         let query2 = {
