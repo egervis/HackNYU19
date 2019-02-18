@@ -1,9 +1,8 @@
 "use strict";
-import { users } from './prototypes';
+import { users } from '../models/prototypes';
 
 export const request = async (req, res, pool) => {
   try {
-    // Get the user by email and password
     let query = {
       text: 'SELECT * FROM users WHERE email = $1 AND userpassword = $2',
       values: [req.body.email, req.body.userPassword]

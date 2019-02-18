@@ -6,9 +6,9 @@ export const request = async (req, res, pool) => {
     // Get the user by their ID
     let query = {
       text: 'SELECT userclasses FROM users WHERE userid = $1',
-      values: [req.query.userid]
+      values: [req.body.userid]
     };
-    let userType = req.query.usertype;
+    let userType = req.body.usertype;
     let classids = await pool.query(query);
     let response;
     if (classids.rows.length > 0) {

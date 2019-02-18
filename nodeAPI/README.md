@@ -4,7 +4,4 @@
   - Note that the endpoints require additional /"endpoint name"
 
 # ENDPOINTS
-  - /
-    - The base endpoint
-  - /time
-    - Grabs the current time and returns a JSON object with a field of "now" that has the current time as a string
+  - TODO: List endpoints and document input and output

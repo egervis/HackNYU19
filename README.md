@@ -16,17 +16,8 @@
   3. `docker-compose up --build -d`
 
 # TODO
-  - Setup all the endpoints
-  - Create frontend forms
-
-
-
-  - login *
-  - registration *
-  - classes *
-  - lessons *
-  - lesson *
-  - create lesson
-  - calendar *
-  - feedback *
-  - create feedback *
+  - Fix the backend (WIP)
+  - Cleanup the backend (WIP)
+  - Document the backend ENDPOINTS
+  - Update the models to use classes rather than function prototypes
+  - Make frontend async

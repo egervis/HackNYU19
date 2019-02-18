@@ -2,8 +2,8 @@
 import { users } from './prototypes';
 
 export const request = async (req, res, pool) => {
+  // TODO Redo this code
   try {
-    // Get the user by their ID
     let user = req.query.userids;
     let userArray = user.split(',');
     let array = [];
