@@ -1,5 +1,5 @@
 "use strict";
-import { users } from './prototypes';
+import { users } from '../models/prototypes';
 
 export const request = async (req, res, pool) => {
   // TODO Redo this code

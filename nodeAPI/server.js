@@ -64,17 +64,17 @@ app.post('lesson/create', async (req, res) => {
   await endpoints.lessons.createLesson(req, res, pool);
 });
 
-// Get lesson endpoint
+// Get lesson endpoint (change to post method)
 app.get('lesson/get', async (req, res) => {
   await endpoints.lessons.getLesson(req, res, pool);
 });
 
-// Get lessons endpoint
+// Get lessons endpoint (change to post)
 app.get('lessons/get', async (req, res) => {
   await endpoints.lessons.getLessons(req, res, pool);
 });
 
-// Get feedback endpoint
+// Get feedback endpoint (change to post)
 app.get('feedback/get', async (req, res) => {
   await endpoints.feedback.getFeedback(req, res, pool);
 });

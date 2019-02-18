@@ -1,5 +1,5 @@
 "use strict";
-import { lessons } from './prototypes';
+import { lessons } from '../models/prototypes';
 
 export const request = async (req, res, pool) => {
   try {
