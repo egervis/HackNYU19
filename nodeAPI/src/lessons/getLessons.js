@@ -25,9 +25,9 @@ export const request = async (req, res, pool) => {
         let lessonEntry =  await pool.query(query2);
         let lessonsPrototype;
         if(userType == 0) {
-          lessonsPrototype = new lessons(lessonEntry.lessonid, lessonEntry.lessonname, lessonEntry.lessondescription, lessonEntry.pictureids, '');
+          lessonsPrototype = new lessons(lessonEntry.lessonid, lessonEntry.lessonname, lessonEntry.lessondescription, lessonEntry.pictureids.split(','), '');
         } else {
-          lessonsPrototype = new lessons(lessonEntry.lessonid, lessonEntry.lessonname, lessonEntry.lessondescription, lessonEntry.pictureids, lessonEntry.instructorid);
+          lessonsPrototype = new lessons(lessonEntry.lessonid, lessonEntry.lessonname, lessonEntry.lessondescription, lessonEntry.pictureids.split(','), lessonEntry.instructorid);
         }
         array.push(lessonsPrototype);
       }

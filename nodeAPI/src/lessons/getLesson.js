@@ -17,11 +17,11 @@ export const request = async (req, res, pool) => {
 
       let lessonPrototype;
       if(userType == 0) {
-        lessonPrototype = new lessons(currentLesson.lessonid, currentLesson.lessonname, currentLesson.lessondescription, currentLesson.pictureids, '');
+        lessonPrototype = new lessons(currentLesson.lessonid, currentLesson.lessonname, currentLesson.lessondescription, currentLesson.pictureids.split(','), '');
       } else {
-        lessonPrototype = new lessons(currentLesson.lessonid, currentLesson.lessonname, currentLesson.lessondescription, currentLesson.pictureids, currentLesson.instructorid);
+        lessonPrototype = new lessons(currentLesson.lessonid, currentLesson.lessonname, currentLesson.lessondescription, currentLesson.pictureids.split(','), currentLesson.instructorid);
       }
-      let pictureids = lessonPrototype.pictureids.split(",");
+      let pictureids = lessonPrototype.pictureids;
       let array = [];
       array.push(lessonPrototype);
       for (let i=0; i<pictureids; i++)//(let id in pictureids)

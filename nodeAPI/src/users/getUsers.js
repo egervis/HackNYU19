@@ -15,7 +15,7 @@ export const request = async (req, res, pool) => {
       };
       let currentUser =  await pool.query(query);
       let row = currentUser.rows[0];
-      let userPrototype = new users(row.userid, row.usertype, row.lastname, row.firstname, row.email, row.userclasses, '', row.eventids);
+      let userPrototype = new users(row.userid, row.usertype, row.lastname, row.firstname, row.email, row.userclasses.split(','), '', row.eventids.split(','));
       array.push(userPrototype);
     }
 

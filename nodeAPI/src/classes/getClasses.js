@@ -28,9 +28,9 @@ export const request = async (req, res, pool) => {
         classEntry = classEntry.rows[0];
         let classesPrototype;
         if(userType == 0) {
-          classesPrototype = new classes(classEntry.classid, classEntry.classname, classEntry.lessonids, classEntry.studentids, '');
+          classesPrototype = new classes(classEntry.classid, classEntry.classname, classEntry.lessonids.split(','), classEntry.studentids.split(','), '');
         } else {
-          classesPrototype = new classes(classEntry.classid, classEntry.classname, classEntry.lessonids, '', classEntry.instructorid);
+          classesPrototype = new classes(classEntry.classid, classEntry.classname, classEntry.lessonids.split(','), '', classEntry.instructorid);
         }
         array.push(classesPrototype);
       }
