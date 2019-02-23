@@ -42,7 +42,6 @@ CREATE TABLE Lessons (
 CREATE TABLE Pictures (
     pictureID text NOT NULL PRIMARY KEY,
     pictureName varchar(255),
-    lessonID text REFERENCES Lessons(lessonID),
     pictureFile bytea
 );
 

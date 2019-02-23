@@ -39,11 +39,10 @@ export function lessons(lessonid, lessonname, lessondescription, pictureids, ins
   this.instructorid = instructorid;
 }
 
-export function pictures(pictureid, picturename, picturefile, lessonid)
+export function pictures(pictureid, picturename, picturefile)
 {
   this.pictureid = pictureid;
   this.picturename = picturename;
-  this.lessonid = lessonid;
   this.picturefile = picturefile;
 }
 

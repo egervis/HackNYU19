@@ -9,8 +9,8 @@ export const request = async (req, res, pool) => {
     {
       let pictureID = uniqid();
       let query = {
-        text:'INSERT INTO pictures(pictureID, pictureName, lessonId, pictureFile) VALUES($1, $2, $3, $4)' ,
-        values: [pictureID, pictures[i].pictureName, req.body.lessonID, pictures[i].pictureFile]
+        text:'INSERT INTO pictures(pictureID, pictureName, pictureFile) VALUES($1, $2, $3, $4)' ,
+        values: [pictureID, pictures[i].pictureName, pictures[i].pictureFile]
       };
       str+=(pictureID+",");
     }

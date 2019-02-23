@@ -32,7 +32,7 @@ export const request = async (req, res, pool) => {
         };
         let pic = await pool.query(query2);
         let currentPic = user.rows[0];
-        let picturePrototype = new pictures(currentPic.pictureid, currentPic.picturename, currentPic.picturefile, currentPic.lessonid);
+        let picturePrototype = new pictures(currentPic.pictureid, currentPic.picturename, currentPic.picturefile);
         array.push(picturePrototype);
       }
       response = array;//first item in array will be lesson. all other items are pictures
