@@ -2,7 +2,6 @@
 
 export const request = async (req, res, pool) => {
   try {
-    // Get the user by email and password
     let query = {
       text: 'SELECT * FROM events'
     };

@@ -1,9 +1,9 @@
 "use strict";
 import { Class } from '../models/prototypes';
 
+// Break this down into simpler functions
 export const request = async (req, res, pool) => {
   try {
-    // Get the user by their ID
     let query = {
       text: 'SELECT userclasses FROM users WHERE userid = $1',
       values: [req.body.userid]
@@ -37,7 +37,7 @@ export const request = async (req, res, pool) => {
       response = array;
     } else {
       res.status(404);
-      response = {};
+      response = [];
     }
     res.send(JSON.stringify(response));
   } catch (error) {
