@@ -4,4 +4,5 @@
   - Note that the endpoints require additional /"endpoint name"
 
 # ENDPOINTS
+  - TODO: Enforce the rule that the frontend should receive arrays rather than comma lists
   - TODO: List endpoints and document input and output

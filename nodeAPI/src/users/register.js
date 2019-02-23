@@ -1,6 +1,19 @@
 "use strict";
 import uniqid from 'uniqid';
 
+// req.body: {
+//   userType: number,
+//   lastName: string,
+//   firstName: string,
+//   email: string,
+//   userPassword: string
+// }
+
+// response:
+//   N/A
+
+// status:
+//   201, 500
 export const request = async (req, res, pool) => {
   try {
     // Get the user by email and password

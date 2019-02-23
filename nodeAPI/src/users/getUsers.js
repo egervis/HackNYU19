@@ -1,13 +1,20 @@
 "use strict";
-import { users } from '../models/prototypes';
+import { User } from '../models/prototypes';
+
+// request: {
+//   userids: string[]
+// }
+//
+// response:
+//   User[] (all users will have omitted passwords and ids)
+//
+// status:
+//   200, 404, 500
 
 export const request = async (req, res, pool) => {
-  // TODO Redo this code
   try {
-    let user = req.query.userids;
-    let userArray = user.split(',');
-    let array = [];
-    for (let i=0; i<userArray.length; i++)//(let str in userArray)
+    let userArray = req.body.userids;
+    for (let i=0; i<userArray.length; i++)
     {
       let query = {
         text: 'SELECT * FROM users WHERE userid = $1',
@@ -15,7 +22,7 @@ export const request = async (req, res, pool) => {
       };
       let currentUser =  await pool.query(query);
       let row = currentUser.rows[0];
-      let userPrototype = new users(row.userid, row.usertype, row.lastname, row.firstname, row.email, row.userclasses, '', row.eventids);
+      let userPrototype = new User('', row.usertype, row.lastname, row.firstname, row.email, row.userclasses, '', row.eventids);
       array.push(userPrototype);
     }
 
@@ -25,11 +32,11 @@ export const request = async (req, res, pool) => {
       response = array;
     } else {
       res.status(404);
-      response = {};
+      response = [];
     }
     res.send(JSON.stringify(response));
   } catch (error) {
-    console.error('ERROR getting classes', error.stack);
+    console.error('ERROR getting users', error.stack);
     res.status(500).send({'error': error.stack});
   }
 }

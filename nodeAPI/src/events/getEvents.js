@@ -1,5 +1,4 @@
 "use strict";
-import { events } from '../models/prototypes';
 
 export const request = async (req, res, pool) => {
   let eventarr = [];

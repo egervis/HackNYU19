@@ -1,6 +1,18 @@
 "use strict";
 import uniqid from 'uniqid';
 
+// request: {
+//   className: string,
+//   instructorID: string
+// }
+
+// response: {
+//   classCode: string
+// }
+
+// status:
+//   200, 404, 500
+
 export const request = async (req, res, pool) => {
   try {
     let query = {

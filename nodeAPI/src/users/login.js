@@ -1,6 +1,15 @@
 "use strict";
-import { users } from '../models/prototypes';
+import { User } from '../models/prototypes';
 
+// req.body: {
+//   email: string,
+//   password: string
+// }
+
+// response:
+//   new User(id, type, last, first, email, '', '', '')
+// status:
+//   200, 404, 500
 export const request = async (req, res, pool) => {
   try {
     let query = {
@@ -13,7 +22,7 @@ export const request = async (req, res, pool) => {
       res.status(200);
       let currentUser = user.rows[0];
       console.log(currentUser);
-      response = new users(currentUser.userid, currentUser.usertype, currentUser.lastname, currentUser.firstname, currentUser.email, '', '', '');
+      response = new User(currentUser.userid, currentUser.usertype, currentUser.lastname, currentUser.firstname, currentUser.email, '', '', '');
     } else {
       res.status(404);
       response = {};

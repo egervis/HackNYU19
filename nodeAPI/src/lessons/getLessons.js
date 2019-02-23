@@ -1,5 +1,5 @@
 "use strict";
-import { lessons } from '../models/prototypes';
+import { Lesson } from '../models/prototypes';
 
 export const request = async (req, res, pool) => {
   try {
@@ -25,9 +25,9 @@ export const request = async (req, res, pool) => {
         let lessonEntry =  await pool.query(query2);
         let lessonsPrototype;
         if(userType == 0) {
-          lessonsPrototype = new lessons(lessonEntry.lessonid, lessonEntry.lessonname, lessonEntry.lessondescription, lessonEntry.pictureids, '');
+          lessonsPrototype = new Lesson(lessonEntry.lessonid, lessonEntry.lessonname, lessonEntry.lessondescription, lessonEntry.pictureids, '');
         } else {
-          lessonsPrototype = new lessons(lessonEntry.lessonid, lessonEntry.lessonname, lessonEntry.lessondescription, lessonEntry.pictureids, lessonEntry.instructorid);
+          lessonsPrototype = new Lesson(lessonEntry.lessonid, lessonEntry.lessonname, lessonEntry.lessondescription, lessonEntry.pictureids, lessonEntry.instructorid);
         }
         array.push(lessonsPrototype);
       }

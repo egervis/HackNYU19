@@ -7,8 +7,8 @@ export class User {
     // lastname: string (represents the last name of the user)
     // firstname: string (represents the first name of the user)
     // email: string (the email of the user formatted at ___@___.___)
-    // userclasses: string (a list of class ids separated by a ,)
-    // eventids: string (a list of event ids separated by a ,)
+    // userclasses: string[] (a list of class ids)
+    // eventids: string[] (a list of event ids)
     constructor(userid, usertype, lastname, firstname, email, userclasses, userpassword, eventids) {
         this.userid = userid;
         this.usertype = usertype;
@@ -25,8 +25,8 @@ export class User {
 export class Class {
     // classid: string (represents the id of the class)
     // classname: string (represents the name of the class)
-    // lessonids: string (a list of lesson ids separated by a ,)
-    // studentids: string (a list of student ids separated by a ,)
+    // lessonids: string[] (a list of lesson ids)
+    // studentids: string[] (a list of student ids)
     // instructorid: string (the id of the instructor of this class)
     constructor(classid, classname, lessonids, studentids, instructorid) {
         this.classid = classid;
@@ -58,7 +58,7 @@ export class Lesson {
     // lessonid: string (the id of the lesson)
     // lessonname: string (the name of the lesson)
     // lessondescription: string (the description of the lesson)
-    // pictureids: string (a list of pictureids separated by a ,)
+    // pictureids: string[] (a list of pictureids)
     // instructorid: string (the id of the instructor)
     constructor(lessonid, lessonname, lessondescription, pictureids, instructorid) {
         this.lessonid = lessonid;

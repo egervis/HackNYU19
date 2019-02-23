@@ -1,5 +1,5 @@
 "use strict";
-import { classes } from '../models/prototypes';
+import { Class } from '../models/prototypes';
 
 export const request = async (req, res, pool) => {
   try {
@@ -28,9 +28,9 @@ export const request = async (req, res, pool) => {
         classEntry = classEntry.rows[0];
         let classesPrototype;
         if(userType == 0) {
-          classesPrototype = new classes(classEntry.classid, classEntry.classname, classEntry.lessonids, classEntry.studentids, '');
+          classesPrototype = new Class(classEntry.classid, classEntry.classname, classEntry.lessonids, classEntry.studentids, '');
         } else {
-          classesPrototype = new classes(classEntry.classid, classEntry.classname, classEntry.lessonids, '', classEntry.instructorid);
+          classesPrototype = new Class(classEntry.classid, classEntry.classname, classEntry.lessonids, '', classEntry.instructorid);
         }
         array.push(classesPrototype);
       }

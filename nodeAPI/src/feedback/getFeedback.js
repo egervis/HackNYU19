@@ -1,5 +1,5 @@
 "use strict";
-import { events } from '../models/prototypes';
+import { Feedback } from '../models/prototypes';
 
 export const request = async (req, res, pool) => {
   try {
@@ -31,9 +31,9 @@ export const request = async (req, res, pool) => {
       {
         let feedbackPrototype;
         if(userType == 0) {
-          feedbackPrototype = new feedback(feedbackRows[i].feedbackid, '', feedbackRows[i].studentid, feedbackRows[i].feedbackText);
+          feedbackPrototype = new Feedback(feedbackRows[i].feedbackid, '', feedbackRows[i].studentid, feedbackRows[i].feedbackText);
         } else {
-          feedbackPrototype = new feedback(feedbackRows[i].feedbackid, feedbackRows[i].instructorid, '', feedbackRows[i].feedbackText);
+          feedbackPrototype = new Feedback(feedbackRows[i].feedbackid, feedbackRows[i].instructorid, '', feedbackRows[i].feedbackText);
         }
         array.push(feedbackPrototype);
       }
