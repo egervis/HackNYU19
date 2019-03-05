@@ -8,6 +8,7 @@ export class User {
     // firstname: string (represents the first name of the user)
     // email: string (the email of the user formatted at ___@___.___)
     // userclasses: string[] (a list of class ids)
+    // userpassword: string (the users password)
     // eventids: string[] (a list of event ids)
     constructor(userid, usertype, lastname, firstname, email, userclasses, userpassword, eventids) {
         this.userid = userid;

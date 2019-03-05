@@ -13,27 +13,30 @@ import { User } from '../models/prototypes';
 
 export const request = async (req, res, pool) => {
   try {
+    // Setup
     let userArray = req.body.userids;
-    for (let i=0; i<userArray.length; i++)
-    {
+    let response = [];
+
+    // Get all
+    for (let i=0; i<userArray.length; i++) {
       let query = {
         text: 'SELECT * FROM users WHERE userid = $1',
         values: [userArray[i]]
       };
       let currentUser =  await pool.query(query);
-      let row = currentUser.rows[0];
-      let userPrototype = new User('', row.usertype, row.lastname, row.firstname, row.email, row.userclasses, '', row.eventids);
-      array.push(userPrototype);
+      let user = currentUser.rows[0];
+      let userPrototype = new User('', user.usertype, user.lastname, user.firstname, user.email, user.userclasses, '', user.eventids);
+      response.push(userPrototype);
     }
 
-    let response;
-    if (array.length > 0) {
+    // Determine status code
+    if (response.length > 0) {
       res.status(200);
-      response = array;
     } else {
       res.status(404);
-      response = [];
     }
+
+    // Send response body
     res.send(JSON.stringify(response));
   } catch (error) {
     console.error('ERROR getting users', error.stack);

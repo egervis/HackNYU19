@@ -32,7 +32,8 @@ app.use((req, res, next)=>{
 });
 
 // eventUpdate endpoint
-setInterval(function() {app.get('/eventUpdate', async (req, res) => {await endpoints.eventUpdate(req, res, pool);});}, 1000);
+// This needs to be optimized
+// setInterval(function() {app.get('/eventUpdate', async (req, res) => {await endpoints.eventUpdate(req, res, pool);});}, 1000);
 
 // Login endpoint
 app.post('/login', async (req, res) => {
