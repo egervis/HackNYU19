@@ -1,15 +1,20 @@
 "use strict";
 
-// A user as represented in the database.
+/**
+ * A user as represented in the database.
+ */
 export class User {
-    // userid: string (represents the id of the user)
-    // usertype: number (represents the type of the user) (0 - instructor, 1 - student)
-    // lastname: string (represents the last name of the user)
-    // firstname: string (represents the first name of the user)
-    // email: string (the email of the user formatted at ___@___.___)
-    // userclasses: string[] (a list of class ids)
-    // userpassword: string (the users password)
-    // eventids: string[] (a list of event ids)
+    /**
+     * Creates a new User object
+     * @param {string} userid       represents the id of the user
+     * @param {number} usertype     represents the type of the user
+     * @param {string} lastname     represents the last name of the user
+     * @param {string} firstname    represents the first name of the user
+     * @param {string} email        the email of the user in email format
+     * @param {string[]} userclasses  a list of class ids
+     * @param {string} userpassword   the users password
+     * @param {string[]} eventids     a list of event ids
+     */
     constructor(userid, usertype, lastname, firstname, email, userclasses, userpassword, eventids) {
         this.userid = userid;
         this.usertype = usertype;
@@ -22,13 +27,18 @@ export class User {
     }
 }
 
-// A class as represented in the database.
+/**
+ * A class as represented in the database.
+ */
 export class Class {
-    // classid: string (represents the id of the class)
-    // classname: string (represents the name of the class)
-    // lessonids: string[] (a list of lesson ids)
-    // studentids: string[] (a list of student ids)
-    // instructorid: string (the id of the instructor of this class)
+    /**
+     * Creates a new Class object.
+     * @param {string} classid        represents the id of the class
+     * @param {string} classname      represents the name of the class
+     * @param {string[]} lessonids    a list of lesson ids
+     * @param {string[]} studentids   a list of student ids
+     * @param {string} instructorid   the id of the instructor of this class
+     */
     constructor(classid, classname, lessonids, studentids, instructorid) {
         this.classid = classid;
         this.classname = classname;
@@ -38,13 +48,18 @@ export class Class {
     }
 }
 
-// An event as represented in the database.
+/**
+ * An event as represented in the database.
+ */
 export class Event {
-    // eventid: string (the id of the event)
-    // eventtype: string (the type of the event ##Needs clarification##)
-    // eventname: string (the name of the event)
-    // dateexpires: string (the expiration date of this event ##Clarify formatting of this type##)
-    // instructorid: string (the id of the instructor of this event)
+    /**
+     * Creates a new event object.
+     * @param {string} eventid      the id of the event
+     * @param {number} eventtype    the type of the event
+     * @param {string} eventname    the name of the event
+     * @param {Date} dateexpires    the expiration date of this event
+     * @param {string} instructorid the id of the instructor of this event
+     */
     constructor(eventid, eventtype, eventname, dateexpires, instructorid) {
         this.eventids = eventid;
         this.eventtype = eventtype;
@@ -54,13 +69,18 @@ export class Event {
     }
 }
 
-// A lesson as represented in the database.
+/**
+ * A lesson as represented in the database.
+ */
 export class Lesson {
-    // lessonid: string (the id of the lesson)
-    // lessonname: string (the name of the lesson)
-    // lessondescription: string (the description of the lesson)
-    // pictureids: string[] (a list of pictureids)
-    // instructorid: string (the id of the instructor)
+    /**
+     * Creates a new lesson object.
+     * @param {string} lessonid          the id of the lesson
+     * @param {string} lessonname        the name of the lesson
+     * @param {string} lessondescription the description of the lesson
+     * @param {string[]} pictureids      a list of pictureids
+     * @param {string} instructorid      the id of the instructor
+     */
     constructor(lessonid, lessonname, lessondescription, pictureids, instructorid) {
         this.lessonid = lessonid;
         this.lessonname = lessonname;
@@ -70,26 +90,34 @@ export class Lesson {
     }
 }
 
-// A picture as represented in the database.
+/**
+ * A picture as represented in the database.
+ */
 export class Picture {
-    // pictureid: string (the id of the picture)
-    // picturename: string (the name of the picture)
-    // picturefile: string (the name of the file of the picture)
-    // lessonid: string (the id of the lesson ##This should be removed, as it's tightly coupling lesson and picture##)
-    constructor(pictureid, picturename, picturefile, lessonid) {
+    /**
+     * Creates a new picture object.
+     * @param {string} pictureid   the id of the picture
+     * @param {string} picturename the name of the picture
+     * @param {string} picturefile the name of the file of the picture
+     */
+    constructor(pictureid, picturename, picturefile) {
         this.pictureid = pictureid;
         this.picturename = picturename;
-        this.lessonid = lessonid;
         this.picturefile = picturefile;
     }
 }
 
-// A feedback as represented in the database.
+/**
+ * A feedback as represented in the database.
+ */
 export class Feedback {
-    // feedbackid: string (the id of the feedback)
-    // instructorid: string (the id of the instructor)
-    // studentid: string (the id of the student)
-    // feedbackText: string (the feedback content)
+    /**
+     * Creates a new feedback object.
+     * @param {string} feedbackid   the id of the feedback
+     * @param {string} instructorid the id of the instructor
+     * @param {string} studentid    the id of the student
+     * @param {string} feedbackText the feedback content
+     */
     constructor(feedbackid, instructorid, studentid, feedbackText) {
         this.feedbackid = feedbackid;
         this.instructorid = instructorid;

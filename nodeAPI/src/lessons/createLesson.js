@@ -1,16 +1,25 @@
 "use strict";
 import uniqid from 'uniqid';
 
+// req.body: {
+//
+// }
+
+// response:
+//   
+
+// status:
+//   200, 500
 export const request = async (req, res, pool) => {
   try {
-    let pictures = req.body.allPictures;
+    const pictures = req.body.allPictures;
     let str = ""
-    for (let i=0; i<pictures.length; i++)//(let pic in pictures)
+    for (let i=0; i<pictures.length; i++)
     {
       let pictureID = uniqid();
       let query = {
-        text:'INSERT INTO pictures(pictureID, pictureName, lessonId, pictureFile) VALUES($1, $2, $3, $4)' ,
-        values: [pictureID, pictures[i].pictureName, req.body.lessonID, pictures[i].pictureFile]
+        text:'INSERT INTO pictures(pictureID, pictureName, pictureFile) VALUES($1, $2, $3, $4)' ,
+        values: [pictureID, pictures[i].pictureName, pictures[i].pictureFile]
       };
       str+=(pictureID+",");
     }

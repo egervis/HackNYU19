@@ -1,16 +1,13 @@
 "use strict";
 import { User } from '../models/prototypes';
 
-// req.body: {
-//   email: string,
-//   password: string
-// }
-
-// response:
-//   new User(id, type, last, first, email, [], '', [])
-
-// status:
-//   200, 404, 500
+/**
+ * Verifies the users credentials and logs them in.
+ * @param  req        body: { email: string, password:string }
+ * @param  res
+ * @param  pool
+ * @return {Promise}  status: 200, 404, 500 & new User(id, type, last, first, email, [], '', [])
+ */
 export const request = async (req, res, pool) => {
   try {
     // Setup
