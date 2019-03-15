@@ -1,16 +1,13 @@
 "use strict";
 import { User } from '../models/prototypes';
 
-// request: {
-//   userids: string[]
-// }
-//
-// response:
-//   User[] (all users will have omitted passwords and ids)
-//
-// status:
-//   200, 404, 500
-
+/**
+ * Retrieves the users based on the given IDs.
+ * @param  req        body: { userids: string[] }
+ * @param  res
+ * @param  pool
+ * @return {Promise}  status: 200, 404, 500 & new User[] (omitted passwords and ids)
+ */
 export const request = async (req, res, pool) => {
   try {
     // Setup

@@ -1,6 +1,13 @@
 "use strict";
 import { Lesson } from '../models/prototypes';
 
+/**
+ * Gets a lesson given the ID.
+ * @param  req  query: { lessonid: string, usertype: number }
+ * @param  res
+ * @param  pool
+ * @return {Promise}  status: 200, 404, 500 & new Lesson (students have omitted instructor id)
+ */
 export const request = async (req, res, pool) => {
   try {
     // Get the user by email and password

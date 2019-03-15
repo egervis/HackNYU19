@@ -1,19 +1,13 @@
 "use strict";
 import uniqid from 'uniqid';
 
-// req.body: {
-//   userType: number,
-//   lastName: string,
-//   firstName: string,
-//   email: string,
-//   userPassword: string
-// }
-
-// response:
-//   N/A
-
-// status:
-//   201, 500
+/**
+ * Creates a new user in the database.
+ * @param  req        body: { userType: number, lastName: string, firstName: string, email: string, userPassword: string }
+ * @param  res
+ * @param  pool
+ * @return {Promise}  status: 201, 500 & no return content
+ */
 export const request = async (req, res, pool) => {
   try {
     // Get the user by email and password

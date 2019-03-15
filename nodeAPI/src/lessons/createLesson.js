@@ -1,15 +1,18 @@
 "use strict";
 import uniqid from 'uniqid';
 
-// req.body: {
-//
-// }
-
-// response:
-//   
-
-// status:
-//   200, 500
+/**
+ * Creates a new lesson instance in the database.
+ * @param  req  body: {
+ *                      allPictures: {name: string, file: string},
+ *                      lessonName: string,
+ *                      lessonDescription: string,
+ *                      instructorID: string
+ *                    }
+ * @param  res
+ * @param  pool
+ * @return {Promise}  status: 200, 500
+ */
 export const request = async (req, res, pool) => {
   try {
     const pictures = req.body.allPictures;

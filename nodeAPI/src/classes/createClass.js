@@ -1,18 +1,13 @@
 "use strict";
 import uniqid from 'uniqid';
 
-// request: {
-//   className: string,
-//   instructorID: string
-// }
-
-// response: {
-//   classCode: string
-// }
-
-// status:
-//   200, 404, 500
-
+/**
+ * Creates a class instance in the database.
+ * @param  req  body: { className: string, instructorID: string }
+ * @param  res
+ * @param  pool
+ * @return {Promise}  status: 200, 404, 500 & { classCode: string }
+ */
 export const request = async (req, res, pool) => {
   try {
     let query = {
