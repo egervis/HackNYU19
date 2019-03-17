@@ -1,12 +1,13 @@
 "use strict";
 import { User } from '../models/prototypes';
+import { convertStringToArray } from '../models/utilities';
 
 /**
  * Verifies the users credentials and logs them in.
  * @param  req        body: { email: string, password:string }
  * @param  res
  * @param  pool
- * @return {Promise}  status: 200, 404, 500 & new User(id, type, last, first, email, [], '', [])
+ * @return {Promise}  status: 200, 404, 500 & new User
  */
 export const request = async (req, res, pool) => {
   try {
@@ -23,8 +24,19 @@ export const request = async (req, res, pool) => {
     let response = {};
     if (user.rows.length > 0) {
       res.status(200);
-      let currentUser = user.rows[0];
-      response = new User(currentUser.userid, currentUser.usertype, currentUser.lastname, currentUser.firstname, currentUser.email, [], '', []);
+      const currentUser = user.rows[0];
+      const currentUserClasses = convertStringToArray(currentUser.userclasses);
+      const currentUserEvents = convertStringToArray(currentUser.eventids);
+      response = new User(
+        currentUser.userid,
+        currentUser.usertype,
+        currentUser.lastname,
+        currentUser.firstname,
+        currentUser.email,
+        currentUserClasses,
+        currentUser.userpassword,
+        currentUserEvents
+      );
     } else {
       res.status(404);
     }

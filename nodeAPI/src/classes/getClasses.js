@@ -1,14 +1,19 @@
 "use strict";
 import { Class } from '../models/prototypes';
 
-// Break this down into simpler functions
+/**
+ * Gets classes based on userid.
+ * @param  req  body: { userid: string }
+ * @param  res
+ * @param  pool
+ * @return {Promise}  status: 200, 404, 500 & Class[]
+ */
 export const request = async (req, res, pool) => {
   try {
     let query = {
       text: 'SELECT userclasses FROM users WHERE userid = $1',
       values: [req.body.userid]
     };
-    let userType = req.body.usertype;
     let classids = await pool.query(query);
     let response;
     if (classids.rows.length > 0) {
@@ -22,16 +27,10 @@ export const request = async (req, res, pool) => {
           text: 'SELECT * FROM classes WHERE classid = $1',
           values: [userclasses[i]]
         };
-        console.log(query);
         let classEntry =  await pool.query(query);
-
         classEntry = classEntry.rows[0];
-        let classesPrototype;
-        if(userType == 0) {
-          classesPrototype = new Class(classEntry.classid, classEntry.classname, classEntry.lessonids, classEntry.studentids, '');
-        } else {
-          classesPrototype = new Class(classEntry.classid, classEntry.classname, classEntry.lessonids, '', classEntry.instructorid);
-        }
+
+        let classesPrototype = new Class(classEntry.classid, classEntry.classname, classEntry.lessonids, classEntry.studentids, classEntry.instructorid);
         array.push(classesPrototype);
       }
       response = array;

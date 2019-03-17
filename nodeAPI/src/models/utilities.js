@@ -1,6 +1,10 @@
 "use strict";
 
 /**
+ * The utility methods used by all endpoints.
+ */
+
+/**
  * Converts a string of stuff separated by commas to an array.
  * @param  {string} str The comma separated list string.
  * @return {Array<string>} The array of strings.

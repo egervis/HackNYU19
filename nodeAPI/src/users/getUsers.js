@@ -3,10 +3,10 @@ import { User } from '../models/prototypes';
 
 /**
  * Retrieves the users based on the given IDs.
- * @param  req        body: { userids: string[] }
+ * @param  req  body: { userids: string[] }
  * @param  res
  * @param  pool
- * @return {Promise}  status: 200, 404, 500 & new User[] (omitted passwords and ids)
+ * @return {Promise}  status: 200, 404, 500 & new User[] (omitted passwords)
  */
 export const request = async (req, res, pool) => {
   try {
@@ -22,7 +22,7 @@ export const request = async (req, res, pool) => {
       };
       let currentUser =  await pool.query(query);
       let user = currentUser.rows[0];
-      let userPrototype = new User('', user.usertype, user.lastname, user.firstname, user.email, user.userclasses, '', user.eventids);
+      let userPrototype = new User(user.userid, user.usertype, user.lastname, user.firstname, user.email, user.userclasses, '', user.eventids);
       response.push(userPrototype);
     }
 
