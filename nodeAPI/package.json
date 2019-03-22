@@ -8,14 +8,13 @@
     "start": "babel-node server.js"
   },
   "dependencies": {
+    "@babel/core": "^7.3.3",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.3.1",
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
     "express": "^4.16.4",
     "pg": "^7.8.0",
-    "uniqid": "^5.0.3",
-    "@babel/core": "^7.3.3",
-    "@babel/node": "^7.2.2",
-    "@babel/preset-env": "^7.3.1",
-    "body-parser": "^1.18.3"
+    "uniqid": "^5.0.3"
   }
 }

@@ -1,9 +1,7 @@
 "use strict";
-import { events } from '../models/prototypes';
 
 export const request = async (req, res, pool) => {
   try {
-    // Get the user by email and password
     let query = {
       text: 'SELECT * FROM events'
     };

@@ -25,7 +25,7 @@ CREATE TABLE Classes (
 
 CREATE TABLE Events (
     eventID text NOT NULL PRIMARY KEY,
-    eventType varchar(255),
+    eventType int,
     eventName varchar(255),
     dateExpires varchar(255), /*when the date gets passed gets deleted from table.*/
     instructorID text REFERENCES Users(userID)
