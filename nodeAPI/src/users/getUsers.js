@@ -21,15 +21,9 @@ export const request = async (req, res, pool) => {
         values: [userArray[i]]
       };
       let currentUser =  await pool.query(query);
-<<<<<<< HEAD
-      let row = currentUser.rows[0];
-      let userPrototype = new users(row.userid, row.usertype, row.lastname, row.firstname, row.email, row.userclasses.split(','), '', row.eventids.split(','));
-      array.push(userPrototype);
-=======
       let user = currentUser.rows[0];
       let userPrototype = new User(user.userid, user.usertype, user.lastname, user.firstname, user.email, user.userclasses, '', user.eventids);
       response.push(userPrototype);
->>>>>>> Cleanup-and-fix-backend
     }
 
     // Determine status code

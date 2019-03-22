@@ -29,17 +29,8 @@ export const request = async (req, res, pool) => {
         };
         let classEntry =  await pool.query(query);
         classEntry = classEntry.rows[0];
-<<<<<<< HEAD
-        let classesPrototype;
-        if(userType == 0) {
-          classesPrototype = new classes(classEntry.classid, classEntry.classname, classEntry.lessonids.split(','), classEntry.studentids.split(','), '');
-        } else {
-          classesPrototype = new classes(classEntry.classid, classEntry.classname, classEntry.lessonids.split(','), '', classEntry.instructorid);
-        }
-=======
 
         let classesPrototype = new Class(classEntry.classid, classEntry.classname, classEntry.lessonids, classEntry.studentids, classEntry.instructorid);
->>>>>>> Cleanup-and-fix-backend
         array.push(classesPrototype);
       }
       response = array;

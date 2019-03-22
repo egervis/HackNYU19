@@ -90,13 +90,6 @@ export class Lesson {
     }
 }
 
-<<<<<<< HEAD
-export function pictures(pictureid, picturename, picturefile)
-{
-  this.pictureid = pictureid;
-  this.picturename = picturename;
-  this.picturefile = picturefile;
-=======
 /**
  * A picture as represented in the database.
  */
@@ -112,7 +105,6 @@ export class Picture {
         this.picturename = picturename;
         this.picturefile = picturefile;
     }
->>>>>>> Cleanup-and-fix-backend
 }
 
 /**

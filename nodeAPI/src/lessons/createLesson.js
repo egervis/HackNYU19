@@ -23,11 +23,7 @@ export const request = async (req, res, pool) => {
     {
       let pictureID = uniqid();
       let query = {
-<<<<<<< HEAD
-        text:'INSERT INTO pictures(pictureID, pictureName, pictureFile) VALUES($1, $2, $3, $4)' ,
-=======
         text:'INSERT INTO pictures(pictureID, pictureName, pictureFile) VALUES($1, $2, $3)' ,
->>>>>>> Cleanup-and-fix-backend
         values: [pictureID, pictures[i].pictureName, pictures[i].pictureFile]
       };
       await pool.query(query);

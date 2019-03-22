@@ -28,18 +28,8 @@ export const request = async (req, res, pool) => {
           text: 'SELECT * FROM lessons WHERE lessonid = $1',
           values: [lessonids[i]]
         };
-<<<<<<< HEAD
-        let lessonEntry =  await pool.query(query2);
-        let lessonsPrototype;
-        if(userType == 0) {
-          lessonsPrototype = new lessons(lessonEntry.lessonid, lessonEntry.lessonname, lessonEntry.lessondescription, lessonEntry.pictureids.split(','), '');
-        } else {
-          lessonsPrototype = new lessons(lessonEntry.lessonid, lessonEntry.lessonname, lessonEntry.lessondescription, lessonEntry.pictureids.split(','), lessonEntry.instructorid);
-        }
-=======
         const lessonEntry =  await pool.query(query2);
         const lessonsPrototype = new Lesson(lessonEntry.lessonid, lessonEntry.lessonname, lessonEntry.lessondescription, lessonEntry.pictureids, lessonEntry.instructorid);
->>>>>>> Cleanup-and-fix-backend
         array.push(lessonsPrototype);
       }
       response = array;
