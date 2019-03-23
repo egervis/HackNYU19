@@ -19,7 +19,7 @@ export const request = async (req, res, pool) => {
         let newDate = new Date(mydate.setTime( mydate.getTime() + 1 * 86400000 ));
         if(currentDate<newDate)
         {
-          array.push(currentEvent)
+          array.push(currentEvent);
         }
       }
       for (let i=0; i<array.length; i++)//(let date in array)
