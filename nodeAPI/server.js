@@ -32,7 +32,8 @@ app.use((req, res, next)=>{
 });
 
 // eventUpdate endpoint
-setInterval(function() {app.get('/eventUpdate', async (req, res) => {await endpoints.eventUpdate(req, res, pool);});}, 1000);
+// This needs to be optimized
+// setInterval(function() {app.get('/eventUpdate', async (req, res) => {await endpoints.eventUpdate(req, res, pool);});}, 1000);
 
 // Login endpoint
 app.post('/login', async (req, res) => {
@@ -64,17 +65,17 @@ app.post('lesson/create', async (req, res) => {
   await endpoints.lessons.createLesson(req, res, pool);
 });
 
-// Get lesson endpoint (change to post method)
+// Get lesson endpoint
 app.get('lesson/get', async (req, res) => {
   await endpoints.lessons.getLesson(req, res, pool);
 });
 
-// Get lessons endpoint (change to post)
+// Get lessons endpoint
 app.get('lessons/get', async (req, res) => {
   await endpoints.lessons.getLessons(req, res, pool);
 });
 
-// Get feedback endpoint (change to post)
+// Get feedback endpoint
 app.get('feedback/get', async (req, res) => {
   await endpoints.feedback.getFeedback(req, res, pool);
 });

@@ -1,6 +1,13 @@
 "use strict";
 import uniqid from 'uniqid';
 
+/**
+ * Creates a new user in the database.
+ * @param {Request} req        body: { userType: number, lastName: string, firstName: string, email: string, userPassword: string }
+ * @param {Response} res
+ * @param {postgres.Pool} pool
+ * @return {Promise}  status: 201, 500 & no return content
+ */
 export const request = async (req, res, pool) => {
   try {
     // Get the user by email and password
@@ -9,9 +16,13 @@ export const request = async (req, res, pool) => {
       values: [req.body.email]
     };
     let user = await pool.query(query);
+
+    // Validate email uniqueness
     if (user.rows.length > 0) {
       throw new Error('User already exists!');
     }
+
+    // Create new user in the database
     query = {
       text: 'INSERT INTO users (userID, userType, lastName, firstName, email, userClasses, userPassword, eventIDs) VALUES($1, $2, $3, $4, $5, $6, $7, $8)',
       values: [uniqid(), req.body.userType, req.body.lastName, req.body.firstName, req.body.email, '', req.body.userPassword, '']

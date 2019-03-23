@@ -25,7 +25,7 @@ CREATE TABLE Classes (
 
 CREATE TABLE Events (
     eventID text NOT NULL PRIMARY KEY,
-    eventType varchar(255),
+    eventType int,
     eventName varchar(255),
     dateExpires varchar(255), /*when the date gets passed gets deleted from table.*/
     instructorID text REFERENCES Users(userID)
@@ -42,7 +42,6 @@ CREATE TABLE Lessons (
 CREATE TABLE Pictures (
     pictureID text NOT NULL PRIMARY KEY,
     pictureName varchar(255),
-    lessonID text REFERENCES Lessons(lessonID),
     pictureFile bytea
 );
 

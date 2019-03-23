@@ -1,6 +1,13 @@
 "use strict";
 import uniqid from 'uniqid';
 
+/**
+ * Creates a feedback.
+ * @param {Request} req body: { feedbackID: string, instructorID: string, studentID: string, feedbackText: string }
+ * @param {Response} res
+ * @param {postgres.Pool} pool
+ * @returns {Promise} status: 201, 500
+ */
 export const request = async (req, res, pool) => {
   try {
     const feedbackId = uniqid();
@@ -9,9 +16,7 @@ export const request = async (req, res, pool) => {
       values: [req.body.feedbackID, req.body.instructorID, req.body.studentID, req.body.feedbackText]
     };
     await pool.query(query);
-    res.status(200).send(JSON.stringify({
-      feedbackCode: feedbackId
-    }));
+    res.status(201);
   } catch (error) {
     console.error('ERROR creating class', error.stack);
     res.status(500).send({'error': error.stack});

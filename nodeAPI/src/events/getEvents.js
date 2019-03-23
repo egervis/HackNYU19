@@ -1,6 +1,11 @@
 "use strict";
-import { events } from '../models/prototypes';
 
+/**
+ * Gets a list of events given a user id.
+ * @param {Request} req query: { userID: string }
+ * @param {Response} res 
+ * @param {postgres.Pool} pool 
+ */
 export const request = async (req, res, pool) => {
   let eventarr = [];
   try {

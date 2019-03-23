@@ -1,6 +1,14 @@
 "use strict";
-import { lessons } from '../models/prototypes';
+import { Lesson } from '../models/prototypes';
+import { convertStringToArray } from '../models/utilities'
 
+/**
+ * Gets lessons given a class id.
+ * @param {Request} req  query: { classid: string }
+ * @param {Response} res
+ * @param {postgres.Pool} pool
+ * @return {Promise} status: 200, 404, 500 & Lesson[]
+ */
 export const request = async (req, res, pool) => {
   try {
     // Get the lessons from class ids
@@ -8,34 +16,25 @@ export const request = async (req, res, pool) => {
       text: 'SELECT lessonids FROM classes WHERE classid = $1',
       values: [req.query.classid]
     };
-    let userType = req.query.usertype;
     let lessons = await pool.query(query);
-    let response;
+    let response = {};
     if (lessons) {
       res.status(200);
-      let currentLessons = lessons.rows[0].lessonids;
-      let lessonids = currentLessons.split(",");
+      let lessonids = convertStringToArray(lessons.rows[0].lessonids);
       let array = [];
-      for (let i=0; i<lessonids.length; i++)//(let id in lessonids)
+      for (let i=0; i<lessonids.length; i++)
       {
-        let query2 = {
+        const query2 = {
           text: 'SELECT * FROM lessons WHERE lessonid = $1',
           values: [lessonids[i]]
         };
-        let lessonEntry =  await pool.query(query2);
-        let lessonsPrototype;
-        if(userType == 0) {
-          lessonsPrototype = new lessons(lessonEntry.lessonid, lessonEntry.lessonname, lessonEntry.lessondescription, lessonEntry.pictureids, '');
-        } else {
-          lessonsPrototype = new lessons(lessonEntry.lessonid, lessonEntry.lessonname, lessonEntry.lessondescription, lessonEntry.pictureids, lessonEntry.instructorid);
-        }
+        const lessonEntry =  await pool.query(query2);
+        const lessonsPrototype = new Lesson(lessonEntry.lessonid, lessonEntry.lessonname, lessonEntry.lessondescription, lessonEntry.pictureids, lessonEntry.instructorid);
         array.push(lessonsPrototype);
       }
-
       response = array;
     } else {
       res.status(404);
-      response = {};
     }
     res.send(JSON.stringify(response));
   } catch (error) {

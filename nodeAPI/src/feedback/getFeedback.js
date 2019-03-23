@@ -1,6 +1,13 @@
 "use strict";
-import { events } from '../models/prototypes';
+import { Feedback } from '../models/prototypes';
 
+/**
+ * Gets feedback given user id.
+ * @param {Request} req query: { userid: string }
+ * @param {Response} res 
+ * @param {postgres.Pool} pool 
+ * @returns {Promise} status: 200, 404, 500 & Feedback[]
+ */
 export const request = async (req, res, pool) => {
   try {
     // Get the user by their ID
@@ -31,9 +38,9 @@ export const request = async (req, res, pool) => {
       {
         let feedbackPrototype;
         if(userType == 0) {
-          feedbackPrototype = new feedback(feedbackRows[i].feedbackid, '', feedbackRows[i].studentid, feedbackRows[i].feedbackText);
+          feedbackPrototype = new Feedback(feedbackRows[i].feedbackid, '', feedbackRows[i].studentid, feedbackRows[i].feedbackText);
         } else {
-          feedbackPrototype = new feedback(feedbackRows[i].feedbackid, feedbackRows[i].instructorid, '', feedbackRows[i].feedbackText);
+          feedbackPrototype = new Feedback(feedbackRows[i].feedbackid, feedbackRows[i].instructorid, '', feedbackRows[i].feedbackText);
         }
         array.push(feedbackPrototype);
       }
