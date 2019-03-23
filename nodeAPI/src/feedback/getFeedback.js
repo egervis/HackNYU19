@@ -1,6 +1,13 @@
 "use strict";
 import { Feedback } from '../models/prototypes';
 
+/**
+ * Gets feedback given user id.
+ * @param {Request} req query: { userid: string }
+ * @param {Response} res 
+ * @param {postgres.Pool} pool 
+ * @returns {Promise} status: 200, 404, 500 & Feedback[]
+ */
 export const request = async (req, res, pool) => {
   try {
     // Get the user by their ID

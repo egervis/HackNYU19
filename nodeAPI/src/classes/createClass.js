@@ -3,9 +3,9 @@ import uniqid from 'uniqid';
 
 /**
  * Creates a class instance in the database.
- * @param  req  body: { className: string, instructorID: string }
- * @param  res
- * @param  pool
+ * @param {Request} req  body: { className: string, instructorID: string }
+ * @param {Response} res
+ * @param {postgres.Pool} pool
  * @return {Promise}  status: 200, 404, 500 & { classCode: string }
  */
 export const request = async (req, res, pool) => {

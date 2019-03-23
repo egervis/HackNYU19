@@ -4,9 +4,9 @@ import { convertStringToArray } from '../models/utilities'
 
 /**
  * Gets a lesson given the ID.
- * @param  req  query: { lessonid: string }
- * @param  res
- * @param  pool
+ * @param {Request} req  query: { lessonid: string }
+ * @param {Response} res
+ * @param {posgres.Pool} pool
  * @return {Promise}  status: 200, 404, 500 & { lesson: Lesson, pictures: Picture[] }
  */
 export const request = async (req, res, pool) => {

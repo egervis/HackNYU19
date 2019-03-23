@@ -4,14 +4,14 @@ import { convertArrayToString } from '../models/utilities';
 
 /**
  * Creates a new lesson instance in the database.
- * @param  req  body: {
+ * @param {Request} req  body: {
  *                      allPictures: {name: string, file: string},
  *                      lessonName: string,
  *                      lessonDescription: string,
  *                      instructorID: string
  *                    }
- * @param  res
- * @param  pool
+ * @param {Response} res
+ * @param {postgres.Pool} pool
  * @return {Promise}  status: 201, 500
  */
 export const request = async (req, res, pool) => {
