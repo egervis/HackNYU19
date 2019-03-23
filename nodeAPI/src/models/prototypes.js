@@ -11,19 +11,15 @@ export class User {
      * @param {string} lastname     represents the last name of the user
      * @param {string} firstname    represents the first name of the user
      * @param {string} email        the email of the user in email format
-     * @param {string[]} userclasses  a list of class ids
      * @param {string} userpassword   the users password
-     * @param {string[]} eventids     a list of event ids
      */
-    constructor(userid, usertype, lastname, firstname, email, userclasses, userpassword, eventids) {
+    constructor(userid, usertype, lastname, firstname, email, userpassword) {
         this.userid = userid;
         this.usertype = usertype;
         this.lastname = lastname;
         this.firstname = firstname;
         this.email = email;
-        this.userclasses = userclasses;
         this.userpassword = userpassword;
-        this.eventids = eventids;
     }
 }
 
@@ -35,15 +31,11 @@ export class Class {
      * Creates a new Class object.
      * @param {string} classid        represents the id of the class
      * @param {string} classname      represents the name of the class
-     * @param {string[]} lessonids    a list of lesson ids
-     * @param {string[]} studentids   a list of student ids
      * @param {string} instructorid   the id of the instructor of this class
      */
-    constructor(classid, classname, lessonids, studentids, instructorid) {
+    constructor(classid, classname, instructorid) {
         this.classid = classid;
         this.classname = classname;
-        this.lessonids = lessonids;
-        this.studentids = studentids;
         this.instructorid = instructorid;
     }
 }
@@ -79,14 +71,12 @@ export class Lesson {
      * @param {string} lessonid          the id of the lesson
      * @param {string} lessonname        the name of the lesson
      * @param {string} lessondescription the description of the lesson
-     * @param {string[]} pictureids      a list of pictureids
      * @param {string} instructorid      the id of the instructor
      */
-    constructor(lessonid, lessonname, lessondescription, pictureids, instructorid) {
+    constructor(lessonid, lessonname, lessondescription, instructorid) {
         this.lessonid = lessonid;
         this.lessonname = lessonname;
         this.lessondescription = lessondescription;
-        this.pictureids = pictureids;
         this.instructorid = instructorid;
     }
 }
