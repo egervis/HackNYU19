@@ -14,9 +14,9 @@ export const request = async (req, res, pool) => {
       text: 'SELECT * FROM events'
     };
     let events = await pool.query(query);
-    if (events) {
+    if (events.rows.length > 0) {
       res.status(200);
-      let eventRows = events.rows;//what's user?
+      let eventRows = events.rows;
       let array = [];
       for (let i=0; i<eventRows.length; i++)
       {

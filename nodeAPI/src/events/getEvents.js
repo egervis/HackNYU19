@@ -3,8 +3,8 @@
 /**
  * Gets a list of events given a user id.
  * @param {Request} req query: { userID: string }
- * @param {Response} res 
- * @param {postgres.Pool} pool 
+ * @param {Response} res
+ * @param {postgres.Pool} pool
  */
 export const request = async (req, res, pool) => {
   let eventarr = [];
@@ -12,7 +12,7 @@ export const request = async (req, res, pool) => {
     // Get the events by user ID
     let query = {
       text: 'SELECT * FROM users WHERE userid = $1',
-      values: [req.query.userID]//should be body?
+      values: [req.query.userID]
     };
     let user = await pool.query(query);
     if (user.rows.length > 0) {
