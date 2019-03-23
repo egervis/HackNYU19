@@ -1,7 +1,9 @@
 "use strict";
 
 // Import statements
-import { endpoints } from './src';
+import {
+  endpoints
+} from './src';
 import express from 'express';
 import postgres from 'pg';
 import cors from 'cors';
@@ -25,7 +27,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // Logs the incoming requests, useful for debugging
-app.use((req, res, next)=>{
+app.use((req, res, next) => {
   console.log(`${req.method}: ${req.path}`);
   console.log(req.body);
   next();
