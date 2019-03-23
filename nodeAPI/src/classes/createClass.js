@@ -1,5 +1,5 @@
 "use strict";
-import uniqid from 'uniqid';
+import uuid from 'uuid/v1';
 
 /**
  * Creates a class instance in the database.
@@ -11,14 +11,14 @@ import uniqid from 'uniqid';
 export const request = async (req, res, pool) => {
   try {
     let query = {
-      text:'SELECT userclasses FROM users WHERE userid = $1' ,
+      text: 'SELECT userclasses FROM users WHERE userid = $1',
       values: [req.body.instructorID]
     };
     let classes = await pool.query(query);
     if (classes.rows.length > 0) {
-      const classId = uniqid();
+      const classId = uuid();
       query = {
-        text:'INSERT INTO classes (classID, className, lessonids, studentIDs, instructorID) VALUES($1, $2, $3, $4, $5)' ,
+        text: 'INSERT INTO classes (classID, className, lessonids, studentIDs, instructorID) VALUES($1, $2, $3, $4, $5)',
         values: [classId, req.body.className, '', '', req.body.instructorID]
       };
       await pool.query(query);
@@ -38,6 +38,8 @@ export const request = async (req, res, pool) => {
     }
   } catch (error) {
     console.error('ERROR creating class', error.stack);
-    res.status(500).send({'error': error.stack});
+    res.status(500).send({
+      'error': error.stack
+    });
   }
 };
