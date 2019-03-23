@@ -2,9 +2,9 @@
 
 /**
  * Gets classes based on classid.
- * @param  req  body: { classid: string }
- * @param  res
- * @param  pool
+ * @param  {Request} req  body: { classid: string }
+ * @param  {Response} res
+ * @param  {postgres.Pool} pool
  * @return {Promise}  status: 200, 404, 500
  */
 export const request = async (req, res, pool) => {
