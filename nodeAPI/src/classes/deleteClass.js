@@ -1,11 +1,11 @@
 "use strict";
 
 /**
- * Gets classes based on userid.
+ * Gets classes based on classid.
  * @param  req  body: { classid: string }
  * @param  res
  * @param  pool
- * @return {Promise}  status: 200, 404, 500 & Class[]
+ * @return {Promise}  status: 200, 404, 500
  */
 export const request = async (req, res, pool) => {
   try {
