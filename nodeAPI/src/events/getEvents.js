@@ -6,7 +6,7 @@ export const request = async (req, res, pool) => {
     // Get the events by user ID
     let query = {
       text: 'SELECT * FROM users WHERE userid = $1',
-      values: [req.query.userID]
+      values: [req.query.userID]//should be body? 
     };
     let user = await pool.query(query);
     if (user.rows.length > 0) {

@@ -8,11 +8,11 @@ export const request = async (req, res, pool) => {
     let events = await pool.query(query);
     if (events) {
       res.status(200);
-      let eventRows = user.rows;
+      let eventRows = user.rows;//what's user?
       let array = [];
       for (let i=0; i<eventRows.length; i++)//(let row in eventRows)
       {
-        currentEvent = events(eventRows[i].eventid, '', '', eventRows[i].dateexpires, '');
+        currentEvent = events(eventRows[i].eventid, '', '', eventRows[i].dateexpires, '');//Event()?
         let mydate = new Date(currentEvent.dateexpires);
         let currentDate = new Date();
         let newDate = new Date(mydate.setTime( mydate.getTime() + 1 * 86400000 ));

@@ -31,9 +31,9 @@ export const request = async (req, res, pool) => {
       {
         let feedbackPrototype;
         if(userType == 0) {
-          feedbackPrototype = new Feedback(feedbackRows[i].feedbackid, '', feedbackRows[i].studentid, feedbackRows[i].feedbackText);
+          feedbackPrototype = new Feedback(feedbackRows[i].feedbackid, '', feedbackRows[i].studentid, feedbackRows[i].classid, feedbackRows[i].feedbackText);
         } else {
-          feedbackPrototype = new Feedback(feedbackRows[i].feedbackid, feedbackRows[i].instructorid, '', feedbackRows[i].feedbackText);
+          feedbackPrototype = new Feedback(feedbackRows[i].feedbackid, feedbackRows[i].instructorid, '', feedbackRows[i].classid, feedbackRows[i].feedbackText);
         }
         array.push(feedbackPrototype);
       }
