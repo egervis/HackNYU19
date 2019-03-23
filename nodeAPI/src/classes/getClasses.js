@@ -3,7 +3,7 @@ import { Class } from '../models/prototypes';
 
 /**
  * Gets classes based on userid.
- * @param {Request} req  body: { userid: string }
+ * @param {Request} req  query: { userid: string }
  * @param {Response} res
  * @param {postgres.Pool} pool
  * @return {Promise}  status: 200, 404, 500 & Class[]
@@ -12,7 +12,7 @@ export const request = async (req, res, pool) => {
   try {
     let query = {
       text: 'SELECT userclasses FROM users WHERE userid = $1',
-      values: [req.body.userid]
+      values: [req.query.userid]
     };
     let classids = await pool.query(query);
     let response;

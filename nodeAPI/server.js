@@ -46,7 +46,7 @@ app.post('/register', async (req, res) => {
 });
 
 // Gets users given an array of user IDs
-app.post('/user/get', async (req, res) => {
+app.get('/user/get', async (req, res) => {
   await endpoints.users.getUsers(req, res, pool);
 });
 
@@ -56,7 +56,7 @@ app.post('/class/create', async (req, res) => {
 });
 
 // Get classes endpoint
-app.post('/class/get', async (req, res) => {
+app.get('/class/get', async (req, res) => {
   await endpoints.classes.getClasses(req, res, pool);
 });
 
