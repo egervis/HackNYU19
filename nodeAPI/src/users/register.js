@@ -3,9 +3,9 @@ import uniqid from 'uniqid';
 
 /**
  * Creates a new user in the database.
- * @param  req        body: { userType: number, lastName: string, firstName: string, email: string, userPassword: string }
- * @param  res
- * @param  pool
+ * @param {Request} req        body: { userType: number, lastName: string, firstName: string, email: string, userPassword: string }
+ * @param {Response} res
+ * @param {postgres.Pool} pool
  * @return {Promise}  status: 201, 500 & no return content
  */
 export const request = async (req, res, pool) => {

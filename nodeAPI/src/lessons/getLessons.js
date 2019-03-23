@@ -4,10 +4,10 @@ import { convertStringToArray } from '../models/utilities'
 
 /**
  * Gets lessons given a class id.
- * @param  req  query: { classid: string }
- * @param  res
- * @param  pool
- * @return {Promise} status: 200, 404, 500
+ * @param {Request} req  query: { classid: string }
+ * @param {Response} res
+ * @param {postgres.Pool} pool
+ * @return {Promise} status: 200, 404, 500 & Lesson[]
  */
 export const request = async (req, res, pool) => {
   try {

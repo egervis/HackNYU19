@@ -1,6 +1,13 @@
 "use strict";
 import { ClassEvent } from '../models/prototypes';
 
+/**
+ * Deletes events that are past expiration dates.
+ * @param {Request} req
+ * @param {Response} res
+ * @param {postgres.Pool} pool
+ * @returns {Promise} status: 200, 404, 500
+ */
 export const request = async (req, res, pool) => {
   try {
     let query = {
@@ -11,7 +18,7 @@ export const request = async (req, res, pool) => {
       res.status(200);
       let eventRows = events.rows;//what's user?
       let array = [];
-      for (let i=0; i<eventRows.length; i++)//(let row in eventRows)
+      for (let i=0; i<eventRows.length; i++)
       {
         currentEvent = ClassEvent(eventRows[i].eventid, '', '', eventRows[i].dateexpires, '');
         let mydate = new Date(currentEvent.dateexpires);
@@ -22,7 +29,7 @@ export const request = async (req, res, pool) => {
           array.push(currentEvent);
         }
       }
-      for (let i=0; i<array.length; i++)//(let date in array)
+      for (let i=0; i<array.length; i++)
       {
         let eventID = array[i].eventid;
         let query2 = {

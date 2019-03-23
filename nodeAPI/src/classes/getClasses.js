@@ -3,9 +3,9 @@ import { Class } from '../models/prototypes';
 
 /**
  * Gets classes based on userid.
- * @param  req  body: { userid: string }
- * @param  res
- * @param  pool
+ * @param {Request} req  body: { userid: string }
+ * @param {Response} res
+ * @param {postgres.Pool} pool
  * @return {Promise}  status: 200, 404, 500 & Class[]
  */
 export const request = async (req, res, pool) => {

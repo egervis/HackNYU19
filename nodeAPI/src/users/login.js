@@ -4,9 +4,9 @@ import { convertStringToArray } from '../models/utilities';
 
 /**
  * Verifies the users credentials and logs them in.
- * @param  req        body: { email: string, password:string }
- * @param  res
- * @param  pool
+ * @param {Request} req        body: { email: string, password:string }
+ * @param {Response} res
+ * @param {postgres.Pool} pool
  * @return {Promise}  status: 200, 404, 500 & new User
  */
 export const request = async (req, res, pool) => {

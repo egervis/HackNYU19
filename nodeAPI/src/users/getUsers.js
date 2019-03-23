@@ -3,9 +3,9 @@ import { User } from '../models/prototypes';
 
 /**
  * Retrieves the users based on the given IDs.
- * @param  req  body: { userids: string[] }
- * @param  res
- * @param  pool
+ * @param {Request} req  body: { userids: string[] }
+ * @param {Response} res
+ * @param {postgres.Pool} pool
  * @return {Promise}  status: 200, 404, 500 & new User[] (omitted passwords)
  */
 export const request = async (req, res, pool) => {
