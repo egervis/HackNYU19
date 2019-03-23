@@ -1,4 +1,6 @@
 "use strict";
+import { convertStringToArray } from '../models/utilities';
+import { convertArrayToString } from '../models/utilities';
 
 /**
  * Gets classes based on classid.
@@ -17,10 +19,10 @@ export const request = async (req, res, pool) => {
     let classToDelete = await pool.query(query);
 
     let response;
-    if (classToDelete) {
+    if (classToDelete.rows.length > 0) {
       res.status(200);
 
-      let users = classToDelete.row[0].studentids.split(",");
+      let users = convertStringToArray(classToDelete.row[0].studentids);
       users.push(classToDelete.row[0].instructorID);
       for(let i=0; i<users.length; i++)
       {
@@ -28,15 +30,9 @@ export const request = async (req, res, pool) => {
           text: 'SELECT userclasses FROM users WHERE userid = $1',
           values: [users[i]]
         };
-        let userClasses = await pool.query(query2).row[0].split(",");
+        let userClasses = convertStringToArray(await pool.query(query2).row[0]);
         userClasses.splice( userClasses.indexOf(classID), 1 );
-        let updatedClasses = "";
-        for(let j=0; j<userClasses.length; j++)
-        {
-          updatedClasses+=userClasses[j];
-          updatedClasses+=",";
-        }
-        updatedClasses.slice(0, -1);
+        let updatedClasses = convertArrayToString(userClasses);
         query3 = {
           text: 'UPDATE users SET userclasses = $1 WHERE userid = $2',
           values: [updatedClasses, users[i]]
@@ -44,7 +40,7 @@ export const request = async (req, res, pool) => {
         await pool.query(query3);
       }
 
-      let lessons = classToDelete.row[0].lessonids.split(",");
+      let lessons = convertStringToArray(classToDelete.row[0].lessonids);
       for(let i=0; i<lessons.length; i++)
       {
         let query4 = {
