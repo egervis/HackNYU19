@@ -1,36 +1,35 @@
 "use strict";
-import { convertStringToArray, convertArrayToString } from '../models/utilities';
+import {
+  convertStringToArray,
+  convertArrayToString
+} from '../models/utilities';
 
 /**
  * Deletes classes and all that relates to the class based on classid.
- * @param  {Request} req  body: { classid: string }
+ * @param  {Request} req  query: { classid: string }
  * @param  {Response} res
  * @param  {postgres.Pool} pool
  * @return {Promise}  status: 200, 404, 500
  */
 export const request = async (req, res, pool) => {
   try {
-    let classID = req.body.classid;
+    let classID = req.query.classid;
     let query = {
       text: 'SELECT * FROM classes WHERE classid = $1',
       values: [classID]
     };
     let classToDelete = await pool.query(query);
 
-    let response;
     if (classToDelete.rows.length > 0) {
-      res.status(200);
-
       let users = convertStringToArray(classToDelete.row[0].studentids);
       users.push(classToDelete.row[0].instructorID);
-      for(let i=0; i<users.length; i++)
-      {
+      for (let i = 0; i < users.length; i++) {
         let query2 = {
           text: 'SELECT userclasses FROM users WHERE userid = $1',
           values: [users[i]]
         };
         let userClasses = convertStringToArray(await pool.query(query2).row[0]);
-        userClasses.splice( userClasses.indexOf(classID), 1 );
+        userClasses.splice(userClasses.indexOf(classID), 1);
         let updatedClasses = convertArrayToString(userClasses);
         query3 = {
           text: 'UPDATE users SET userclasses = $1 WHERE userid = $2',
@@ -40,8 +39,7 @@ export const request = async (req, res, pool) => {
       }
 
       let lessons = convertStringToArray(classToDelete.row[0].lessonids);
-      for(let i=0; i<lessons.length; i++)
-      {
+      for (let i = 0; i < lessons.length; i++) {
         let query4 = {
           text: 'DELETE FROM lessons WHERE lessonid = $1',
           values: [lessons[i]]
@@ -66,13 +64,15 @@ export const request = async (req, res, pool) => {
         values: [classID]
       };
       await pool.query(query7);
-    }
+      res.status(200);
     } else {
       res.status(404);
     }
     res.send();
   } catch (error) {
     console.error('ERROR deleting class', error.stack);
-    res.status(500).send({'error': error.stack});
+    res.status(500).send({
+      'error': error.stack
+    });
   }
 }

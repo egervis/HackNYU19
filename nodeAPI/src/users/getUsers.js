@@ -3,7 +3,7 @@ import { User } from '../models/prototypes';
 
 /**
  * Retrieves the users based on the given IDs.
- * @param {Request} req  body: { userids: string[] }
+ * @param {Request} req  query: { userids: string[] }
  * @param {Response} res
  * @param {postgres.Pool} pool
  * @return {Promise}  status: 200, 404, 500 & new User[] (omitted passwords)
@@ -11,7 +11,7 @@ import { User } from '../models/prototypes';
 export const request = async (req, res, pool) => {
   try {
     // Setup
-    let userArray = req.body.userids;
+    let userArray = req.query.userids;
     let response = [];
 
     // Get all
