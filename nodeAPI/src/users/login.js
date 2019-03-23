@@ -1,6 +1,11 @@
 "use strict";
-import { User } from '../models/prototypes';
-import { convertStringToArray } from '../models/utilities';
+import {
+  User
+} from '../models/prototypes';
+import {
+  getUserClasses,
+  getUserEvents
+} from './internal/fetchIDs';
 
 /**
  * Verifies the users credentials and logs them in.
@@ -25,8 +30,8 @@ export const request = async (req, res, pool) => {
     if (user.rows.length > 0) {
       res.status(200);
       const currentUser = user.rows[0];
-      const currentUserClasses = convertStringToArray(currentUser.userclasses);
-      const currentUserEvents = convertStringToArray(currentUser.eventids);
+      const currentUserClasses = await getUserClasses(pool, currentUser.userid);
+      const currentUserEvents = await getUserEvents(pool, currentUser.userid);
       response = new User(
         currentUser.userid,
         currentUser.usertype,
@@ -43,6 +48,8 @@ export const request = async (req, res, pool) => {
     res.send(JSON.stringify(response));
   } catch (error) {
     console.error('ERROR logging in user', error.stack);
-    res.status(500).send({'error': error.stack});
+    res.status(500).send({
+      'error': error.stack
+    });
   }
-}
+};

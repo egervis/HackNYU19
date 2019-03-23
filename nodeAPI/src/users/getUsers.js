@@ -1,5 +1,11 @@
 "use strict";
-import { User } from '../models/prototypes';
+import {
+  User
+} from '../models/prototypes';
+import {
+  getUserClasses,
+  getUserEvents
+} from './internal/fetchIDs';
 
 /**
  * Retrieves the users based on the given IDs.
@@ -15,14 +21,17 @@ export const request = async (req, res, pool) => {
     let response = [];
 
     // Get all
-    for (let i=0; i<userArray.length; i++) {
-      let query = {
+    for (let i = 0; i < userArray.length; i++) {
+      const query = {
         text: 'SELECT * FROM users WHERE userid = $1',
         values: [userArray[i]]
       };
-      let currentUser =  await pool.query(query);
-      let user = currentUser.rows[0];
-      let userPrototype = new User(user.userid, user.usertype, user.lastname, user.firstname, user.email, user.userclasses, '', user.eventids);
+      const result = await pool.query(query);
+      const currentuser = result.rows[0];
+
+      const userClasses = await getUserClasses(pool, userArray[i]);
+      const userEvents = await getUserEvents(pool, userArray[i]);
+      const userPrototype = new User(currentuser.userid, currentuser.usertype, currentuser.lastname, currentuser.firstname, currentuser.email, userClasses, '', userEvents);
       response.push(userPrototype);
     }
 
@@ -37,6 +46,8 @@ export const request = async (req, res, pool) => {
     res.send(JSON.stringify(response));
   } catch (error) {
     console.error('ERROR getting users', error.stack);
-    res.status(500).send({'error': error.stack});
+    res.status(500).send({
+      'error': error.stack
+    });
   }
 }
