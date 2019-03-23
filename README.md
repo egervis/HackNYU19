@@ -15,9 +15,5 @@
   2. `docker volume create data`
   3. `docker-compose up --build -d`
 
-# TODO
-  - Fix the backend (WIP)
-  - Cleanup the backend (WIP)
-  - Document the backend ENDPOINTS
-  - Update the models to use classes rather than function prototypes
-  - Make frontend async
+## Frontend
+  - endpoints to communicate with backend are in server.js
