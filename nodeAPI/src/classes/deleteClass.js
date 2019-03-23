@@ -1,9 +1,8 @@
 "use strict";
-import { convertStringToArray } from '../models/utilities';
-import { convertArrayToString } from '../models/utilities';
+import { convertStringToArray, convertArrayToString } from '../models/utilities';
 
 /**
- * Gets classes based on classid.
+ * Deletes classes and all that relates to the class based on classid.
  * @param  {Request} req  body: { classid: string }
  * @param  {Response} res
  * @param  {postgres.Pool} pool
