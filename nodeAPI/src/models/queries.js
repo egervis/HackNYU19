@@ -10,7 +10,7 @@ import { User } from '../models/prototypes';
   * @param  {string} userid The comma separated list string.
   * @return {User} A User Object.
   */
-export const getUsersByID = (userid) => {
+export const getUsersByUserID = (userid) => {
   let query = {
     text: 'SELECT * FROM users WHERE userid = $1',
     values: [userid]
@@ -25,7 +25,7 @@ export const getUsersByID = (userid) => {
  * @param  {string} classid The comma separated list string.
  * @return {Array<User>} A User Object.
  */
-export const getUsersByID = (classid) => {
+export const getUsersByClassID = (classid) => {
  let query = {
    text: 'SELECT * FROM users INNER JOIN users ON classstudents.classid = $1',
    values: [classid]
