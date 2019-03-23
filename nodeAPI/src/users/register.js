@@ -1,5 +1,5 @@
 "use strict";
-import uuid from 'uuid/v1';
+import uniqid from 'uniqid';
 
 /**
  * Creates a new user in the database.
@@ -23,17 +23,14 @@ export const request = async (req, res, pool) => {
     }
 
     // Create new user in the database
-    const userID = uuid()
     query = {
       text: 'INSERT INTO users (userID, userType, lastName, firstName, email, userClasses, userPassword, eventIDs) VALUES($1, $2, $3, $4, $5, $6, $7, $8)',
-      values: [userID, req.body.userType, req.body.lastName, req.body.firstName, req.body.email, '', req.body.userPassword, '']
+      values: [uniqid(), req.body.userType, req.body.lastName, req.body.firstName, req.body.email, '', req.body.userPassword, '']
     };
     await pool.query(query);
     res.status(201).send();
   } catch (error) {
     console.error('ERROR creating user', error.stack);
-    res.status(500).send({
-      'error': error.stack
-    });
+    res.status(500).send({'error': error.stack});
   }
 }

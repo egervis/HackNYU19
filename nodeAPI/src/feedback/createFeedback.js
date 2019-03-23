@@ -1,5 +1,5 @@
 "use strict";
-import uuid from 'uuid/v1';
+import uniqid from 'uniqid';
 
 /**
  * Creates a feedback.
@@ -10,17 +10,15 @@ import uuid from 'uuid/v1';
  */
 export const request = async (req, res, pool) => {
   try {
-    const feedbackId = uuid();
+    const feedbackId = uniqid();
     let query = {
-      text: 'INSERT INTO feedback(feedbackid, instructorid, studentid, feedbacktext) VALUES($1, $2, $3, $4, $5)',
-      values: [feedbackId, req.body.instructorID, req.body.studentID, req.body.classID, req.body.feedbackText]
+      text:'INSERT INTO feedback(feedbackid, instructorid, studentid, feedbacktext) VALUES($1, $2, $3, $4, $5)' ,
+      values: [req.body.feedbackID, req.body.instructorID, req.body.studentID, req.body.classID, req.body.feedbackText]
     };
     await pool.query(query);
     res.status(201);
   } catch (error) {
     console.error('ERROR creating class', error.stack);
-    res.status(500).send({
-      'error': error.stack
-    });
+    res.status(500).send({'error': error.stack});
   }
 };
