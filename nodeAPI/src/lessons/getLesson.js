@@ -1,6 +1,11 @@
 "use strict";
-import { Lesson, Picture } from '../models/prototypes';
-import { convertStringToArray } from '../models/utilities'
+import {
+  Lesson,
+  Picture
+} from '../models/prototypes';
+import {
+  getLessonPictures
+} from './internal/fetchIDs';
 
 /**
  * Gets a lesson given the ID.
@@ -16,16 +21,14 @@ export const request = async (req, res, pool) => {
       text: 'SELECT * FROM lessons WHERE lessonid = $1',
       values: [req.query.lessonid]
     };
-    let lesson = await pool.query(query);
+    let result = await pool.query(query);
     let response = {};
-    if (lesson) {
-      res.status(200);
-      const currentLesson = user.rows[0];
-      const pictureids = convertStringToArray(currentLesson.pictureids);
+    if (result.rows.length > 0) {
+      const currentLesson = result.rows[0];
+      const pictureids = getLessonPictures(pool, currentLesson.lessonid);
       const lessonPrototype = new Lesson(currentLesson.lessonid, currentLesson.lessonname, currentLesson.lessondescription, pictureids, currentLesson.instructorid);
       let picarray = [];
-      for (let i=0; i<pictureids.length; i++)
-      {
+      for (let i = 0; i < pictureids.length; i++) {
         let query2 = {
           text: 'SELECT * FROM pictures WHERE pictureid = $1',
           values: [pictureids[i]]
@@ -35,13 +38,19 @@ export const request = async (req, res, pool) => {
         const picturePrototype = new Picture(currentPic.pictureid, currentPic.picturename, currentPic.picturefile);
         picarray.push(picturePrototype);
       }
-      response = { lesson: lessonPrototype, pictures: picarray};
+      response = {
+        lesson: lessonPrototype,
+        pictures: picarray
+      };
+      res.status(200);
     } else {
       res.status(404);
     }
     res.send(JSON.stringify(response));
   } catch (error) {
     console.error('ERROR getting lesson', error.stack);
-    res.status(500).send({'error': error.stack});
+    res.status(500).send({
+      'error': error.stack
+    });
   }
 }
