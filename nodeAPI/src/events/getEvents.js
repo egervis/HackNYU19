@@ -3,8 +3,8 @@
 /**
  * Gets a list of events given a user id.
  * @param {Request} req query: { userID: string }
- * @param {Response} res 
- * @param {postgres.Pool} pool 
+ * @param {Response} res
+ * @param {postgres.Pool} pool
  */
 export const request = async (req, res, pool) => {
   let eventarr = [];
@@ -25,10 +25,10 @@ export const request = async (req, res, pool) => {
           text: 'SELECT * FROM events WHERE eventid = $1',
           values: [eventids[i]]
         };
-        let event = await pool.query(query);
-        if (event.rows.length > 0) {
+        let currEvent = await pool.query(query);
+        if (currEvent.rows.length > 0) {
           updatedIds += `${eventids[i]},`;
-          eventarr.push(event.rows[0]);
+          eventarr.push(currEvent.rows[0]);
         }
       }
       updatedIds = updatedIds.substring(0, updatedIds.length - 1);

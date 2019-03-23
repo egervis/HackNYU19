@@ -1,4 +1,5 @@
 "use strict";
+import { ClassEvent } from '../models/prototypes';
 
 /**
  * Deletes events that are past expiration dates.
@@ -13,19 +14,19 @@ export const request = async (req, res, pool) => {
       text: 'SELECT * FROM events'
     };
     let events = await pool.query(query);
-    if (events) {
+    if (events.rows.length > 0) {
       res.status(200);
-      let eventRows = user.rows;
+      let eventRows = events.rows;
       let array = [];
       for (let i=0; i<eventRows.length; i++)
       {
-        currentEvent = events(eventRows[i].eventid, '', '', eventRows[i].dateexpires, '');
+        currentEvent = ClassEvent(eventRows[i].eventid, '', '', eventRows[i].dateexpires, '');
         let mydate = new Date(currentEvent.dateexpires);
         let currentDate = new Date();
         let newDate = new Date(mydate.setTime( mydate.getTime() + 1 * 86400000 ));
         if(currentDate<newDate)
         {
-          array.push(currentEvent)
+          array.push(currentEvent);
         }
       }
       for (let i=0; i<array.length; i++)

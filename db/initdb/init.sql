@@ -28,7 +28,8 @@ CREATE TABLE Events (
     eventType int,
     eventName varchar(255),
     dateExpires varchar(255), /*when the date gets passed gets deleted from table.*/
-    instructorID text REFERENCES Users(userID)
+    instructorID text REFERENCES Users(userID),
+    classID text REFERENCES Classes(classID)
 );
 
 CREATE TABLE Lessons (
@@ -49,5 +50,6 @@ CREATE TABLE Feedback (
     feedbackID text NOT NULL PRIMARY KEY,
     instructorID text REFERENCES Users(userID),
     studentID text REFERENCES Users(userID),
+    classID text REFERENCES Classes(classID),
     feedbackText text
 );

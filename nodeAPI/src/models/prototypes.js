@@ -51,7 +51,7 @@ export class Class {
 /**
  * An event as represented in the database.
  */
-export class Event {
+export class ClassEvent {
     /**
      * Creates a new event object.
      * @param {string} eventid      the id of the event
@@ -60,12 +60,13 @@ export class Event {
      * @param {Date} dateexpires    the expiration date of this event
      * @param {string} instructorid the id of the instructor of this event
      */
-    constructor(eventid, eventtype, eventname, dateexpires, instructorid) {
+    constructor(eventid, eventtype, eventname, dateexpires, instructorid, classid) {
         this.eventids = eventid;
         this.eventtype = eventtype;
         this.eventname = eventname;
         this.dateexpires = dateexpires;
         this.instructorid = instructorid;
+        this.classid = classid;
     }
 }
 
@@ -118,10 +119,11 @@ export class Feedback {
      * @param {string} studentid    the id of the student
      * @param {string} feedbackText the feedback content
      */
-    constructor(feedbackid, instructorid, studentid, feedbackText) {
+    constructor(feedbackid, instructorid, studentid, classid, feedbackText) {
         this.feedbackid = feedbackid;
         this.instructorid = instructorid;
         this.studentid = studentid;
+        this.classid = classid;
         this.feedbackText = feedbackText;
     }
 }
