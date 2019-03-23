@@ -1,4 +1,5 @@
 "use strict";
+import { ClassEvent } from '../models/prototypes';
 
 export const request = async (req, res, pool) => {
   try {
@@ -8,11 +9,11 @@ export const request = async (req, res, pool) => {
     let events = await pool.query(query);
     if (events) {
       res.status(200);
-      let eventRows = user.rows;//what's user?
+      let eventRows = events.rows;//what's user?
       let array = [];
       for (let i=0; i<eventRows.length; i++)//(let row in eventRows)
       {
-        currentEvent = events(eventRows[i].eventid, '', '', eventRows[i].dateexpires, '');//Event()?
+        currentEvent = ClassEvent(eventRows[i].eventid, '', '', eventRows[i].dateexpires, '');
         let mydate = new Date(currentEvent.dateexpires);
         let currentDate = new Date();
         let newDate = new Date(mydate.setTime( mydate.getTime() + 1 * 86400000 ));

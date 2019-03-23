@@ -51,7 +51,7 @@ export class Class {
 /**
  * An event as represented in the database.
  */
-export class Event {
+export class ClassEvent {
     /**
      * Creates a new event object.
      * @param {string} eventid      the id of the event

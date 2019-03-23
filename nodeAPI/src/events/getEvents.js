@@ -6,7 +6,7 @@ export const request = async (req, res, pool) => {
     // Get the events by user ID
     let query = {
       text: 'SELECT * FROM users WHERE userid = $1',
-      values: [req.query.userID]//should be body? 
+      values: [req.query.userID]//should be body?
     };
     let user = await pool.query(query);
     if (user.rows.length > 0) {
@@ -19,10 +19,10 @@ export const request = async (req, res, pool) => {
           text: 'SELECT * FROM events WHERE eventid = $1',
           values: [eventids[i]]
         };
-        let event = await pool.query(query);
-        if (event.rows.length > 0) {
+        let currEvent = await pool.query(query);
+        if (currEvent.rows.length > 0) {
           updatedIds += `${eventids[i]},`;
-          eventarr.push(event.rows[0]);
+          eventarr.push(currEvent.rows[0]);
         }
       }
       updatedIds = updatedIds.substring(0, updatedIds.length - 1);
