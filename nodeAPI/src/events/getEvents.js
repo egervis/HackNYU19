@@ -1,4 +1,7 @@
 "use strict";
+import {
+  ClassEvent
+} from '../models/prototypes';
 
 /**
  * Gets a list of events given a user id.
@@ -7,39 +10,29 @@
  * @param {postgres.Pool} pool
  */
 export const request = async (req, res, pool) => {
-  let eventarr = [];
+
   try {
     // Get the events by user ID
     let query = {
-      text: 'SELECT * FROM users WHERE userid = $1',
+      text: 'SELECT * FROM usersevents WHERE userid = $1',
       values: [req.query.userID]
     };
-    let user = await pool.query(query);
-    if (user.rows.length > 0) {
-      user = user.rows[0];
-      const eventids = user.eventids.split(',');
-      const updatedIds = '';
-      for (let i=0; i<eventids.length; i++)//(let eid in eventids)
+    let events = await pool.query(query).rows;
+    let eventarr = [];
+    if (events.length > 0) {
+      for(let i=0; i<events.length; i++)
       {
-        query = {
+        let currEvent = events[i];
+        let query2 = {
           text: 'SELECT * FROM events WHERE eventid = $1',
-          values: [eventids[i]]
+          values: [currEvent]
         };
-        let currEvent = await pool.query(query);
-        if (currEvent.rows.length > 0) {
-          updatedIds += `${eventids[i]},`;
-          eventarr.push(currEvent.rows[0]);
-        }
+        let e = await pool.query(query2).rows[0];
+        eventarr.push(new ClassEvent(e.eventid, e.eventtype, e.eventname, e.dateexpires, e.dateexpires, e.instructorid));
       }
-      updatedIds = updatedIds.substring(0, updatedIds.length - 1);
-      query = {
-        text: 'UPDATE users SET eventids = $1 WHERE userid = $2',
-        values: [updatedIds, req.query.userID]
-      };
-      await pool.query(query);
+
     } else {
       res.status(404);
-      response = {};
     }
     res.send(JSON.stringify(eventarr));
   } catch (error) {

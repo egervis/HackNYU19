@@ -1,6 +1,6 @@
 "use strict";
 import { ClassEvent } from '../models/prototypes';
-
+import { deleteEvents } from './internal/delete'
 /**
  * Deletes events that are past expiration dates.
  * @param {Request} req
@@ -29,14 +29,7 @@ export const request = async (req, res, pool) => {
           array.push(currentEvent);
         }
       }
-      for (let i=0; i<array.length; i++)
-      {
-        let eventID = array[i].eventid;
-        let query2 = {
-          text: 'DELETE FROM events WHERE eventid = $1',
-          values: [eventID]
-        };
-        await pool.query(query2);
+      await deleteEvents(pool, array);
       }
     } else {
       res.status(404);
