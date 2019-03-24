@@ -8,7 +8,7 @@
  */
 export const getUserClasses = async (pool, userID) => {
     const query = {
-        text: 'SELECT * FROM usersclasses WHERE userid = $1',
+        text: 'SELECT classid FROM usersclasses WHERE userid = $1',
         values: [userID]
     };
     const result = await pool.query(query);
@@ -23,7 +23,7 @@ export const getUserClasses = async (pool, userID) => {
  */
 export const getUserEvents = async (pool, userID) => {
     const query = {
-        text: 'SELECT * FROM usersevents WHERE userid = $1',
+        text: 'SELECT eventid FROM usersevents WHERE userid = $1',
         values: [userID]
     };
     const result = await pool.query(query);
