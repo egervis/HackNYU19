@@ -1,8 +1,14 @@
 "use strict";
 import {
-  convertStringToArray,
-  convertArrayToString
-} from '../models/utilities';
+  deleteLessons
+} from '../lessons/internal/delete';
+import {
+  deleteEvents
+} from '../events/internal/delete';
+import {
+  getClassLessons,
+  getClassStudents
+} from './internal/fetchIDs';
 
 /**
  * Deletes classes and all that relates to the class based on classid.
@@ -13,57 +19,64 @@ import {
  */
 export const request = async (req, res, pool) => {
   try {
-    let classID = req.query.classid;
+    const classID = req.query.classid;
     let query = {
       text: 'SELECT * FROM classes WHERE classid = $1',
       values: [classID]
     };
-    let classToDelete = await pool.query(query);
+    let response = await pool.query(query);
 
-    if (classToDelete.rows.length > 0) {
-      let users = convertStringToArray(classToDelete.row[0].studentids);
-      users.push(classToDelete.row[0].instructorID);
-      for (let i = 0; i < users.length; i++) {
-        let query2 = {
-          text: 'SELECT userclasses FROM users WHERE userid = $1',
-          values: [users[i]]
-        };
-        let userClasses = convertStringToArray(await pool.query(query2).row[0]);
-        userClasses.splice(userClasses.indexOf(classID), 1);
-        let updatedClasses = convertArrayToString(userClasses);
-        query3 = {
-          text: 'UPDATE users SET userclasses = $1 WHERE userid = $2',
-          values: [updatedClasses, users[i]]
-        };
-        await pool.query(query3);
-      }
+    if (response.rows.length > 0) {
+      const classToDelete = response.rows[0];
+      const userIDs = await getClassStudents(pool, classID);
+      userIDs.push(classToDelete.instructorID);
+      const lessonIDs = await getClassLessons(pool, classID);
 
-      let lessons = convertStringToArray(classToDelete.row[0].lessonids);
-      for (let i = 0; i < lessons.length; i++) {
-        let query4 = {
-          text: 'DELETE FROM lessons WHERE lessonid = $1',
-          values: [lessons[i]]
-        };
-        await pool.query(query4);
-      }
-
-      query5 = {
-        text: 'DELETE FROM events WHERE classID = $1',
+      // Delete lesson association with this class
+      query = {
+        text: 'DELETE FROM classlessons WHERE classid = $1',
         values: [classID]
       };
-      await pool.query(query5);
+      await pool.query(query);
+      await deleteLessons(pool, lessonIDs);
 
-      let query6 = {
+      // Delete student association with this class
+      query = {
+        text: 'DELETE FROM classstudents WHERE classid = $1',
+        values: [classID]
+      };
+      await pool.query(query);
+
+      // Delete user association with this class
+      query = {
+        text: 'DELETE FROM userclasses WHERE classid = $1',
+        values: [classID]
+      }
+      await pool.query(query);
+
+      // Delete events that are associated with this class
+      query = {
+        text: 'SELECT eventid FROM events WHERE classid = $1',
+        values: [classID]
+      };
+      response = await pool.query(query);
+      const eventids = response.rows.map(entry => entry.eventid);
+      await deleteEvents(pool, eventids);
+
+      // Delete feedback that is associated with this class
+      query = {
         text: 'DELETE FROM feedback WHERE classid = $1',
         values: [classID]
       };
-      await pool.query(query6);
+      await pool.query(query);
 
-      let query7 = {
+      // Delete the class entry in the database
+      query = {
         text: 'DELETE FROM classes WHERE classid = $1',
         values: [classID]
       };
-      await pool.query(query7);
+      await pool.query(query);
+
       res.status(200);
     } else {
       res.status(404);
