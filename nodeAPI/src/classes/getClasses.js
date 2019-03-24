@@ -1,5 +1,14 @@
 "use strict";
-import { Class } from '../models/prototypes';
+import {
+  Class
+} from '../models/prototypes';
+import {
+  getUserClasses
+} from '../users/internal/fetchIDs';
+import {
+  getClassLessons,
+  getClassStudents
+} from './internal/fetchIDs';
 
 /**
  * Gets classes based on userid.
@@ -10,37 +19,39 @@ import { Class } from '../models/prototypes';
  */
 export const request = async (req, res, pool) => {
   try {
-    let query = {
-      text: 'SELECT userclasses FROM users WHERE userid = $1',
-      values: [req.query.userid]
-    };
-    let classids = await pool.query(query);
-    let response;
-    if (classids.rows.length > 0) {
-      res.status(200);
-      let currentClasses = classids.rows[0].userclasses;
-      let userclasses = currentClasses.split(',');
-      let array = [];
-      for (let i = 0; i < userclasses.length; i++)
-      {
+    // Get class ids
+    const classids = getUserClasses(pool, req.query.userid);
+    let response = [];
+    if (classids.length > 0) {
+      // Get classes
+      for (let i = 0; i < classids.length; i++) {
         query = {
           text: 'SELECT * FROM classes WHERE classid = $1',
-          values: [userclasses[i]]
+          values: [classids[i]]
         };
-        let classEntry =  await pool.query(query);
-        classEntry = classEntry.rows[0];
-
-        let classesPrototype = new Class(classEntry.classid, classEntry.classname, classEntry.lessonids, classEntry.studentids, classEntry.instructorid);
-        array.push(classesPrototype);
+        const result = await pool.query(query);
+        const classEntry = result.rows[0];
+        // Get lesson ids and student ids
+        const lessons = await getClassLessons(pool, classids[i]);
+        const students = await getClassStudents(pool, classids[i]);
+        // Push new class to response array
+        const classesPrototype = new Class(classEntry.classid, classEntry.classname, lessons, students, classEntry.instructorid);
+        response.push(classesPrototype);
       }
-      response = array;
+
+      // Status OK
+      res.status(200);
     } else {
+      // Not found
       res.status(404);
-      response = [];
     }
+
+    // Send response
     res.send(JSON.stringify(response));
   } catch (error) {
     console.error('ERROR getting classes', error.stack);
-    res.status(500).send({'error': error.stack});
+    res.status(500).send({
+      'error': error.stack
+    });
   }
 }
