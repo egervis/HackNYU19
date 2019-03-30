@@ -67,6 +67,11 @@ app.get('/class/get', async (req, res) => {
   await endpoints.classes.getClasses(req, res, pool);
 });
 
+// Delete class endpoint
+app.get('/class/delete', async (req, res) => {
+  await endpoints.classes.deleteClass(req, res, pool);
+});
+
 // Create lesson endpoint
 app.post('lesson/create', async (req, res) => {
   await endpoints.lessons.createLesson(req, res, pool);
