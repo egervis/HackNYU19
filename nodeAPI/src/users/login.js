@@ -9,7 +9,7 @@ import {
 
 /**
  * Verifies the users credentials and logs them in.
- * @param {Request} req        body: { email: string, password:string }
+ * @param {Request} req        body: { email: string, userPassword:string }
  * @param {Response} res
  * @param {postgres.Pool} pool
  * @return {Promise}  status: 200, 404, 500 & new User
