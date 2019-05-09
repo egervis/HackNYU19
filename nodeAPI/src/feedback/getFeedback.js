@@ -1,5 +1,7 @@
 "use strict";
-import { Feedback } from '../models/prototypes';
+import {
+  Feedback
+} from '../models/prototypes';
 
 /**
  * Gets feedback given user id.
@@ -13,35 +15,33 @@ export const request = async (req, res, pool) => {
     // Get the user by their ID
     let userType = req.query.usertype;
     let user = req.query.userid;
-    if(userType == 0)
-    {
-      let query = {
+    let query;
+    if (userType == 0) {
+      query = {
         text: 'SELECT * FROM feedback WHERE instructorid = $1',
         values: [user]
       };
-    }
-    else
-    {
-      let query = {
+    } else {
+      query = {
         text: 'SELECT * FROM feedback WHERE studentid = $1',
         values: [user]
       };
     }
-    let feedback =  await pool.query(query);
+    let feedback = await pool.query(query);
     let response;
     if (feedback.rows.length > 0) {
       res.status(200);
       let feedbackRows = feedback.rows;
 
       let array = [];
-      for (let i=0; i<feedbackRows.length; i++)//(let row in feedbackRows)
-      {
-        let feedbackPrototype;
-        if(userType == 0) {
-          feedbackPrototype = new Feedback(feedbackRows[i].feedbackid, '', feedbackRows[i].studentid, feedbackRows[i].classid, feedbackRows[i].feedbackText);
-        } else {
-          feedbackPrototype = new Feedback(feedbackRows[i].feedbackid, feedbackRows[i].instructorid, '', feedbackRows[i].classid, feedbackRows[i].feedbackText);
-        }
+      for (let i = 0; i < feedbackRows.length; i++) {
+        let feedbackPrototype = new Feedback(
+          feedbackRows[i].feedbackid,
+          feedbackRows[i].instructorid,
+          feedbackRows[i].studentid,
+          feedbackRows[i].classid,
+          feedbackRows[i].feedbackText
+        );
         array.push(feedbackPrototype);
       }
 
@@ -53,6 +53,8 @@ export const request = async (req, res, pool) => {
     res.send(JSON.stringify(response));
   } catch (error) {
     console.error('ERROR getting classes', error.stack);
-    res.status(500).send({'error': error.stack});
+    res.status(500).send({
+      'error': error.stack
+    });
   }
 }

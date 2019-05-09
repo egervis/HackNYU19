@@ -29,7 +29,12 @@ app.use(bodyParser.json());
 // Logs the incoming requests, useful for debugging
 app.use((req, res, next) => {
   console.log(`${req.method}: ${req.path}`);
+  // Print body
+  console.log('Body');
   console.log(req.body);
+  // Print query
+  console.log('Query');
+  console.log(req.query);
   next();
 });
 
@@ -60,6 +65,11 @@ app.post('/class/create', async (req, res) => {
 // Get classes endpoint
 app.get('/class/get', async (req, res) => {
   await endpoints.classes.getClasses(req, res, pool);
+});
+
+// Delete class endpoint
+app.get('/class/delete', async (req, res) => {
+  await endpoints.classes.deleteClass(req, res, pool);
 });
 
 // Create lesson endpoint

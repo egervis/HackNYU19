@@ -1,6 +1,5 @@
 version: '3.3'
 services:
-
   pgadmin:
     # For more details on configuring the pgadmin4 Docker image, see:
     #   https://hub.docker.com/r/dpage/pgadmin4/
@@ -10,7 +9,7 @@ services:
     depends_on:
       - postgres
 
-    # Expose the web UI on localhost port 5050
+    # Expose the web UI on localhost port 80
     ports:
       - '80:80'
     network_mode: bridge
@@ -43,16 +42,25 @@ services:
     # Copy files from dbinit into the image so that they will be run on boot
     volumes:
       - ./db/initdb:/docker-entrypoint-initdb.d
-      - data:/var/lib/postgresql/data
+      - postgres-data:/var/lib/postgresql/data
 
   nodeapi:
     container_name: nodeapi
     build:
       context: ./nodeAPI
     ports:
-      - "3001:3001"
+      - '3001:3001'
     depends_on:
       - postgres
+
+  reactapp:
+    container_name: reactapp
+    build:
+      context: ./frontend
+    ports:
+      - '3000:3000'
+    depends_on:
+      - nodeapi
+
 volumes:
-    data:
-      external: true
+  postgres-data:

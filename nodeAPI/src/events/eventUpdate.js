@@ -1,6 +1,10 @@
 "use strict";
-import { ClassEvent } from '../models/prototypes';
-
+import {
+  ClassEvent
+} from '../models/prototypes';
+import {
+  deleteEvents
+} from './internal/delete'
 /**
  * Deletes events that are past expiration dates.
  * @param {Request} req
@@ -18,26 +22,16 @@ export const request = async (req, res, pool) => {
       res.status(200);
       let eventRows = events.rows;
       let array = [];
-      for (let i=0; i<eventRows.length; i++)
-      {
+      for (let i = 0; i < eventRows.length; i++) {
         currentEvent = ClassEvent(eventRows[i].eventid, '', '', eventRows[i].dateexpires, '');
         let mydate = new Date(currentEvent.dateexpires);
         let currentDate = new Date();
-        let newDate = new Date(mydate.setTime( mydate.getTime() + 1 * 86400000 ));
-        if(currentDate<newDate)
-        {
+        let newDate = new Date(mydate.setTime(mydate.getTime() + 1 * 86400000));
+        if (currentDate < newDate) {
           array.push(currentEvent);
         }
       }
-      for (let i=0; i<array.length; i++)
-      {
-        let eventID = array[i].eventid;
-        let query2 = {
-          text: 'DELETE FROM events WHERE eventid = $1',
-          values: [eventID]
-        };
-        await pool.query(query2);
-      }
+      await deleteEvents(pool, array);
     } else {
       res.status(404);
       response = {};
@@ -45,6 +39,8 @@ export const request = async (req, res, pool) => {
     res.send(JSON.stringify(response));
   } catch (error) {
     console.error('ERROR getting user', error.stack);
-    res.status(500).send({'error': error.stack});
+    res.status(500).send({
+      'error': error.stack
+    });
   }
 }

@@ -1,5 +1,8 @@
 "use strict";
 import uniqid from 'uniqid';
+import {
+  Error
+} from '../models/internal/errors'
 
 /**
  * Creates a new user in the database.
@@ -19,18 +22,26 @@ export const request = async (req, res, pool) => {
 
     // Validate email uniqueness
     if (user.rows.length > 0) {
-      throw new Error('User already exists!');
+      throw new Error(400, 'Cannot register: Email Taken.');
+    }
+
+    // Validate correct usertype data
+    if (req.body.userType != 0 && req.body.userType != 1) {
+      throw new Error(400, 'Cannot register: Invalid user type.');
     }
 
     // Create new user in the database
+    const userID = uniqid();
     query = {
-      text: 'INSERT INTO users (userID, userType, lastName, firstName, email, userClasses, userPassword, eventIDs) VALUES($1, $2, $3, $4, $5, $6, $7, $8)',
-      values: [uniqid(), req.body.userType, req.body.lastName, req.body.firstName, req.body.email, '', req.body.userPassword, '']
+      text: 'INSERT INTO users (userID, userType, lastName, firstName, email, userPassword) VALUES($1, $2, $3, $4, $5, $6)',
+      values: [userID, req.body.userType, req.body.lastName, req.body.firstName, req.body.email, req.body.userPassword]
     };
     await pool.query(query);
     res.status(201).send();
   } catch (error) {
     console.error('ERROR creating user', error.stack);
-    res.status(500).send({'error': error.stack});
+    res.status(error.status || 500).send({
+      error: error.stack
+    });
   }
 }

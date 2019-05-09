@@ -1,6 +1,7 @@
 "use strict";
 
 import * as createClass from './classes/createClass';
+import * as deleteClass from './classes/deleteClass';
 import * as getClasses from './classes/getClasses';
 import * as getEvents from './events/getEvents';
 import * as eventUpdate from './events/eventUpdate';
@@ -17,7 +18,8 @@ import * as getUsers from './users/getUsers';
 export const endpoints = {
   classes: {
     createClass: createClass.request,
-    getClasses: getClasses.request
+    getClasses: getClasses.request,
+    deleteClass: deleteClass.request
   },
   events: {
     eventUpdate: eventUpdate.request,

@@ -10,16 +10,12 @@ CREATE TABLE Users (
     lastName varchar(255),
     firstName varchar(255),
     email varchar(255),
-    userClasses text,
-    userPassword varchar(255),
-    eventIDs text /*if event not present in table, delete*/
+    userPassword varchar(255)
 );
 
 CREATE TABLE Classes (
     classID text NOT NULL PRIMARY KEY,
     className varchar(255),
-    lessonids text,
-    studentIDs text,
     instructorID text REFERENCES Users(userID)
 );
 
@@ -30,14 +26,6 @@ CREATE TABLE Events (
     dateExpires varchar(255), /*when the date gets passed gets deleted from table.*/
     instructorID text REFERENCES Users(userID),
     classID text REFERENCES Classes(classID)
-);
-
-CREATE TABLE Lessons (
-    lessonID text NOT NULL PRIMARY KEY,
-    lessonName varchar(255),
-    lessonDescription text,
-    pictureIds text, /*picture ids*/
-    instructorID text REFERENCES Users(userID)
 );
 
 CREATE TABLE Pictures (
@@ -52,4 +40,36 @@ CREATE TABLE Feedback (
     studentID text REFERENCES Users(userID),
     classID text REFERENCES Classes(classID),
     feedbackText text
+);
+
+CREATE TABLE Lessons (
+    lessonID text NOT NULL PRIMARY KEY,
+    lessonName varchar(255),
+    lessonDescription text,
+    instructorID text REFERENCES Users(userID)
+);
+
+CREATE TABLE UsersClasses (
+    userID text REFERENCES Users(userID),
+    classID text REFERENCES Classes(classID)
+);
+
+CREATE TABLE UsersEvents (
+    userID text REFERENCES Users(userID),
+    eventID text REFERENCES Events(eventID)
+);
+
+CREATE TABLE ClassLessons (
+    classID text REFERENCES Classes(classID),
+    lessonID text REFERENCES Lessons(lessonID)
+);
+
+CREATE TABLE ClassStudents (
+    classID text REFERENCES Classes(classID),
+    studentID text REFERENCES Users(userID)
+);
+
+CREATE TABLE LessonPictures (
+    lessonID text REFERENCES Lessons(lessonID),
+    pictureID text REFERENCES Pictures(pictureID)
 );
