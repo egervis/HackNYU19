@@ -78,42 +78,29 @@ class Login extends Component{
 
     render(){
       return(
-        <div className="Login">
-          <nav class="navbar navbar-expand-md bg-dark navbar-dark py-2">
-             <a class="navbar-brand">Company Name</a>
-             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-               <span class="navbar-toggler-icon"></span>
-             </button>
-             <div class="collapse navbar-collapse" id="collapsibleNavbar">
-               <ul class="navbar-nav ml-auto">
-                 <li class="nav-item">
-                   <Link to="/registration" class="nav-link">Registration</Link>
-                 </li>
-               </ul>
-             </div>
-          </nav>
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-9 col-md-7 mx-auto">
+              <div class="card card-signin my-5">
+                <div class="card-body">
+                  <h3 class="card-title text-center">Sign In</h3>
+                  <form class="form-signin">
+                    <div class="form-label-group">
+                      <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus />
+                      <label for="inputEmail">Email address</label>
+                    </div>
 
-          <h1 class="mt-5 pt-3">We're here to help you learn!</h1>
-          <div class="container-fluid w-25 jumbotron mt-5 bg-dark">
-
-          <form>
-            <h2 class="pb-3">Login</h2>
-            <div class="form-group">
-              <label for="emailInput">Email address</label>
-              <input name="email" type="email" class="form-control" id="emailInput" aria-describedby="emailHelp" placeholder="Your email"
-                  value={this.state.email} onChange={this.handleEmailChange}/>
+                    <div class="form-label-group">
+                      <input type="password" id="inputPassword" class="form-control" placeholder="Password" required />
+                      <label for="inputPassword">Password</label>
+                    </div>
+                    <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
+                    <hr class="my-4" />
+                  <button class="btn btn-lg btn-success btn-block text-uppercase"><a id= "signup" href="#">Sign up</a></button>
+                  </form>
+                </div>
+              </div>
             </div>
-            <div class="form-group">
-              <label for="pwInput">Password</label>
-              <input name="password" type="password" class="form-control" id="pwInput" placeholder="Password"
-                  value={this.state.password} onChange={this.handlePasswordChange}/>
-            </div>
-            <button type="button" class="btn btn-success mt-3" onClick={this.handleLogin}>Login</button>
-          </form>
-          {
-            this.state.hits &&
-            this.state.hits.map(item => <div key={item.objectID}>{item.title}</div>)
-          }
           </div>
         </div>
       )
@@ -121,25 +108,3 @@ class Login extends Component{
 }
 
 export default Login;
-
-// <form>
-//   <h2 class="pb-3">Login</h2>
-//   <div class="form-group">
-//     <label for="emailInput">Email address</label>
-//     <input type="email" class="form-control" id="emailInput" aria-describedby="emailHelp" placeholder="Your email"/>
-//   </div>
-//   <div class="form-group">
-//     <label for="pwInput">Password</label>
-//     <input type="password" class="form-control" id="pwInput" placeholder="Password"/>
-//   </div>
-//   <div class="form-check">
-//     <input type="checkbox" class="form-check-input" id="remember"/>
-//     <label class="form-check-label" for="remember">Remember me</label>
-//   </div>
-//   <button type="submit" class="btn btn-success mt-3">Login</button>
-// </form>
-
-// <form onSubmit={this.onSearch}>
-//   <input type="text" ref={node => this.input = node} />
-//   <input type="submit">Submit</input>
-// </form>
