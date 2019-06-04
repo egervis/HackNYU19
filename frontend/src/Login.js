@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import LoginForm from './components/LoginForm';
-
-import Registration from './Registration';
-import StudentHome from './student/home';
 
 import { loginRequester, registerRequester } from './requests/requestBuilder';
 import './styles/Login.css';
@@ -19,26 +15,6 @@ class Login extends Component{
       this.handleEmailChange = this.handleEmailChange.bind(this);
       this.handlePasswordChange =this.handlePasswordChange.bind(this);
       this.handleLogin =this.handleLogin.bind(this);
-    }
-
-    onSearch = (e) => {
-      console.log("Search");
-      e.preventDefault();
-      //
-      // if (value === '') {
-      //   return;
-      // }
-
-      const target = e.target;
-      const email = target.type === 'email' ? this.value : target.name;
-
-      console.log(email);
-
-      // const cachedHits = localStorage.getItem(value);
-      // if (cachedHits) {
-      //   this.setState({ hits: JSON.parse(cachedHits) });
-      //   return;
-      // }
     }
 
     onSetResult = (result, key) => {
