@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
-import App from './App';
+import { Link, Redirect } from 'react-router-dom';
+
+import { loginRequester, registerRequester } from './requests/requestBuilder';
 import './styles/Registration.css';
-import { registerRequester } from './requests/requestBuilder';
 
 class Registration extends Component {
   constructor(props) {
@@ -62,59 +62,45 @@ class Registration extends Component {
       });
   }
 
-  render() {
-    return (
-      <div className="Registration">
-        <nav class="navbar navbar-expand-md bg-dark navbar-dark py-2">
-          <a class="navbar-brand">Company Name</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="collapsibleNavbar">
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item">
-                <Link to="/" class="nav-link">Login</Link>
-              </li>
-            </ul>
+  render(){
+    return(
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+            <div class="card card-signin my-5">
+              <div class="card-body">
+                <h3 class="title text-center">Register an account</h3>
+                <form class="form-signin">
+                  <div class="form-label-group">
+                    <input type="text" id="inputFirstname" class="form-control" placeholder="First name" required />
+                    <label for="inputFirstname">First Name</label>
+                  </div>
+                  <div class="form-label-group">
+                    <input type="text" id="inputLastname" class="form-control" placeholder="Last name" required />
+                    <label for="inputLastname">Last name</label>
+                  </div>
+                  <div class="form-label-group">
+                    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus />
+                    <label for="inputEmail">Email address</label>
+                  </div>
+                  <div class="form-label-group">
+                    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required />
+                    <label for="inputPassword">Password</label>
+                  </div>
+                  <div class="form-label-group">
+                    <input type="radio" name="role" value="0" checked />Student<br/>
+                    <input type="radio" name="role" value="1" />Instructor<br/>
+                  </div>
+                  <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign up</button>
+                  <hr class="my-4" />
+                </form>
+                <button class="btn btn-lg btn-success btn-block text-uppercase" ><Link id="signin" to="/">Sign in</Link></button>
+              </div>
+            </div>
           </div>
-        </nav>
-
-        <div class="container-fluid w-25 jumbotron mt-5 bg-dark">
-          <form>
-            <h2 class="mb-3">Register your account</h2>
-
-            <div class="row">
-              <div class="col">
-                <input type="text" class="form-control" value={this.state.firstName} onChange={this.handleFirstNameChange} placeholder="First name"/>
-              </div>
-
-              <div class="col">
-                <input type="text" class="form-control" value={this.state.lastName} onChange={this.handleLastNameChange} placeholder="Last name"/>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="emailInput">Email address</label>
-              <input type="email" class="form-control" id="emailInput" aria-describedby="emailHelp" placeholder="Your email"
-                  value={this.state.email} onChange={this.handleEmailChange}/>
-            </div>
-
-            <div class="form-group">
-              <label for="pwInput">Password</label>
-              <input type="password" class="form-control" id="pwInput" value={this.state.password} onChange={this.handlePasswordChange} placeholder="Password"/>
-            </div>
-
-            <label for="selectRole">I am a...</label>
-            <select defaultValue='0' onChange={this.handleRole} class="custom-select my-1 mr-ms-2" id="selectRole">
-              <option value='0'>Instructor</option>
-              <option value='1'>Student</option>
-            </select>
-
-            <button type="submit" class="btn btn-success mt-3" onClick={this.handleRegister}>Register me!</button>
-          </form>
         </div>
       </div>
-    );
+    )
   }
 }
 

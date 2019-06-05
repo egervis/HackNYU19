@@ -4,7 +4,7 @@
 }
 
 body {
-  background-color: #77A6F7;
+  background: linear-gradient(to right, #E27D60, #33AEFF);
 }
 
 .card-signin {
@@ -13,7 +13,7 @@ body {
   box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
 }
 
-.card-signin .card-title {
+.card-signin .title {
   margin-bottom: 2rem;
   font-weight: 300;
   font-size: 1.5rem;
@@ -24,7 +24,7 @@ body {
   padding: 2rem;
 }
 
-.form-signin .btn {
+.btn {
   font-size: 80%;
   border-radius: 5rem;
   letter-spacing: .1rem;
@@ -55,7 +55,6 @@ body {
   display: block;
   width: 100%;
   margin-bottom: 0;
-  /* Override default `<label>` margin */
   line-height: 1.5;
   color: #495057;
   border: 1px solid transparent;
