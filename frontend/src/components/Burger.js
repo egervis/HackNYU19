@@ -1,23 +1,15 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { slide as Menu } from 'react-burger-menu';
+import { bubble as Menu } from 'react-burger-menu';
 import '../styles/Burger.css';
 
-class Burger extends Component {
+class BurgerMenu extends Component {
     constructor(props) {
         super(props);
         this.state = {
             menuOpen: false
         }
-         this.handler = this.handler.bind(this);
-    }
-
-    handleStateChange (state) {
-        this.setState({menuOpen: state.isOpen})
-    }
-
-    handlerCloseSideBar = () => {
-        this.setState({menuOpen: false});
+        this.handler = this.handler.bind(this);
     }
 
     handler = (e) => {
@@ -27,33 +19,36 @@ class Burger extends Component {
       });
     }
 
-    showSettings (event) {
-      event.preventDefault();
+    showSettings (e) {
+      e.preventDefault();
     }
 
-    logout(event) {
+    logout(e) {
       localStorage.clear();
     }
 
     render() {
+        var isMenuOpen = function(state) {
+            return state.isOpen;
+        };
+
         return (
             <div id="outer-container">
                 <Menu
                     className="menu"
                     isOpen={this.state.menuOpen}
-                    onStateChange={(state) => this.handleStateChange(state)}
+                    onStateChange={isMenuOpen}
                     pageWrapId={"page-wrap"}
                     outerContainerId={"outer-container"}
                 >
-                    <Link to="/teacher/class" className = "menu-item">Classes</Link>
+                    <Link to="/teacher/classes" className = "menu-item">Classes</Link>
                     <Link to="/teacher/calendar" className = "menu-item">Calendar</Link>
                     <Link to="/teacher/feedback" className = "menu-item">Feedback</Link>
                     <Link to="/" onClick={this.logout} className = "menu-item">Log out</Link>
                 </Menu>
-                Pizza
             </div>
         );
     }
 }
 
-export default Burger;
+export default BurgerMenu;

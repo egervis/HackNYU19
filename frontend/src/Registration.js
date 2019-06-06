@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import App from './App';
-import './styles/Registration.css';
+import './styles/main.css';
 import { registerRequester } from './requests/requestBuilder';
 
 class Registration extends Component {
@@ -41,7 +41,6 @@ class Registration extends Component {
   }
 
   handleRole(e){
-    console.log(e.target.value);
     this.setState({role: e.target.value});
   }
 
