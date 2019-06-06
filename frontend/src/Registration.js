@@ -50,7 +50,7 @@ class Registration extends Component {
     console.log("Password: " + this.state.password);
     console.log("Status" + this.state.role);
 
-    let user = registerRequester(this.state.role, this.state.lastName, this.state.firstName, this.state.email, this.state.password)
+    registerRequester(this.state.role, this.state.lastName, this.state.firstName, this.state.email, this.state.password)
       .then(response => {
         console.log(response);
         this.props.history.push('/');
@@ -70,28 +70,32 @@ class Registration extends Component {
                 <h3 class="title text-center">Register an account</h3>
                 <form class="form-signin">
                   <div class="form-label-group">
-                    <input type="text" id="inputFirstname" class="form-control" placeholder="First name" required />
+                    <input type="text" id="inputFirstname" class="form-control" placeholder="First name" 
+                      value={this.state.firstName} onChange={this.handleFirstNameChange} required />
                     <label for="inputFirstname">First Name</label>
                   </div>
                   <div class="form-label-group">
-                    <input type="text" id="inputLastname" class="form-control" placeholder="Last name" required />
+                    <input type="text" id="inputLastname" class="form-control" placeholder="Last name" 
+                      value={this.state.lastName} onChange={this.handleLastNameChange} required />
                     <label for="inputLastname">Last name</label>
                   </div>
                   <div class="form-label-group">
-                    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus />
+                    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" 
+                      value={this.state.email} onChange={this.handleEmailChange} required autofocus />
                     <label for="inputEmail">Email address</label>
                   </div>
                   <div class="form-label-group">
-                    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required />
+                    <input type="password" id="inputPassword" class="form-control" placeholder="Password" 
+                      value={this.state.password} onChange={this.handlePasswordChange} required />
                     <label for="inputPassword">Password</label>
                   </div>
                   <div class="form-group">
-                    <select class="form-control">
-                      <option value="0">I'm a student</option>
-                      <option value="1">I'm an instructor</option>
+                    <select defaultValue='0' class="form-control" onChange={this.handleRole}>
+                      <option value="0">I'm an instructor</option>
+                      <option value="1">I'm a student</option>
                     </select>
                   </div>
-                  <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign up</button>
+                  <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" onClick={this.handleRegister}>Sign up</button>
                   <hr class="my-4" />
                 </form>
                 <Link id="signin" to="/"><button class="btn btn-lg btn-success btn-block text-uppercase" >Sign in</button></Link>

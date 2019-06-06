@@ -80,6 +80,7 @@ class TeacherClass extends Component{
         Submit
         </Button>
         <Button
+          id="cancel-btn"
           inverted
           size='big'
           onClick={this.handleFormChange}
@@ -100,7 +101,7 @@ class TeacherClass extends Component{
     )
 
     return(
-      <div>
+      <div id="teacher-classes">
         <BurgerMenu />
         <main id="page-wrap" className="w-75">
           <div id="content">

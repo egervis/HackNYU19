@@ -3,7 +3,7 @@
 }
 
 #content {
-    margin-top: 25px;
+    padding-top: 25px;
 }
 
 h2 {
@@ -19,4 +19,15 @@ h2 {
     background: #d9b08c;
     color: white;
     box-shadow: 0 0 0 2px #d9b08c inset!important;
+}
+
+#cancel-btn {
+    color: #d1e8e2;
+    box-shadow: 0 0 0 2px #d1e8e2 inset!important;
+}
+
+#cancel-btn:hover {
+    background: #d1e8e2;
+    color: white;
+    box-shadow: 0 0 0 2px #d1e8e2 inset!important;
 }
