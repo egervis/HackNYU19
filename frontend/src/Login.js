@@ -72,7 +72,7 @@ class Login extends Component{
                     <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
                     <hr class="my-4" />
                   </form>
-                  <button class="btn btn-lg btn-success btn-block text-uppercase" ><Link id="signup" to="/Registration">Sign up</Link></button>
+                  <Link id="signup" to="/Registration"><button class="btn btn-lg btn-success btn-block text-uppercase" >Sign up</button></Link>
                 </div>
               </div>
             </div>

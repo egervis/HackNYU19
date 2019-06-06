@@ -87,14 +87,16 @@ class Registration extends Component {
                     <input type="password" id="inputPassword" class="form-control" placeholder="Password" required />
                     <label for="inputPassword">Password</label>
                   </div>
-                  <div class="form-label-group">
-                    <input type="radio" name="role" value="0" checked />Student<br/>
-                    <input type="radio" name="role" value="1" />Instructor<br/>
+                  <div class="form-group">
+                    <select class="form-control">
+                      <option value="0">I'm a student</option>
+                      <option value="1">I'm an instructor</option>
+                    </select>
                   </div>
                   <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign up</button>
                   <hr class="my-4" />
                 </form>
-                <button class="btn btn-lg btn-success btn-block text-uppercase" ><Link id="signin" to="/">Sign in</Link></button>
+                <Link id="signin" to="/"><button class="btn btn-lg btn-success btn-block text-uppercase" >Sign in</button></Link>
               </div>
             </div>
           </div>
