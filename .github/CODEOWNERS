@@ -4,7 +4,7 @@
 # Javascript files
 *.js *.jsx    @bkchiu0 @egervis @TraceyKong @HKenny04
 
-# YAML configuration files
+# JSON files
 *.json        @bkchiu0 @egervis @TraceyKong @HKenny04
 
 # CSS files
@@ -24,3 +24,6 @@ Dockerfile    @bkchiu0
 
 # Frontend
 /frontend/    @TraceyKong @HKenny04
+
+# Git configurations
+/.github/     @bkchiu0
