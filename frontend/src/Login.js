@@ -37,14 +37,7 @@ class Login extends Component{
           localStorage.setItem('usertype', res.data.usertype);
           localStorage.setItem('firstname', res.data.firstname);
           localStorage.setItem('lastname', res.data.lastname);
-          if(localStorage.getItem('usertype'))
-            this.props.history.push("/student/classes");
-          else
-            this.props.history.push("/teacher/classes");
-          console.log(res.status);
           this.props.history.push("/teacher/classes");
-          console.log(localStorage);
-          return res;
         })
         .catch(err => {
           console.log(err);

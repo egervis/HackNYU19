@@ -46,7 +46,6 @@ class Registration extends Component {
   handleRegister(e){
     registerRequester(this.state.role, this.state.lastName, this.state.firstName, this.state.email, this.state.password)
       .then(response => {
-        console.log(response);
         this.props.history.push('/');
       })
       .catch(err => {
