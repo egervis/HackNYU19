@@ -31,15 +31,16 @@ class Login extends Component{
     }
 
     handleLogin(e){
-      console.log("Email: " + this.state.email);
-      console.log("Password: " + this.state.password);
-
       loginRequester(this.state.email, this.state.password)
         .then(res => {
           localStorage.setItem('userid', res.data.userid);
           localStorage.setItem('usertype', res.data.usertype);
           localStorage.setItem('firstname', res.data.firstname);
           localStorage.setItem('lastname', res.data.lastname);
+          if(localStorage.getItem('usertype'))
+            this.props.history.push("/student/classes");
+          else
+            this.props.history.push("/teacher/classes");
           console.log(res.status);
           this.props.history.push("/teacher/classes");
           console.log(localStorage);

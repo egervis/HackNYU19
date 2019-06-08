@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactDOM from "react-dom";
 import BurgerMenu from '../components/Burger';
 import { Button, Form } from 'semantic-ui-react';
 import '../styles/teacherClasses.css';
@@ -23,7 +22,6 @@ class TeacherClass extends Component{
       name: '',
       isFormOpen: false
     };
-    console.log(this);
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleFormChange = this.handleFormChange.bind(this);
     this.createClass = this.createClass.bind(this);
@@ -61,8 +59,8 @@ class TeacherClass extends Component{
   }
 
   render(){
-    const classes = fetchClasses().data;
-    let ele = classes === undefined ? "You currently don't have any classes." : "You have classes.";
+    // const classes = fetchClasses().data;
+    // let ele = classes === undefined ? "You currently don't have any classes." : "You have classes.";
     
     const name = localStorage.getItem('firstname') + ' ' + localStorage.getItem('lastname');
   
@@ -72,7 +70,8 @@ class TeacherClass extends Component{
           <Form.Input 
             label='Class Name' 
             placeholder='Please enter a class name'
-            onChange = {this.handleNameChange}
+            value={this.state.name}
+            onChange={this.handleNameChange}
             width={8}/>
         </Form.Field>
         <Button
@@ -106,11 +105,11 @@ class TeacherClass extends Component{
 
     return(
       <div id="teacher-classes">
-        <BurgerMenu />
+        <BurgerMenu usertype='teacher'/>
         <main id="page-wrap" className="w-75">
           <div id="content">
             <h2>Your Classes</h2>
-            <h4>{ele} {name}</h4>
+            <h4> {name}</h4>
             {this.state.isFormOpen ? <div>{createForm}</div> : <div>{createButton}</div>}
           </div>
         </main>

@@ -41,13 +41,13 @@ Note: Beware of modifying this element as it can break the animations - you shou
 .bm-menu {
     background: #116466;
     padding: 1.5em 0;
-    font-size: 1em;
+    font-size: 1.5em;
     font-family: "Trebuchet MS", Helvetica, sans-serif;
 }
 
 /* Morph shape necessary with bubble or elastic */
 .bm-morph-shape {
-    fill: #d9b08c;
+    fill: #116466;
 }
 
 /* Wrapper for item list */

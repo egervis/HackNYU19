@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import Login from './Login';
 import Registration from './Registration';
 import TeacherClass from './teacher/classes.js'
 import TeacherCalendar from './teacher/calendar.js'
 import logo from './logo.svg';
 import './App.css';
-import StudentHome from './student/home.js';
+import StudentClass from './student/classes.js';
 import TeacherFeedback from './teacher/feedback.js';
 
 class App extends Component {
@@ -37,7 +37,7 @@ class App extends Component {
             <Route path="/registration" component={Registration} />
             <Route path="/teacher/classes" component={TeacherClass} />
             <Route path="/teacher/calendar" component={TeacherCalendar} />
-            <Route path="/student/home" component={StudentHome} />
+            <Route path="/student/classes" component={StudentClass} />
             <Route path="/teacher/feedback" component={TeacherFeedback} />
           </Switch>
       </div>
