@@ -25,7 +25,7 @@ export const request = async (req, res, pool) => {
     if (classids.length > 0) {
       // Get classes
       for (let i = 0; i < classids.length; i++) {
-        query = {
+        let query = {
           text: 'SELECT * FROM classes WHERE classid = $1',
           values: [classids[i]]
         };

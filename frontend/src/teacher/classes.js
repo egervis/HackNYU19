@@ -38,7 +38,7 @@ export const Dashboard = props => {
         <Loader>Loader</Loader>
         :
         classes.map(c =>
-          <div>{c}</div>
+          <div>{c.classname}</div>
         )
       }
     </div>
