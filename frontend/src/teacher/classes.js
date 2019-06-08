@@ -1,120 +1,48 @@
-import React, { Component } from 'react';
-import BurgerMenu from '../components/Burger';
-import { Button, Form } from 'semantic-ui-react';
 import '../styles/teacherClasses.css';
-import { classCreateRequestor, getClassRequestor } from '../requests/requestBuilder'
 
-const fetchClasses = async () => {
-  let classes = getClassRequestor(localStorage.getItem('userid'), localStorage.getItem('usertype'))
-    .then(res => {
-      return res.data;
-    })
-    .catch(err => {
-      console.error(err);
-    });
-  return classes;
+import React, {
+  useState,
+  useEffect
+} from 'react';
+
+import BurgerMenu from '../components/Burger';
+import {
+  classCreateRequestor,
+  getClassRequestor
+} from '../requests/requestBuilder';
+import { Loader } from 'semantic-ui-react';
+
+export const Dashboard = props => {
+  const [isFormOpen, toggleForm] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [classes, setClasses] = useState([]);
+
+  useEffect(() => {
+    setLoading(true);
+    getClassRequestor(localStorage.getItem('userid'))
+      .then(response => {
+        // Sets the state to the data from the classes endpoint (class[])
+        setClasses(response.data);
+        setLoading(false);
+      }).catch(error => {
+        // Error handler
+        setLoading(false);
+        console.error(error);
+      });
+  }, []);
+
+  return(
+    <div>
+      <BurgerMenu />
+      {loading ? 
+        <Loader>Loader</Loader>
+        :
+        classes.map(c =>
+          <div>{c}</div>
+        )
+      }
+    </div>
+  );
 };
 
-class TeacherClass extends Component{
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: '',
-      isFormOpen: false
-    };
-    this.handleNameChange = this.handleNameChange.bind(this);
-    this.handleFormChange = this.handleFormChange.bind(this);
-    this.createClass = this.createClass.bind(this);
-    this.classEntries = this.classEntries.bind(this);
-  }
-
-  handleNameChange(e) {
-    this.setState({
-      name: e.target.value
-    });
-  }
-
-  handleFormChange() {
-    this.setState({
-      isFormOpen: !this.state.isFormOpen
-    });
-  }
-
-  createClass(e) {
-      classCreateRequestor(this.state.name, localStorage.getItem('userid'))
-          .then(response => {
-              console.log(response);
-          })
-          .catch(err => {
-              console.log(err);
-          });
-  }
-
-  async classEntries(classes) {
-    await classes;
-    const list = classes.data.map(c =>
-      <li id={c.classid}>{c.classname}</li>
-    );
-    return (<ul> {list} </ul>);
-  }
-
-  render(){
-    // const classes = fetchClasses().data;
-    // let ele = classes === undefined ? "You currently don't have any classes." : "You have classes.";
-    
-    const name = localStorage.getItem('firstname') + ' ' + localStorage.getItem('lastname');
-  
-    const createForm = (
-      <Form inverted size='big'>
-        <Form.Field>
-          <Form.Input 
-            label='Class Name' 
-            placeholder='Please enter a class name'
-            value={this.state.name}
-            onChange={this.handleNameChange}
-            width={8}/>
-        </Form.Field>
-        <Button
-          inverted
-          size='big'
-          type='submit'
-          onClick={this.createClass}
-        >
-        Submit
-        </Button>
-        <Button
-          id="cancel-btn"
-          inverted
-          size='big'
-          onClick={this.handleFormChange}
-        >
-        Cancel
-        </Button>
-      </Form>
-    );
-
-    const createButton = (
-      <Button
-        inverted
-        size='big'
-        onClick={this.handleFormChange}
-      >
-      Create
-      </Button>
-    )
-
-    return(
-      <div id="teacher-classes">
-        <BurgerMenu usertype='teacher'/>
-        <main id="page-wrap" className="w-75">
-          <div id="content">
-            <h2>Your Classes</h2>
-            <h4> {name}</h4>
-            {this.state.isFormOpen ? <div>{createForm}</div> : <div>{createButton}</div>}
-          </div>
-        </main>
-      </div>
-    );
-  }
-}
-export default TeacherClass;
+export default Dashboard;

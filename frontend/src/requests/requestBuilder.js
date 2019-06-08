@@ -62,15 +62,12 @@ export const feedbackCreateRequestor = async (instructorID, studentID, feedbackT
   }
 };
 
-// Create a class
-// className, instructorID: string
-// Returns a user object, with classCode
-export const getClassRequestor = async (userid, usertype) => {
+// Gets classes. Returns an array of classes.
+export const getClassRequestor = async (userid) => {
   try {
     return axios.get(`${address}:${port}/class/get`, {
       params: {
-        userid: userid,
-        usertype: usertype
+        userid: userid
       }
     });
   } catch (error) {
@@ -93,11 +90,10 @@ export const getUsersRequestor = async (userids) => {
 export const getFeedback = async (userid, usertype) => {
   try {
     return axios.get(`${address}:${port}/feedback/get`, {
-        userid: userid,
-        usertype: usertype
-      }
-    );
-  } catch(error) {
+      userid: userid,
+      usertype: usertype
+    });
+  } catch (error) {
     console.error(error);
   }
 }
