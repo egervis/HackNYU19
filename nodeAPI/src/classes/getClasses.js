@@ -20,7 +20,7 @@ import {
 export const request = async (req, res, pool) => {
   try {
     // Get class ids
-    const classids = getUserClasses(pool, req.query.userid);
+    const classids = await getUserClasses(pool, req.query.userid);
     let response = [];
     if (classids.length > 0) {
       // Get classes

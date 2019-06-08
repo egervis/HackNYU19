@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Login from './Login';
 import Registration from './Registration';
-import TeacherClass from './teacher/classes.js'
+import Dashboard from './teacher/classes.js'
 import TeacherCalendar from './teacher/calendar.js'
 import logo from './logo.svg';
 import './App.css';
@@ -35,7 +35,7 @@ class App extends Component {
           <Switch location={isModal ? this.previousLocation : location}>
             <Route exact path="/" component={Login} />
             <Route path="/registration" component={Registration} />
-            <Route path="/teacher/classes" component={TeacherClass} />
+            <Route path="/dashboard" component={Dashboard} />
             <Route path="/teacher/calendar" component={TeacherCalendar} />
             <Route path="/student/classes" component={StudentClass} />
             <Route path="/teacher/feedback" component={TeacherFeedback} />

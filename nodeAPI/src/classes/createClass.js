@@ -15,15 +15,15 @@ export const request = async (req, res, pool) => {
       let query = {
         text: 'INSERT INTO classes (classID, className, instructorID) VALUES($1, $2, $3)',
         values: [classID, req.body.className, req.body.instructorID]
-        };
-        await pool.query(query);
+      };
+      await pool.query(query);
 
       // Register the class to the instructor
       query = {
         text: 'INSERT INTO usersclasses (userID, classID) VALUES($1, $2)',
         values: [req.body.instructorID, classID]
       };
-        await pool.query(query);
+      await pool.query(query);
 
       // Return the class id
       res.status(200).send(JSON.stringify({
