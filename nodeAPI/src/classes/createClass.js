@@ -10,7 +10,6 @@ import uniqid from 'uniqid';
  */
 export const request = async (req, res, pool) => {
   try {
-    if (true) {
       // Create a class instance
       const classID = uniqid();
       let query = {
@@ -30,9 +29,6 @@ export const request = async (req, res, pool) => {
       res.status(200).send(JSON.stringify({
         classCode: classID
       }));
-    } else {
-      res.status(404);
-    }
   } catch (error) {
     console.error('ERROR creating class', error.stack);
     res.status(500).send({
