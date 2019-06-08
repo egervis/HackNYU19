@@ -42,13 +42,13 @@ class Login extends Component{
           else
             this.props.history.push("/teacher/classes");
           console.log(res.status);
+          this.props.history.push("/teacher/classes");
+          console.log(localStorage);
           return res;
         })
         .catch(err => {
           console.log(err);
         });
-      console.log(localStorage);
-
     }
 
     render(){
