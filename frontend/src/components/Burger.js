@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { bubble as Menu } from 'react-burger-menu';
+import { elastic as Menu } from 'react-burger-menu';
 import '../styles/Burger.css';
 
 class BurgerMenu extends Component {
@@ -32,6 +32,8 @@ class BurgerMenu extends Component {
             return state.isOpen;
         };
 
+        const usertype = this.props.usertype;
+
         return (
             <div id="outer-container">
                 <Menu
@@ -41,9 +43,9 @@ class BurgerMenu extends Component {
                     pageWrapId={"page-wrap"}
                     outerContainerId={"outer-container"}
                 >
-                    <Link to="/teacher/classes" className = "menu-item">Classes</Link>
-                    <Link to="/teacher/calendar" className = "menu-item">Calendar</Link>
-                    <Link to="/teacher/feedback" className = "menu-item">Feedback</Link>
+                    <Link to={'/'+usertype+'/classes'} className = "menu-item">Classes</Link>
+                    <Link to={'/'+usertype+'/calendar'} className = "menu-item">Calendar</Link>
+                    <Link to={'/'+usertype+'/feedback'} className = "menu-item">Feedback</Link>
                     <Link to="/" onClick={this.logout} className = "menu-item">Log out</Link>
                 </Menu>
             </div>
