@@ -12,7 +12,7 @@ parserOptions:
   ecmaFeatures:
     jsx: true
 rules:
-  brace-style: '1tbs'
+  brace-style: 2
   curly: 2
   dot-notation: 2
   id-length: 2
@@ -42,7 +42,7 @@ rules:
   prefer-const: 2
   prefer-promise-reject-errors: 2
   prettier/prettier: 2
-  semi: 'always'
+  semi: 2
   sort-imports: 2
   sort-keys:
     - 2
