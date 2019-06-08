@@ -43,9 +43,13 @@ class TeacherClass extends Component{
   }
 
   createClass(e) {
-    let response = classCreateRequestor(this.state.name, localStorage.getItem('userid'));
-    console.log(response);
-
+      classCreateRequestor(this.state.name, localStorage.getItem('userid'))
+          .then(response => {
+              console.log(response);
+          })
+          .catch(err => {
+              console.log(err);
+          });
   }
 
   async classEntries(classes) {
