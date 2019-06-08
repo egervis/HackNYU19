@@ -3,9 +3,11 @@ env:
   node: true
 plugins:
   - prettier
+  - react
 extends:
   - prettier
   - eslint:recommended
+  - plugin:react/recommended
 parserOptions:
   ecmaVersion: 10
   sourceType: module
@@ -16,13 +18,14 @@ rules:
   curly: 2
   dot-notation: 2
   id-length: 2
+  no-console: 1
   no-const-assign: 2
   no-dupe-class-members: 2
   no-else-return: 2
   no-inner-declarations: 2
   no-lonely-if: 2
   no-magic-numbers:
-    - 2
+    - 1
     - ignore:
         - -1
         - 0
