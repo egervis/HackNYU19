@@ -41,14 +41,13 @@ class Login extends Component{
           localStorage.setItem('firstname', res.data.firstname);
           localStorage.setItem('lastname', res.data.lastname);
           console.log(res.status);
+          this.props.history.push("/teacher/classes");
+          console.log(localStorage);
           return res;
         })
         .catch(err => {
           console.log(err);
         });
-      setTimeout(()=>{this.props.history.push("/teacher/classes");}, 1000);
-      console.log(localStorage);
-
     }
 
     render(){
