@@ -10,7 +10,7 @@ Run `npm install` in the following places:
 
 ## Text editor
 
-### VSCode is recommended with the following extensions:
+### VSCode is recommended with the following extensions
 
 - Prettier (Required)
 - ESLint (Required)
