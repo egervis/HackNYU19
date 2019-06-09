@@ -4,7 +4,7 @@
   "descriptor": "root project",
   "author": "Brian Chiu",
   "devDependencies": {
-    "eslint": "^5.16.0",
+    "eslint": "5.12.0",
     "eslint-config-prettier": "^4.3.0",
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-react": "^7.13.0",
