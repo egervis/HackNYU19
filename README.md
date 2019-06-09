@@ -46,6 +46,12 @@ To clear all database data run `docker volume prune -f`
 
 If something goes wrong with docker, run `docker system prune -f` and `docker-volume prune -f`
 
+To see all running containers and their IDs run `docker ps`
+
+To see all containers and their IDs run `docker ps -a`
+
+To see the logs of a container run `docker logs <containerid>`
+
 ## Reactapp
 
 To run the frontend, go to the `frontend` directory and run `npm start`
