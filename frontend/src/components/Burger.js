@@ -43,7 +43,7 @@ class BurgerMenu extends Component {
                     pageWrapId={"page-wrap"}
                     outerContainerId={"outer-container"}
                 >
-                    <Link to={'/'+usertype+'/classes'} className = "menu-item">Classes</Link>
+                    <Link to={'/dashboard'} className = "menu-item">Classes</Link>
                     <Link to={'/'+usertype+'/calendar'} className = "menu-item">Calendar</Link>
                     <Link to={'/'+usertype+'/feedback'} className = "menu-item">Feedback</Link>
                     <Link to="/" onClick={this.logout} className = "menu-item">Log out</Link>
