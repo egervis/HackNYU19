@@ -81,3 +81,7 @@ Login with:
 2. Port is 5432
 3. Username is `postgres`
 4. Password is `admin`
+
+### Bugs and fixes
+
+If ESLint gives you a problem with something related to `cr`, then change the end of line sequence from `CRLF` to `LF` (Bottom right of VSCode)
