@@ -1,0 +1,29 @@
+# Misc files
+*.md          @bkchiu0 @egervis @TraceyKong @HKenny04
+
+# Javascript files
+*.js *.jsx    @bkchiu0 @egervis @TraceyKong @HKenny04
+
+# JSON files
+*.json        @bkchiu0 @egervis @TraceyKong @HKenny04
+
+# CSS files
+*.css         @TraceyKong @HKenny04
+
+# YAML configuration files
+*.yml         @bkchiu0
+
+# Dockerfiles
+Dockerfile    @bkchiu0
+
+# Node API
+/nodeAPI/     @bkchiu0 @egervis
+
+# Database
+/db/          @bkchiu0 @egervis
+
+# Frontend
+/frontend/    @TraceyKong @HKenny04
+
+# Git configurations
+/.github/     @bkchiu0
