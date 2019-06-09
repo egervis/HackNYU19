@@ -1,23 +1,77 @@
-# Postgres Info
+# Setup
 
-## Local IP Address
+## Installing dependencies
 
-- 192.168.99.100:5432
-- We use the default port **5432**
+Run `npm install` in the following places:
 
-## View Database Via PgAdmin
+- `/frontend`
+- `/nodeAPI`
+- This directory
 
-After running the docker, go to the following address:
-`192.168.99.100:80`
+## Text editor
 
-## Updating the database
+### VSCode is recommended with the following extensions:
 
-1. `docker-compose down`
-2. `docker volume prune -f`
-3. `docker-compose up --build`
+- Prettier (Required)
+- ESLint (Required)
+- Docker (Recommended)
+- GitLens (Recommended)
+- Git History (Recommended)
+- npm (Recommended)
+- npm intellisense (Recommended)
 
-## Frontend
+### Configure Settings
 
-- endpoints to communicate with backend are in server.js
+To enable auto format on save:
 
-- after doing `docker-compose up` go to `192.168.99.100:3000`
+1. Go to file -> preferences -> settings
+2. Go to Text Editor -> formatting
+3. Check format on save
+
+## Docker
+
+Install Docker or Docker Toolbox (If you have windows home edition)
+
+Run `docker-machine start` if you have docker toolbox
+
+To run the backend, run `docker-compose up -d --build`
+
+To run the backend with logs, run `docker-compose up --build`
+
+To run the backend without building a new image run `docker-compose up -d`
+
+To shut down the docker containers that are running, run `docker-compose down`
+
+To clear all database data run `docker volume prune -f`
+
+If something goes wrong with docker, run `docker system prune -f` and `docker-volume prune -f`
+
+## Reactapp
+
+To run the frontend, go to the `frontend` directory and run `npm start`
+
+## IP addresses and ports
+
+- Reactapp frontend: localhost:3000
+- frontend container: 192.168.99.100:3000
+- API Backend: 192.168.99.100:3001
+- Database: 192.168.99.100:5432
+- PG admin: 192.168.99.100:80
+
+## PG admin
+
+Make sure you are running the docker containers.
+
+Go to the pg admin page (192.168.99.100:80)
+
+Login with:
+
+- username: `admin`
+- password: `password`
+
+### To add a server
+
+1. IP address is 192.168.99.100
+2. Port is 5432
+3. Username is `postgres`
+4. Password is `admin`
