@@ -46,7 +46,7 @@ rules:
   prefer-promise-reject-errors: 2
   prettier/prettier: 2
   semi: 2
-  sort-imports: 2
+  sort-imports: 0
   sort-keys:
     - 2
     - asc
