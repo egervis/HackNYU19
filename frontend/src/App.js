@@ -5,14 +5,14 @@ import {Switch, Redirect, Route} from 'react-router-dom';
 
 import Login from './Login';
 import Registration from './Registration';
-import Dashboard from './Dashboard';
+import Dashboard from './dashboard';
 import TeacherCalendar from './teacher/calendar.js';
 import StudentClass from './student/classes.js';
 import TeacherFeedback from './teacher/feedback.js';
 
 const App = props => {
   const handleInvalidURL = () =>
-    localStorage.length === 0 ? (
+    localStorage.getItem('userid') === null ? (
       <Redirect to="/login" />
     ) : (
       <Redirect to="/dashboard" />

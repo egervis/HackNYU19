@@ -15,17 +15,30 @@ export const Dashboard = props => {
   const [loading, setLoading] = useState(false);
   const [classes, setClasses] = useState([]);
 
+  const fetchClasses = () => {
+    getClassRequestor(localStorage.getItem('userid'))
+      .then(response => {
+        // Sets the state to the data from the classes endpoint (class[])
+        setClasses(response.data);
+        setLoading(false);
+      })
+      .catch(error => {
+        // Error handler
+        setLoading(false);
+        console.error(error);
+      });
+  }
+
+  useEffect(() => {
+    setLoading(true);
+    fetchClasses();
+  }, []);
+
   const createClass = () => {
     setLoading(true);
     classCreateRequestor(className, localStorage.getItem('userid'))
       .then(response => {
-        setClasses(
-          classes.push({
-            classid: response.data.classid,
-            classname: className,
-            instructorid: localStorage.getItem('userid'),
-          }),
-        );
+        fetchClasses();
       })
       .catch(error => {
         console.error(error);
@@ -58,20 +71,9 @@ export const Dashboard = props => {
     </Button>
   );
 
-  useEffect(() => {
-    setLoading(true);
-    getClassRequestor(localStorage.getItem('userid'))
-      .then(response => {
-        // Sets the state to the data from the classes endpoint (class[])
-        setClasses(response.data);
-        setLoading(false);
-      })
-      .catch(error => {
-        // Error handler
-        setLoading(false);
-        console.error(error);
-      });
-  }, []);
+  const showCreate = localStorage.getItem('usertype') == 0 ? (
+    isFormOpen ? createForm : createButton
+  ) : '';
 
   return (
     <div>
@@ -79,7 +81,7 @@ export const Dashboard = props => {
       <main id="page-wrap" className="w-75">
         <div id="content">
           <h2>Welcome to your dashboard.</h2>
-          {isFormOpen ? createForm : createButton}
+          {showCreate}
           {loading ? (
             <Loader>Loader</Loader>
           ) : (
