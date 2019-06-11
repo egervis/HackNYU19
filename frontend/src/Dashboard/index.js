@@ -1,18 +1,14 @@
 import '../styles/dashboard.css';
 
-import _ from 'lodash';
 import React, {useEffect, useState} from 'react';
-import {Button, Form, Message, Icon, Segment, Table, Pagination} from 'semantic-ui-react';
+import _ from 'lodash';
+import {Message, Icon, Segment, Table, Pagination} from 'semantic-ui-react';
 
-import {
-  classCreateRequestor,
-  getClassRequestor,
-} from '../requests/requestBuilder';
+import { getClassRequestor } from '../requests/requestBuilder';
 import BurgerMenu from '../components/Burger';
+import CreateClassForm from './CreateClassForm';
 
 export const Dashboard = props => {
-  const [isFormOpen, toggleForm] = useState(false);
-  const [className, setClassName] = useState('');
   const [loading, setLoading] = useState(false);
   const [classes, setClasses] = useState([]);
 
@@ -20,9 +16,6 @@ export const Dashboard = props => {
   const [direction, setDirection] = useState(null);
   const [activePage, changePage] = useState(1);
   const [classesOnPage, setCurrentClasses] = useState([]);
-
-  const [createSuccess, showMessage] = useState(false);
-  const [createFail, showError] = useState(false);
 
   const fetchClasses = () => {
     getClassRequestor(localStorage.getItem('userid'))
@@ -43,55 +36,6 @@ export const Dashboard = props => {
     setLoading(true);
     fetchClasses();
   }, []);
-
-  const createClass = () => {
-    setLoading(true);
-    for(var c in classes){
-      if(classes[c].classname == className){
-        fetchClasses();
-        showError(true);
-        return;
-      }
-    }
-    classCreateRequestor(className, localStorage.getItem('userid'))
-      .then(response => {
-        fetchClasses();
-        showMessage(true);
-        showError(false);
-      })
-      .catch(error => {
-        console.error(error);
-      });
-    toggleForm(false);
-  };
-
-  const createForm = (
-    <Form inverted size="big">
-      <Form.Field>
-        <Form.Input
-          label="Class Name"
-          placeholder="Please enter a class name"
-          onChange={event => setClassName(event.target.value)}
-          width={8}
-        />
-      </Form.Field>
-      <Button inverted size="big" type="submit" onClick={createClass}>
-        Submit
-      </Button>
-      <Button id="cancel-btn" inverted size="big" onClick={() => toggleForm(false)}>
-        Cancel
-      </Button>
-    </Form>
-  );
-
-  const createButton = (
-    <Button inverted size="big" onClick={() => {
-      toggleForm(true);
-      showMessage(false);
-    }}>
-      Create class
-    </Button>
-  );
 
   const handleSort = clickedColumn => () => {
     if(column !== clickedColumn) {
@@ -153,7 +97,12 @@ export const Dashboard = props => {
 
                 <Table.Footer>
                   <Table.Row>
-                    <Table.HeaderCell colSpan='3'>
+                    <Table.HeaderCell>
+                      {localStorage.getItem('usertype') == 0 ? (
+                        <CreateClassForm classes={classes} refreshClasses={fetchClasses}/>
+                      ) : ''}
+                    </Table.HeaderCell>
+                    <Table.HeaderCell>
                     <Pagination
                       activePage={activePage}
                       onPageChange={handlePaginationChange}
@@ -165,25 +114,6 @@ export const Dashboard = props => {
                       inverted
                       floated='right'
                     />
-                    {localStorage.getItem('usertype') == 0 ? (
-                      isFormOpen ? createForm : createButton
-                    ) : ''}
-                    {createFail ? (
-                      <Message
-                        onDismiss={() => showError(false)}
-                        header='Class already exists.'
-                        success
-                        size='big'
-                      />
-                    ): ''}
-                    {createSuccess ? (
-                      <Message
-                        onDismiss={() => showMessage(false)}
-                        header='Success!'
-                        success
-                        size='big'
-                      />
-                    ): ''}
                     </Table.HeaderCell>
                   </Table.Row>
                 </Table.Footer>
