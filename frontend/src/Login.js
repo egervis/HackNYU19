@@ -8,6 +8,7 @@ import { loginRequester } from './requests/requestBuilder';
 export const Login = props => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loginFailed, showError] = useState(false);
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -29,8 +30,18 @@ export const Login = props => {
       })
       .catch(err => {
         console.log(err);
+        showError(true);
       });
   }
+
+  const loginErrorMessage = (
+    <div class="alert alert-danger alert-dismissable fade show" role="alert">
+      Incorrect email or password. Please try again.
+      <button type="button" class="close" onClick={() => showError(false)}  data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  )
 
   return(
     <div className="container">
@@ -39,6 +50,7 @@ export const Login = props => {
           <div className="card card-signin my-5">
             <div className="card-body">
               <h3 className="title text-center">Sign In</h3>
+              {loginFailed ? loginErrorMessage : ''}
               <form className="form-signin">
                 <div className="form-label-group">
                   <input type="email" id="inputEmail" className="form-control" placeholder="Email address" 

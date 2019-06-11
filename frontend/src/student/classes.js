@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import BurgerMenu from '../components/Burger';
 import { Button } from 'semantic-ui-react';
-import '../styles/teacherClasses.css';
+import '../styles/dashboard.css';
 import { getClassRequestor } from '../requests/requestBuilder'
 
 const fetchClasses = async () => {

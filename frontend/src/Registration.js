@@ -11,6 +11,7 @@ export const Registration = props => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [role, setRole] = useState(0);
+  const [regisFailed, showError] = useState(false);
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -34,6 +35,13 @@ export const Registration = props => {
 
   const handleRegister = (e) => {
     e.preventDefault();
+    let data = [lastName, firstName, email, password];
+    for(var d in data){
+      if(data[d].length < 1){
+        showError(true);
+        return;
+      }
+    }
     registerRequester(role, lastName, firstName, email, password)
       .then(response => {
         props.history.push('/');
@@ -43,6 +51,16 @@ export const Registration = props => {
       });
   }
 
+  const invalidFormMessage = (
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <h4 class="alert-heading">Awe hell nah</h4>
+      <p>Please fill out all fields before you submit.</p>
+      <button type="button" class="close" onClick={() => showError(false)} data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  )
+
   return(
     <div className="container">
       <div className="row">
@@ -50,10 +68,11 @@ export const Registration = props => {
           <div className="card card-signin my-5">
             <div className="card-body">
               <h3 className="title text-center">Register an account</h3>
+              {regisFailed ? invalidFormMessage : ''}
               <form className="form-signin">
                 <div className="form-label-group">
                   <input type="text" id="inputFirstname" className="form-control" placeholder="First name" 
-                    value={firstName} onChange={handleFirstNameChange} required />
+                    value={firstName} onChange={handleFirstNameChange} required autoFocus/>
                   <label htmlFor="inputFirstname">First Name</label>
                 </div>
                 <div className="form-label-group">
@@ -63,7 +82,7 @@ export const Registration = props => {
                 </div>
                 <div className="form-label-group">
                   <input type="email" id="inputEmail" className="form-control" placeholder="Email address" 
-                    value={email} onChange={handleEmailChange} required autoFocus />
+                    value={email} onChange={handleEmailChange} required />
                   <label htmlFor="inputEmail">Email address</label>
                 </div>
                 <div className="form-label-group">

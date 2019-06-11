@@ -1,11 +1,10 @@
 import '../styles/Burger.css';
 
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { elastic as Menu } from 'react-burger-menu';
 
 export const BurgerMenu = props => {
-    const [menuOpen, toggleMenu] = useState(false);
 
     const logout = () => {
       localStorage.clear();
@@ -15,7 +14,6 @@ export const BurgerMenu = props => {
         <div id="outer-container">
             <Menu
                 className="menu"
-                isOpen={menuOpen}
                 pageWrapId={"page-wrap"}
                 outerContainerId={"outer-container"}
             >

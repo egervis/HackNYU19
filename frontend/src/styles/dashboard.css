@@ -22,12 +22,20 @@ h2 {
 }
 
 #cancel-btn {
-    color: #d1e8e2;
-    box-shadow: 0 0 0 2px #d1e8e2 inset!important;
+    color: #116466;
+    box-shadow: 0 0 0 2px #116466 inset!important;
 }
 
 #cancel-btn:hover {
-    background: #d1e8e2;
+    background: #116466;
     color: white;
-    box-shadow: 0 0 0 2px #d1e8e2 inset!important;
+    box-shadow: 0 0 0 2px #116466 inset!important;
+}
+
+.ui.inverted.segment {
+    background: #333;
+}
+
+.item {
+    outline: none;
 }
