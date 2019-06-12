@@ -4,6 +4,7 @@ env:
 plugins:
   - prettier
   - react
+  - react-hooks
 extends:
   - prettier
   - eslint:recommended
@@ -47,6 +48,8 @@ rules:
   prettier/prettier:
     - 2
     - endOfLine: auto
+  react-hooks/rules-of-hooks: 2
+  react-hooks/exhaustive-deps: 1
   semi: 2
   sort-imports: 0
   sort-keys:
