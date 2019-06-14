@@ -20,12 +20,12 @@ import {
 export const request = async (req, res, pool) => {
   try {
     // Get class ids
-    const classids = getUserClasses(pool, req.query.userid);
+    const classids = await getUserClasses(pool, req.query.userid);
     let response = [];
     if (classids.length > 0) {
       // Get classes
       for (let i = 0; i < classids.length; i++) {
-        query = {
+        let query = {
           text: 'SELECT * FROM classes WHERE classid = $1',
           values: [classids[i]]
         };

@@ -1,114 +1,78 @@
-.burger-bar{
-  text-align: center;
-  font-size: 50px;
-  background: #373a47;
-}
-
-.burger-bar h1{
-  margin: 30px;
-}
-
+/* Position and sizing of burger button */
 .bm-burger-button {
     position: fixed;
-    /* width: 36px;
-    height: 30px; */
-    width: 30px;
-    height: 25px;
-    /* left: 36px;
-    top: 36px; */
-    left: 2%;
-    top: 3%;
+    width: 36px;
+    height: 30px;
+    left: 36px;
+    top: 36px;
 }
 
-@media (max-width: 48em){
-    .bm-burger-button {
-        width: 18px;
-        height: 15px;
-    }
-}
-
+/* Color/shape of burger icon bars */
 .bm-burger-bars {
-    background: white;
+    background: #116466;
 }
 
+/* Color/shape of burger icon bars on hover*/
+.bm-burger-bars-hover {
+    background: #116466;
+}
+
+/* Position and sizing of clickable cross button */
 .bm-cross-button {
     height: 24px;
     width: 24px;
 }
 
+/* Color/shape of close button cross */
 .bm-cross {
-    background: #bdc3c7;
+    background: #d1e8e2;
 }
 
-.menu{
-    width: 250px !important;
+/*
+Sidebar wrapper styles
+Note: Beware of modifying this element as it can break the animations - you should not need to touch it in most cases
+*/
+.bm-menu-wrap {
+    position: fixed;
+    height: 100%;
 }
 
 /* General sidebar styles */
 .bm-menu {
-    background: #373a47;
-    /* padding: 2.5em 1.5em 0; */
-    font-size: 1.15em;
-    overflow-y: hidden !important;
-    overflow-x: hidden !important;
+    background: #116466;
+    padding: 1.5em 0;
+    font-size: 1.5em;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
 }
 
 /* Morph shape necessary with bubble or elastic */
 .bm-morph-shape {
-    fill: #373a47;
+    fill: #116466;
+}
+
+/* Wrapper for item list */
+.bm-item-list {
+    color: #d1e8e2;
+    width: 300px;
+    padding-top: 0.5em;
+}
+
+/* Individual item */
+.bm-item {
+    color: #d1e8e2;
+    display: inline-block;
+    outline: none;
+    padding: 0.7em 3em;
+}
+
+.bm-item:hover {
+    color: #333;
+    background-color: #d9b08c;
+    border-radius: 2px;
+    text-decoration: none;
 }
 
 /* Styling of overlay */
 .bm-overlay {
     background: rgba(0, 0, 0, 0.3);
-}
-
-.menu {
-    color: white;
-    text-align: center;
-}
-
-.menu-item {
-    font-size: 28px;
-    color: white;
-}
-
-.fa-fw{
-    width: 1.2em;
-    text-align: center;
-}
-
-.fa {
-    display: inline-block;
-    font: normal normal normal 14px/1 FontAwesome;
-    font-size: inherit;
-    text-rendering: auto;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-.menu h1 {
-    text-align: center;
-}
-
-/* #weather {
-    border-top: 1px solid #313131;
-}
-#statistics {
-    border-bottom: 1px solid #313131;
-} */
-
-.btn2 {
-    color: #313131;
-    background-color: white;
-    width: 100%;
-    border: none;
-    /* padding: 0.8em; */
-    text-align: left;
-    font-size: 14px;
-    padding: 1em 1.5em 0;
-    font-size: 1.15em;
-}
-
-.btn2:hover {
-    color: #0c55f4;
 }

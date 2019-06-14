@@ -1,109 +1,111 @@
-import React, { Component } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import './styles/main.css';
 
-import { loginRequester, registerRequester } from './requests/requestBuilder';
-import './styles/Registration.css';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
-class Registration extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      email:'',
-      firstName:'',
-      lastName:'',
-      password:'',
-      role:'0'
+import { registerRequester } from './requests/requestBuilder';
+
+export const Registration = props => {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [role, setRole] = useState(0);
+  const [regisFailed, showError] = useState(false);
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  }
+
+  const handleLastNameChange = (e) => {
+    setLastName(e.target.value);
+  }
+
+  const handleFirstNameChange = (e) => {
+    setFirstName(e.target.value);
+  }
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  }
+
+  const handleRole = (e) => {
+    setRole(e.target.value);
+  }
+
+  const handleRegister = (e) => {
+    e.preventDefault();
+    let data = [lastName, firstName, email, password];
+    for(var d in data){
+      if(data[d].length < 1){
+        showError(true);
+        return;
+      }
     }
-    console.log(this);
-
-    this.handleEmailChange = this.handleEmailChange.bind(this);
-    this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
-    this.handleLastNameChange = this.handleLastNameChange.bind(this);
-    this.handlePasswordChange = this.handlePasswordChange.bind(this);
-    this.handleRole = this.handleRole.bind(this);
-    this.handleRegister =this.handleRegister.bind(this);
-  }
-
-  handleEmailChange(e){
-    this.setState({email: e.target.value});
-  }
-
-  handleLastNameChange(e){
-    this.setState({lastName: e.target.value});
-  }
-
-  handleFirstNameChange(e){
-    this.setState({firstName: e.target.value});
-  }
-
-  handlePasswordChange(e){
-    this.setState({password: e.target.value});
-  }
-
-  handleRole(e){
-    console.log(e.target.value);
-    this.setState({role: e.target.value});
-  }
-
-  handleRegister(e){
-    console.log("Email: " + this.state.email);
-    console.log("First name: " + this.state.firstName);
-    console.log("Last name: " + this.state.lastName);
-    console.log("Password: " + this.state.password);
-    console.log("Status" + this.state.role);
-
-    let user = registerRequester(this.state.role, this.state.lastName, this.state.firstName, this.state.email, this.state.password)
+    registerRequester(role, lastName, firstName, email, password)
       .then(response => {
-        console.log(response);
-        this.props.history.push('/');
+        props.history.push('/');
       })
       .catch(err => {
         console.log(err);
       });
   }
 
-  render(){
-    return(
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-            <div class="card card-signin my-5">
-              <div class="card-body">
-                <h3 class="title text-center">Register an account</h3>
-                <form class="form-signin">
-                  <div class="form-label-group">
-                    <input type="text" id="inputFirstname" class="form-control" placeholder="First name" required />
-                    <label for="inputFirstname">First Name</label>
-                  </div>
-                  <div class="form-label-group">
-                    <input type="text" id="inputLastname" class="form-control" placeholder="Last name" required />
-                    <label for="inputLastname">Last name</label>
-                  </div>
-                  <div class="form-label-group">
-                    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus />
-                    <label for="inputEmail">Email address</label>
-                  </div>
-                  <div class="form-label-group">
-                    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required />
-                    <label for="inputPassword">Password</label>
-                  </div>
-                  <div class="form-group">
-                    <select class="form-control">
-                      <option value="0">I'm a student</option>
-                      <option value="1">I'm an instructor</option>
-                    </select>
-                  </div>
-                  <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign up</button>
-                  <hr class="my-4" />
-                </form>
-                <Link id="signin" to="/"><button class="btn btn-lg btn-success btn-block text-uppercase" >Sign in</button></Link>
-              </div>
+  const invalidFormMessage = (
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <h4 class="alert-heading">Awe hell nah</h4>
+      <p>Please fill out all fields before you submit.</p>
+      <button type="button" class="close" onClick={() => showError(false)} data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  )
+
+  return(
+    <div className="container">
+      <div className="row">
+        <div className="col-sm-9 col-md-7 col-lg-5 mx-auto">
+          <div className="card card-signin my-5">
+            <div className="card-body">
+              <h3 className="title text-center">Register an account</h3>
+              {regisFailed ? invalidFormMessage : ''}
+              <form className="form-signin">
+                <div className="form-label-group">
+                  <input type="text" id="inputFirstname" className="form-control" placeholder="First name" 
+                    value={firstName} onChange={handleFirstNameChange} required autoFocus/>
+                  <label htmlFor="inputFirstname">First Name</label>
+                </div>
+                <div className="form-label-group">
+                  <input type="text" id="inputLastname" className="form-control" placeholder="Last name" 
+                    value={lastName} onChange={handleLastNameChange} required />
+                  <label htmlFor="inputLastname">Last name</label>
+                </div>
+                <div className="form-label-group">
+                  <input type="email" id="inputEmail" className="form-control" placeholder="Email address" 
+                    value={email} onChange={handleEmailChange} required />
+                  <label htmlFor="inputEmail">Email address</label>
+                </div>
+                <div className="form-label-group">
+                  <input type="password" id="inputPassword" className="form-control" placeholder="Password" 
+                    value={password} onChange={handlePasswordChange} required />
+                  <label htmlFor="inputPassword">Password</label>
+                </div>
+                <div className="form-group">
+                  <select defaultValue='0' className="form-control" onChange={handleRole}>
+                    <option value="0">I'm an instructor</option>
+                    <option value="1">I'm a student</option>
+                  </select>
+                </div>
+                <button className="btn btn-lg btn-primary btn-block text-uppercase" type="submit" onClick={handleRegister}>Sign up</button>
+                <hr className="my-4" />
+              </form>
+              <Link id="signin" to="/"><button className="btn btn-lg btn-success btn-block text-uppercase" >Sign in</button></Link>
             </div>
           </div>
         </div>
       </div>
-    )
-  }
-}
+    </div>
+  );
+};
 
 export default Registration;

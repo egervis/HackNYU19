@@ -10,7 +10,6 @@ import uniqid from 'uniqid';
  */
 export const request = async (req, res, pool) => {
   try {
-    if (classes.rows.length > 0) {
       // Create a class instance
       const classID = uniqid();
       let query = {
@@ -21,7 +20,7 @@ export const request = async (req, res, pool) => {
 
       // Register the class to the instructor
       query = {
-        text: 'INSERT INTO userclasses (userID, classID) VALUES($1, $2)',
+        text: 'INSERT INTO usersclasses (userID, classID) VALUES($1, $2)',
         values: [req.body.instructorID, classID]
       };
       await pool.query(query);
@@ -30,9 +29,6 @@ export const request = async (req, res, pool) => {
       res.status(200).send(JSON.stringify({
         classCode: classID
       }));
-    } else {
-      res.status(404);
-    }
   } catch (error) {
     console.error('ERROR creating class', error.stack);
     res.status(500).send({
