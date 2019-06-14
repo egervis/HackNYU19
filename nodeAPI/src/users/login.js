@@ -1,14 +1,7 @@
-"use strict";
-import {
-  User
-} from '../models/prototypes';
-import {
-  Error
-} from '../models/internal/errors';
-import {
-  getUserClasses,
-  getUserEvents
-} from './internal/fetchIDs';
+'use strict';
+import {User} from '../models/prototypes';
+import {Error} from '../models/internal/errors';
+import {getUserClasses, getUserEvents} from './internal/fetchIDs';
 
 /**
  * Verifies the users credentials and logs them in.
@@ -20,13 +13,13 @@ import {
 export const request = async (req, res, pool) => {
   try {
     // Setup
-    let query = {
+    const query = {
       text: 'SELECT * FROM users WHERE email = $1 AND userpassword = $2',
-      values: [req.body.email, req.body.userPassword]
+      values: [req.body.email, req.body.userPassword],
     };
 
     // Get
-    let user = await pool.query(query);
+    const user = await pool.query(query);
 
     // Check validity
     if (user.rows.length == 0) {
@@ -46,13 +39,13 @@ export const request = async (req, res, pool) => {
       currentUser.email,
       currentUserClasses,
       currentUser.userpassword,
-      currentUserEvents
+      currentUserEvents,
     );
     res.status(200).send(JSON.stringify(response));
   } catch (error) {
     console.error('ERROR logging in user', error.stack);
     res.status(error.status || 500).send({
-      error: error.stack
+      error: error.stack,
     });
   }
 };

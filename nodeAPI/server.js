@@ -1,9 +1,7 @@
-"use strict";
+'use strict';
 
 // Import statements
-import {
-  endpoints
-} from './src';
+import {endpoints} from './src';
 import express from 'express';
 import postgres from 'pg';
 import cors from 'cors';
@@ -11,13 +9,13 @@ import bodyParser from 'body-parser';
 
 const app = express();
 const port = 3001;
-const Pool = postgres.Pool
+const Pool = postgres.Pool;
 const pool = new Pool({
   user: 'postgres',
   host: '192.168.99.100',
   password: 'admin',
   port: '5432',
-  database: 'postgres'
+  database: 'postgres',
 });
 
 // Enable CORS
@@ -97,4 +95,6 @@ app.post('feedback/create', async (req, res) => {
   await endpoints.feedback.createFeedback(req, res, pool);
 });
 
-app.listen(port, () => console.log(`Node is now listening on 192.168.99.100:${port}`));
+app.listen(port, () =>
+  console.log(`Node is now listening on 192.168.99.100:${port}`),
+);

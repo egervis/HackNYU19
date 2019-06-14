@@ -1,8 +1,6 @@
-"use strict";
+'use strict';
 import uniqid from 'uniqid';
-import {
-  Error
-} from '../models/internal/errors'
+import {Error} from '../models/internal/errors';
 
 /**
  * Creates a new user in the database.
@@ -16,9 +14,9 @@ export const request = async (req, res, pool) => {
     // Get the user by email and password
     let query = {
       text: 'SELECT * FROM users WHERE email = $1',
-      values: [req.body.email]
+      values: [req.body.email],
     };
-    let user = await pool.query(query);
+    const user = await pool.query(query);
 
     // Validate email uniqueness
     if (user.rows.length > 0) {
@@ -33,15 +31,23 @@ export const request = async (req, res, pool) => {
     // Create new user in the database
     const userID = uniqid();
     query = {
-      text: 'INSERT INTO users (userID, userType, lastName, firstName, email, userPassword) VALUES($1, $2, $3, $4, $5, $6)',
-      values: [userID, req.body.userType, req.body.lastName, req.body.firstName, req.body.email, req.body.userPassword]
+      text:
+        'INSERT INTO users (userID, userType, lastName, firstName, email, userPassword) VALUES($1, $2, $3, $4, $5, $6)',
+      values: [
+        userID,
+        req.body.userType,
+        req.body.lastName,
+        req.body.firstName,
+        req.body.email,
+        req.body.userPassword,
+      ],
     };
     await pool.query(query);
     res.status(201).send();
   } catch (error) {
     console.error('ERROR creating user', error.stack);
     res.status(error.status || 500).send({
-      error: error.stack
+      error: error.stack,
     });
   }
-}
+};

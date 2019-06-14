@@ -1,11 +1,14 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import BurgerMenu from '../components/Burger';
-import { Button } from 'semantic-ui-react';
+import {Button} from 'semantic-ui-react';
 import '../styles/dashboard.css';
-import { getClassRequestor } from '../requests/requestBuilder'
+import {getClassRequestor} from '../requests/requestBuilder';
 
 const fetchClasses = async () => {
-  let classes = getClassRequestor(localStorage.getItem('userid'), localStorage.getItem('usertype'))
+  const classes = getClassRequestor(
+    localStorage.getItem('userid'),
+    localStorage.getItem('usertype'),
+  )
     .then(res => {
       return res.data;
     })
@@ -15,33 +18,34 @@ const fetchClasses = async () => {
   return classes;
 };
 
-class StudentClass extends Component{
+class StudentClass extends Component {
   constructor(props) {
     super(props);
     this.state = {
       name: '',
-      isFormOpen: false
+      isFormOpen: false,
     };
     this.classEntries = this.classEntries.bind(this);
   }
 
   async classEntries(classes) {
     await classes;
-    const list = classes.data.map(c =>
-      <li id={c.classid}>{c.classname}</li>
-    );
-    return (<ul> {list} </ul>);
+    const list = classes.data.map(c => <li id={c.classid}>{c.classname}</li>);
+    return <ul> {list} </ul>;
   }
 
-  render(){
+  render() {
     // const classes = fetchClasses().data;
     // let ele = classes === undefined ? "You currently don't have any classes." : "You have classes.";
-    
-    const name = localStorage.getItem('firstname') + ' ' + localStorage.getItem('lastname');
 
-    return(
+    const name =
+      localStorage.getItem('firstname') +
+      ' ' +
+      localStorage.getItem('lastname');
+
+    return (
       <div id="teacher-classes">
-        <BurgerMenu usertype='student'/>
+        <BurgerMenu usertype="student" />
         <main id="page-wrap" className="w-75">
           <div id="content">
             <h2>Your Classes</h2>

@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 import uniqid from 'uniqid';
 
 /**
@@ -10,29 +10,32 @@ import uniqid from 'uniqid';
  */
 export const request = async (req, res, pool) => {
   try {
-      // Create a class instance
-      const classID = uniqid();
-      let query = {
-        text: 'INSERT INTO classes (classID, className, instructorID) VALUES($1, $2, $3)',
-        values: [classID, req.body.className, req.body.instructorID]
-      };
-      await pool.query(query);
+    // Create a class instance
+    const classID = uniqid();
+    let query = {
+      text:
+        'INSERT INTO classes (classID, className, instructorID) VALUES($1, $2, $3)',
+      values: [classID, req.body.className, req.body.instructorID],
+    };
+    await pool.query(query);
 
-      // Register the class to the instructor
-      query = {
-        text: 'INSERT INTO usersclasses (userID, classID) VALUES($1, $2)',
-        values: [req.body.instructorID, classID]
-      };
-      await pool.query(query);
+    // Register the class to the instructor
+    query = {
+      text: 'INSERT INTO usersclasses (userID, classID) VALUES($1, $2)',
+      values: [req.body.instructorID, classID],
+    };
+    await pool.query(query);
 
-      // Return the class id
-      res.status(200).send(JSON.stringify({
-        classCode: classID
-      }));
+    // Return the class id
+    res.status(200).send(
+      JSON.stringify({
+        classCode: classID,
+      }),
+    );
   } catch (error) {
     console.error('ERROR creating class', error.stack);
     res.status(500).send({
-      'error': error.stack
+      error: error.stack,
     });
   }
 };

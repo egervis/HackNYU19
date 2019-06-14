@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 import * as createClass from './classes/createClass';
 import * as deleteClass from './classes/deleteClass';
@@ -19,24 +19,24 @@ export const endpoints = {
   classes: {
     createClass: createClass.request,
     getClasses: getClasses.request,
-    deleteClass: deleteClass.request
+    deleteClass: deleteClass.request,
   },
   events: {
     eventUpdate: eventUpdate.request,
-    getEvents: getEvents.request
+    getEvents: getEvents.request,
   },
   feedback: {
     createFeedback: createFeedback,
-    getFeedback: getFeedback
+    getFeedback: getFeedback,
   },
   lessons: {
     createLesson: createLesson.request,
     getLesson: getLesson.request,
-    getLessons: getLessons.request
+    getLessons: getLessons.request,
   },
   users: {
     getUsers: getUsers.request,
     login: login.request,
-    register: register.request
-  }
+    register: register.request,
+  },
 };

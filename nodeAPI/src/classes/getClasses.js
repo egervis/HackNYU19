@@ -1,14 +1,7 @@
-"use strict";
-import {
-  Class
-} from '../models/prototypes';
-import {
-  getUserClasses
-} from '../users/internal/fetchIDs';
-import {
-  getClassLessons,
-  getClassStudents
-} from './internal/fetchIDs';
+'use strict';
+import {Class} from '../models/prototypes';
+import {getUserClasses} from '../users/internal/fetchIDs';
+import {getClassLessons, getClassStudents} from './internal/fetchIDs';
 
 /**
  * Gets classes based on userid.
@@ -21,13 +14,13 @@ export const request = async (req, res, pool) => {
   try {
     // Get class ids
     const classids = await getUserClasses(pool, req.query.userid);
-    let response = [];
+    const response = [];
     if (classids.length > 0) {
       // Get classes
       for (let i = 0; i < classids.length; i++) {
-        let query = {
+        const query = {
           text: 'SELECT * FROM classes WHERE classid = $1',
-          values: [classids[i]]
+          values: [classids[i]],
         };
         const result = await pool.query(query);
         const classEntry = result.rows[0];
@@ -35,7 +28,13 @@ export const request = async (req, res, pool) => {
         const lessons = await getClassLessons(pool, classids[i]);
         const students = await getClassStudents(pool, classids[i]);
         // Push new class to response array
-        const classesPrototype = new Class(classEntry.classid, classEntry.classname, lessons, students, classEntry.instructorid);
+        const classesPrototype = new Class(
+          classEntry.classid,
+          classEntry.classname,
+          lessons,
+          students,
+          classEntry.instructorid,
+        );
         response.push(classesPrototype);
       }
 
@@ -51,7 +50,7 @@ export const request = async (req, res, pool) => {
   } catch (error) {
     console.error('ERROR getting classes', error.stack);
     res.status(500).send({
-      'error': error.stack
+      error: error.stack,
     });
   }
-}
+};

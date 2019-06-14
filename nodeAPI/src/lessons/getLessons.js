@@ -1,10 +1,6 @@
-"use strict";
-import {
-  Lesson
-} from '../models/prototypes';
-import {
-  getLessonPictures
-} from './internal/fetchIDs';
+'use strict';
+import {Lesson} from '../models/prototypes';
+import {getLessonPictures} from './internal/fetchIDs';
 
 /**
  * Gets lessons given a class id.
@@ -18,21 +14,27 @@ export const request = async (req, res, pool) => {
     // Get the lessons from class ids
     const query = {
       text: 'SELECT lessonids FROM classlessons WHERE classid = $1',
-      values: [req.query.classid]
+      values: [req.query.classid],
     };
     let result = await pool.query(query);
-    let response = [];
+    const response = [];
     if (result.rows.length > 0) {
-      let lessonids = lessons.rows.map(lesson => lesson.lessonid);
+      const lessonids = lessons.rows.map(lesson => lesson.lessonid);
       for (let i = 0; i < lessonids.length; i++) {
         const query2 = {
           text: 'SELECT * FROM lessons WHERE lessonid = $1',
-          values: [lessonids[i]]
+          values: [lessonids[i]],
         };
         result = await pool.query(query2);
         const lessonEntry = result.rows[0];
         const pictureids = getLessonPictures(pool, lessonids[i]);
-        const lessonsPrototype = new Lesson(lessonEntry.lessonid, lessonEntry.lessonname, lessonEntry.lessondescription, pictureids, lessonEntry.instructorid);
+        const lessonsPrototype = new Lesson(
+          lessonEntry.lessonid,
+          lessonEntry.lessonname,
+          lessonEntry.lessondescription,
+          pictureids,
+          lessonEntry.instructorid,
+        );
         response.push(lessonsPrototype);
       }
       res.status(200);
@@ -43,7 +45,7 @@ export const request = async (req, res, pool) => {
   } catch (error) {
     console.error('ERROR getting lessons', error.stack);
     res.status(500).send({
-      'error': error.stack
+      error: error.stack,
     });
   }
 };

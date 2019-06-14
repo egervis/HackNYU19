@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "descriptor": "root project",
   "author": "Brian Chiu",
+  "scripts": {
+    "format-project": "prettier --write \"**/*.{js,json,css,yml,md}\""
+  },
   "devDependencies": {
     "eslint": "5.12.0",
     "eslint-config-prettier": "^4.3.0",
@@ -13,20 +16,5 @@
     "lint-staged": "^8.2.0",
     "prettier": "^1.18.2",
     "react": "^16.8.6"
-  },
-  "lint-staged": {
-    "*.{js,jsx}": [
-      "eslint --fix",
-      "git add"
-    ],
-    "*.{json,md,css,yml,sql}": [
-      "prettier --write",
-      "git add"
-    ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   }
 }

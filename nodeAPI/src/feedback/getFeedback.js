@@ -1,46 +1,44 @@
-"use strict";
-import {
-  Feedback
-} from '../models/prototypes';
+'use strict';
+import {Feedback} from '../models/prototypes';
 
 /**
  * Gets feedback given user id.
  * @param {Request} req query: { userid: string }
- * @param {Response} res 
- * @param {postgres.Pool} pool 
+ * @param {Response} res
+ * @param {postgres.Pool} pool
  * @returns {Promise} status: 200, 404, 500 & Feedback[]
  */
 export const request = async (req, res, pool) => {
   try {
     // Get the user by their ID
-    let userType = req.query.usertype;
-    let user = req.query.userid;
+    const userType = req.query.usertype;
+    const user = req.query.userid;
     let query;
     if (userType == 0) {
       query = {
         text: 'SELECT * FROM feedback WHERE instructorid = $1',
-        values: [user]
+        values: [user],
       };
     } else {
       query = {
         text: 'SELECT * FROM feedback WHERE studentid = $1',
-        values: [user]
+        values: [user],
       };
     }
-    let feedback = await pool.query(query);
+    const feedback = await pool.query(query);
     let response;
     if (feedback.rows.length > 0) {
       res.status(200);
-      let feedbackRows = feedback.rows;
+      const feedbackRows = feedback.rows;
 
-      let array = [];
+      const array = [];
       for (let i = 0; i < feedbackRows.length; i++) {
-        let feedbackPrototype = new Feedback(
+        const feedbackPrototype = new Feedback(
           feedbackRows[i].feedbackid,
           feedbackRows[i].instructorid,
           feedbackRows[i].studentid,
           feedbackRows[i].classid,
-          feedbackRows[i].feedbackText
+          feedbackRows[i].feedbackText,
         );
         array.push(feedbackPrototype);
       }
@@ -54,7 +52,7 @@ export const request = async (req, res, pool) => {
   } catch (error) {
     console.error('ERROR getting classes', error.stack);
     res.status(500).send({
-      'error': error.stack
+      error: error.stack,
     });
   }
-}
+};

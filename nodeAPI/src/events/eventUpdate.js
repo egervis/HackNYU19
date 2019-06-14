@@ -1,10 +1,6 @@
-"use strict";
-import {
-  ClassEvent
-} from '../models/prototypes';
-import {
-  deleteEvents
-} from './internal/delete'
+'use strict';
+import {ClassEvent} from '../models/prototypes';
+import {deleteEvents} from './internal/delete';
 /**
  * Deletes events that are past expiration dates.
  * @param {Request} req
@@ -14,19 +10,27 @@ import {
  */
 export const request = async (req, res, pool) => {
   try {
-    let query = {
-      text: 'SELECT * FROM events'
+    const query = {
+      text: 'SELECT * FROM events',
     };
-    let events = await pool.query(query);
+    const events = await pool.query(query);
     if (events.rows.length > 0) {
       res.status(200);
-      let eventRows = events.rows;
-      let array = [];
+      const eventRows = events.rows;
+      const array = [];
       for (let i = 0; i < eventRows.length; i++) {
-        currentEvent = ClassEvent(eventRows[i].eventid, '', '', eventRows[i].dateexpires, '');
-        let mydate = new Date(currentEvent.dateexpires);
-        let currentDate = new Date();
-        let newDate = new Date(mydate.setTime(mydate.getTime() + 1 * 86400000));
+        currentEvent = ClassEvent(
+          eventRows[i].eventid,
+          '',
+          '',
+          eventRows[i].dateexpires,
+          '',
+        );
+        const mydate = new Date(currentEvent.dateexpires);
+        const currentDate = new Date();
+        const newDate = new Date(
+          mydate.setTime(mydate.getTime() + 1 * 86400000),
+        );
         if (currentDate < newDate) {
           array.push(currentEvent);
         }
@@ -40,7 +44,7 @@ export const request = async (req, res, pool) => {
   } catch (error) {
     console.error('ERROR getting user', error.stack);
     res.status(500).send({
-      'error': error.stack
+      error: error.stack,
     });
   }
-}
+};

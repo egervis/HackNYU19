@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
-import ReactDOM from "react-dom";
+import React, {Component} from 'react';
+import ReactDOM from 'react-dom';
 import Burger from '../components/Burger';
 import '../styles/Burger.css';
 import {getLessons, getUsers} from '../requests/requestBuilder';
 
-class currentClass extends Component{
+class currentClass extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      myClass: this.prop,    //TRACEY
+      myClass: this.prop, //TRACEY
       lessonIds: '',
-      studentIds: ''
+      studentIds: '',
     };
     console.log(this);
 
@@ -22,29 +22,34 @@ class currentClass extends Component{
     this.openStudent = this.openStudent.bind(this);
   }
 
-  fetchLessons(){
+  fetchLessons() {
     this.lessonIds = this.prop.lessonids;
-    let lessons = getLessons(this.lessonIds);
+    const lessons = getLessons(this.lessonIds);
     return lessons;
   }
 
-  fetchtudents(){
+  fetchtudents() {
     this.studentIds = this.prop.studentids;
-    let students = getUsers(this.studentIds);
+    const students = getUsers(this.studentIds);
     return students;
   }
-  openLesson(id){
+  openLesson(id) {
     //localstore id, move to next page which is lesson
   }
-  openStudent(id){
+  openStudent(id) {
     //localstore id, move to next page which is lesson
   }
 
   lessonsLoop() {
     const arr = this.fetchLessons();
     let lessons = '';
-    for(let i=0; i<arr.length; i++){
-      lessons+='<div class="mx-auto w-75 bg-dark my-5 px-5 py-5" onClick=openLesson("'+arr[i].lessonid+'")>'+arr[i].lessonname+'</div>';
+    for (let i = 0; i < arr.length; i++) {
+      lessons +=
+        '<div class="mx-auto w-75 bg-dark my-5 px-5 py-5" onClick=openLesson("' +
+        arr[i].lessonid +
+        '")>' +
+        arr[i].lessonname +
+        '</div>';
     }
     return lessons;
   }
@@ -52,23 +57,29 @@ class currentClass extends Component{
   studentsLoop() {
     const arr = this.fetchStudents();
     let students = '';
-    for(let i=0; i<arr.length; i++){
-      students+='<div class="mx-auto w-75 bg-dark my-5 px-5 py-5" onClick=openStudent("'+arr[i].studentid+'")>'+arr[i].firstname+arr[i].lastname+'</div>';
+    for (let i = 0; i < arr.length; i++) {
+      students +=
+        '<div class="mx-auto w-75 bg-dark my-5 px-5 py-5" onClick=openStudent("' +
+        arr[i].studentid +
+        '")>' +
+        arr[i].firstname +
+        arr[i].lastname +
+        '</div>';
     }
     return students;
   }
 
-  render(){
-    let temp = <></>
-    temp = (
-        this.lessonsLoop()
-    )
-    return(
+  render() {
+    let temp = <></>;
+    temp = this.lessonsLoop();
+    return (
       <div>
-        <div className="burger-bar"><Burger /></div>
-        <div class="mx-auto w-75 bg-dark my-5 px-5 py-5">
+        <div className="burger-bar">
+          <Burger />
+        </div>
+        <div className="mx-auto w-75 bg-dark my-5 px-5 py-5">
           <div>
-            <h3 class="pb-3">Current Class</h3>
+            <h3 className="pb-3">Current Class</h3>
           </div>
         </div>
       </div>

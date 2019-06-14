@@ -1,41 +1,41 @@
 #page-wrap {
-    margin: auto;
+  margin: auto;
 }
 
 #content {
-    padding-top: 32px;
+  padding-top: 32px;
 }
 
 h2 {
-    font-size: 2em;
+  font-size: 2em;
 }
 
 .ui.inverted.button {
-    color: #d9b08c;
-    box-shadow: 0 0 0 2px #d9b08c inset!important;
+  color: #d9b08c;
+  box-shadow: 0 0 0 2px #d9b08c inset !important;
 }
 
 .ui.inverted.button:hover {
-    background: #d9b08c;
-    color: white;
-    box-shadow: 0 0 0 2px #d9b08c inset!important;
+  background: #d9b08c;
+  color: white;
+  box-shadow: 0 0 0 2px #d9b08c inset !important;
 }
 
 #cancel-btn {
-    color: #116466;
-    box-shadow: 0 0 0 2px #116466 inset!important;
+  color: #116466;
+  box-shadow: 0 0 0 2px #116466 inset !important;
 }
 
 #cancel-btn:hover {
-    background: #116466;
-    color: white;
-    box-shadow: 0 0 0 2px #116466 inset!important;
+  background: #116466;
+  color: white;
+  box-shadow: 0 0 0 2px #116466 inset !important;
 }
 
 .ui.inverted.segment {
-    background: #333;
+  background: #333;
 }
 
 .item {
-    outline: none;
+  outline: none;
 }

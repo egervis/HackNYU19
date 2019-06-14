@@ -1,14 +1,7 @@
-"use strict";
-import {
-  deleteLessons
-} from '../lessons/internal/delete';
-import {
-  deleteEvents
-} from '../events/internal/delete';
-import {
-  getClassLessons,
-  getClassStudents
-} from './internal/fetchIDs';
+'use strict';
+import {deleteLessons} from '../lessons/internal/delete';
+import {deleteEvents} from '../events/internal/delete';
+import {getClassLessons, getClassStudents} from './internal/fetchIDs';
 
 /**
  * Deletes classes and all that relates to the class based on classid.
@@ -22,7 +15,7 @@ export const request = async (req, res, pool) => {
     const classID = req.query.classid;
     let query = {
       text: 'SELECT * FROM classes WHERE classid = $1',
-      values: [classID]
+      values: [classID],
     };
     let response = await pool.query(query);
 
@@ -35,7 +28,7 @@ export const request = async (req, res, pool) => {
       // Delete lesson association with this class
       query = {
         text: 'DELETE FROM classlessons WHERE classid = $1',
-        values: [classID]
+        values: [classID],
       };
       await pool.query(query);
       await deleteLessons(pool, lessonIDs);
@@ -43,21 +36,21 @@ export const request = async (req, res, pool) => {
       // Delete student association with this class
       query = {
         text: 'DELETE FROM classstudents WHERE classid = $1',
-        values: [classID]
+        values: [classID],
       };
       await pool.query(query);
 
       // Delete user association with this class
       query = {
         text: 'DELETE FROM userclasses WHERE classid = $1',
-        values: [classID]
-      }
+        values: [classID],
+      };
       await pool.query(query);
 
       // Delete events that are associated with this class
       query = {
         text: 'SELECT eventid FROM events WHERE classid = $1',
-        values: [classID]
+        values: [classID],
       };
       response = await pool.query(query);
       const eventids = response.rows.map(entry => entry.eventid);
@@ -66,14 +59,14 @@ export const request = async (req, res, pool) => {
       // Delete feedback that is associated with this class
       query = {
         text: 'DELETE FROM feedback WHERE classid = $1',
-        values: [classID]
+        values: [classID],
       };
       await pool.query(query);
 
       // Delete the class entry in the database
       query = {
         text: 'DELETE FROM classes WHERE classid = $1',
-        values: [classID]
+        values: [classID],
       };
       await pool.query(query);
 
@@ -85,7 +78,7 @@ export const request = async (req, res, pool) => {
   } catch (error) {
     console.error('ERROR deleting class', error.stack);
     res.status(500).send({
-      'error': error.stack
+      error: error.stack,
     });
   }
-}
+};

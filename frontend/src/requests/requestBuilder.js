@@ -7,20 +7,25 @@ const port = 3001;
 // userType: number
 // lastName, firstName, email, password: string
 // Returns an object with a status field
-export const registerRequester = async (userType, lastName, firstName, email, userPassword) => {
+export const registerRequester = async (
+  userType,
+  lastName,
+  firstName,
+  email,
+  userPassword,
+) => {
   try {
     return axios.post(`${address}:${port}/register`, {
       userType: userType,
       lastName: lastName,
       firstName: firstName,
       email: email,
-      userPassword: userPassword
+      userPassword: userPassword,
     });
   } catch (error) {
     console.error(error);
   }
-
-}
+};
 
 // Login a user
 // email, userPassword: string
@@ -29,7 +34,7 @@ export const loginRequester = async (email, userPassword) => {
   try {
     return axios.post(`${address}:${port}/login`, {
       email: email,
-      userPassword: userPassword
+      userPassword: userPassword,
     });
   } catch (error) {
     console.error(error);
@@ -43,19 +48,23 @@ export const classCreateRequestor = async (className, instructorID) => {
   try {
     return axios.post(`${address}:${port}/class/create`, {
       className: className,
-      instructorID: instructorID
+      instructorID: instructorID,
     });
   } catch (error) {
     console.error(error);
   }
 };
 
-export const feedbackCreateRequestor = async (instructorID, studentID, feedbackText) => {
+export const feedbackCreateRequestor = async (
+  instructorID,
+  studentID,
+  feedbackText,
+) => {
   try {
     return axios.post(`${address}:${port}/feedback/create`, {
       instructorID: instructorID,
       studentID: studentID,
-      feedbackText: feedbackText
+      feedbackText: feedbackText,
     });
   } catch (error) {
     console.error(error);
@@ -63,24 +72,24 @@ export const feedbackCreateRequestor = async (instructorID, studentID, feedbackT
 };
 
 // Gets classes. Returns an array of classes.
-export const getClassRequestor = async (userid) => {
+export const getClassRequestor = async userid => {
   try {
     return axios.get(`${address}:${port}/class/get`, {
       params: {
-        userid: userid
-      }
+        userid: userid,
+      },
     });
   } catch (error) {
     console.error(error);
   }
 };
 
-export const getUsersRequestor = async (userids) => {
+export const getUsersRequestor = async userids => {
   try {
     return axios.get(`${address}:${port}/users/get`, {
       params: {
-        userids: userids
-      }
+        userids: userids,
+      },
     });
   } catch (error) {
     console.error(error);
@@ -91,12 +100,12 @@ export const getFeedback = async (userid, usertype) => {
   try {
     return axios.get(`${address}:${port}/feedback/get`, {
       userid: userid,
-      usertype: usertype
+      usertype: usertype,
     });
   } catch (error) {
     console.error(error);
   }
-}
+};
 
 // Get classes
 //

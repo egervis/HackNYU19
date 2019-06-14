@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 /**
  * The utility methods used by all endpoints.
@@ -9,7 +9,7 @@
  * @param  {string} str The comma separated list string.
  * @return {Array<string>} The array of strings.
  */
-export const convertStringToArray = (str) => {
+export const convertStringToArray = str => {
   return str.split(',');
 };
 
@@ -22,9 +22,9 @@ export const convertStringToArray = (str) => {
  */
 export const convertArrayToString = (arr, selector = undefined) => {
   let output = '';
-  for(let i=0; i<arr.length-1; i++) {
-    let string = selector ? selector(arr[i]) : arr[i];
+  for (let i = 0; i < arr.length - 1; i++) {
+    const string = selector ? selector(arr[i]) : arr[i];
     output = output.concat(string).concat(',');
   }
-  return output.concat(arr[arr.length-1]);
+  return output.concat(arr[arr.length - 1]);
 };

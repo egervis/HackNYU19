@@ -10,8 +10,8 @@ export const CreateClassForm = props => {
   const [createFail, showError] = useState(false);
 
   const createClass = () => {
-    for(var c in props.classes){
-      if(props.classes[c].classname == className){
+    for (const c in props.classes) {
+      if (props.classes[c].classname == className) {
         showError(true);
         return;
       }
@@ -41,35 +41,48 @@ export const CreateClassForm = props => {
             <Button inverted size="big" type="submit" onClick={createClass}>
               Submit
             </Button>
-            <Button id="cancel-btn" inverted size="big" onClick={() => toggleForm(false)}>
+            <Button
+              id="cancel-btn"
+              inverted
+              size="big"
+              onClick={() => toggleForm(false)}
+            >
               Cancel
             </Button>
           </Form.Group>
         </Form>
       ) : (
-        <Button inverted size="big" onClick={() => {
-          toggleForm(true);
-          showMessage(false);
-        }}>
+        <Button
+          inverted
+          size="big"
+          onClick={() => {
+            toggleForm(true);
+            showMessage(false);
+          }}
+        >
           Create class
         </Button>
       )}
       {createFail ? (
         <Message
           onDismiss={() => showError(false)}
-          header='Class already exists.'
+          header="Class already exists."
           error
         />
-      ): ''}
+      ) : (
+        ''
+      )}
       {createSuccess ? (
         <Message
           onDismiss={() => showMessage(false)}
-          header='Success!'
+          header="Success!"
           success
         />
-      ): ''}
+      ) : (
+        ''
+      )}
     </div>
-  )
+  );
 };
 
 export default CreateClassForm;
