@@ -21,11 +21,11 @@ export const CreateClassForm = props => {
         props.refreshClasses();
         showMessage(true);
         showError(false);
+        toggleForm(false);
       })
       .catch(error => {
         console.error(error);
       });
-    toggleForm(false);
   };
 
   return (
