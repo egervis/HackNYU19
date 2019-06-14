@@ -16,5 +16,20 @@
     "lint-staged": "^8.2.0",
     "prettier": "^1.18.2",
     "react": "^16.8.6"
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.{json,md,css,yml,sql}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }
